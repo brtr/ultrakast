@@ -18,7 +18,7 @@
 			<%= f.label :password_confirmation, "Confirm password" %>
 			<%= f.password_field :password_confirmation %>
 			
-			<%= nested_categories Category.arrange(:order => :id) %>
+			<%= categories_to_checkboxes Category.arrange(:order => :id) %>
 			
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<% end %>

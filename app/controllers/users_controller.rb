@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def new
 	@user = User.new
+	@categories = Category.roots
+	
   end
   
   def show

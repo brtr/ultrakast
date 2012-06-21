@@ -18,12 +18,7 @@
 			<%= f.label :password_confirmation, "Confirm password" %>
 			<%= f.password_field :password_confirmation %>
 			
-			<% for category in Category.find(:all) %>
-			  <div>
-				<%= check_box_tag "user[category_ids][]", category.id, @user.categories.include?(category) %>
-				<%= category.name %>
-			  </div>
-			<% end %>
+			<%= nested_categories Category.arrange(:order => :id) %>
 			
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<% end %>

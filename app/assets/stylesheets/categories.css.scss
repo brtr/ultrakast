@@ -1,18 +1,40 @@
-.parent {
-	font-weight: bold;
-	margin-bottom: 5px;
+@import "bootstrap";
+
+#category-list, #category-checklist {
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	
+	ul {
+		list-style: none;
+		margin-left: 0;
+	}
+	
+	
+	.parent {
+		font-size: 1.7em;
+		font-weight: bold;
+		color: black;
+		margin-bottom: 10px;
+	}
+	
+	.child {
+		font-size: 1.25em;
+		font-weight: normal;
+		color: $grayLight;
+		margin-bottom: 10px;
+	}
 }
 
-.child {
-	margin-left: 10px;
-	margin-bottom: 3px;
+#category-list {
+	text-align: center;
+	
+	li {
+		margin-left: 0;
+	}
 }
 
-.parent-list{
-	font-weight: bold;
-	margin-bottom: 15px;
-}
+#category-checklist ul {
 
-.child-list {
-	margin-bottom: 10px;
+	margin-left: 20px;
+
 }

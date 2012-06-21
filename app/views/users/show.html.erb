@@ -11,6 +11,7 @@
 </div>
 
 <h1>Your categories:</h1>
-<%= list_categories @categories.arrange(:order => :name) %>
-
+<div id="category-list">
+	<%= list_categories @categories.arrange(:order => :name) %>
+</div>
 <%= link_to "Edit profile", edit_user_path(@user) %>

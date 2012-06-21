@@ -9,3 +9,9 @@
 	</section>
   </aside>
 </div>
+
+<h1>Your categories:</h1>
+<% @categories.each do |category| %>
+<h2><%= category.name %></h2>
+<% end %>
+<%= link_to "Edit profile", edit_user_path(@user) %>

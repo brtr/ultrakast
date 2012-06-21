@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  has_and_belongs_to_many :categories
+  
+  attr_accessible :email, :name, :password, :password_confirmation, :category_ids
   has_secure_password
   
   before_save { |user| user.email = email.downcase }

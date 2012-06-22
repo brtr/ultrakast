@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :categories
+  has_many :posts, dependent: :destroy
   
   attr_accessible :email, :name, :password, :password_confirmation, :category_ids
   has_secure_password

@@ -8,10 +8,14 @@
 	  </h1>
 	</section>
   </aside>
+  <div class="span8">
+    <% if @user.posts.any? %>
+	<h3>Posts (<%= @user.posts.count %>)</h3>
+	<ol class="posts">
+	  <%= render @posts %>
+	</ol>
+	<% end %>
+  </div>  
 </div>
 
-<h1>Your categories:</h1>
-<div id="category-list">
-	<%= list_categories @categories.arrange(:order => :name) %>
-</div>
 <%= link_to "Edit profile", edit_user_path(@user) %>

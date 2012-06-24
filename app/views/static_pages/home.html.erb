@@ -1,10 +1,22 @@
-<div class="center hero-unit">
-  <h1>Welcome to Prototype!</h1>
-  <h2>This is a development system and unauthorized access is strictly prohibited!</h2>
-  
-  <% if signed_in? %>
-	<h2>Welcome back! <%= link_to "Visit your profile", current_user %> or <%= link_to "edit your settings", edit_user_path(current_user) %></h2>
-  <% else %>
-	<%= link_to "Sign in now!", signin_path, class: "btn btn-large btn-primary" %>
-  <% end %>
-</div><!-- END .center hero-unit" -->
+<% if signed_in? %>
+	<div class="row">
+		<aside class="span4">
+			<section>
+				<%= render 'shared/user_info' %>
+			</section>
+			<section>
+				<%= render 'shared/post_form' %>
+			</section>
+		</aside>
+		<div class="span8">
+			<h3>Newsfeed</h3>
+			<%= render 'shared/feed' %>
+		</div>
+	</div>
+<% else %>	
+	<div class="center hero-unit">
+  		<h1>Welcome to Prototype!</h1>
+  		<h2>This is a development system and unauthorized access is strictly prohibited!</h2>
+  		<%= link_to "Sign in now!", signin_path, class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>

@@ -4,7 +4,8 @@
     <section>
 	  <h1>
 	    <%= gravatar_for @user %>
-		<%= @user.name %>
+		<%= @user.name %><br />
+		Friends: <%= @user.friends.count %>
 	  </h1>
 	</section>
   </aside>

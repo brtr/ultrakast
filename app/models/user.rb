@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :posts, dependent: :destroy
+  has_many :friendships
+  has_many :friends, :through => :friendships
   
   attr_accessible :email, :name, :password, :password_confirmation, :category_ids
   has_secure_password

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   
   def feed
-    Post.where("user_id = ? AND category_id in (?)", id, categories)
+    Post.where("(user_id = ? OR user_id = (?)) AND category_id in (?)", id, friends, categories)
   end
   
   

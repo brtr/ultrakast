@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   end
   
   def show
-	@user = User.find(params[:id])
-	@categories = @user.categories
-	@posts = @user.posts
+	  @user = User.find(params[:id])
+	  @categories = @user.categories
+	  @posts = @user.posts
   end
   
   def create

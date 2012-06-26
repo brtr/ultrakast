@@ -4,8 +4,16 @@ gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
-gem 'sqlite3'
 gem 'ancestry'
+
+
+group :production, :staging do
+  gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
 
 
 # Bundle edge Rails instead:

@@ -1,0 +1,5 @@
+<% if @feed_status == "public" %>
+  $('#feed').html('<h3>Newsfeed (viewing everyone)</h3><%= link_to 'View friends', switchfeed_path(:feed => "private"), :remote => true %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+<% else %>
+  $('#feed').html('<h3>Newsfeed (viewing friends)</h3><%= link_to 'View everyone', switchfeed_path(:feed => "public"), :remote => true %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+<% end %>

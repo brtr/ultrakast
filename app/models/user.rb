@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     Post.where("(user_id = ? OR user_id = (?)) AND category_id in (?)", id, friends, categories)
   end
   
+  def public_feed
+    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
+  end
+  
   
   private
     def create_remember_token

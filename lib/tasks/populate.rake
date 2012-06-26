@@ -1,7 +1,7 @@
 namespace :db do
   
   desc "Erase and fill database"
-  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories']
+  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories', 'db:posts']
   
   desc "Create users"
   task :users => :environment do
@@ -110,6 +110,16 @@ namespace :db do
     cat.children.create name: "Gaming"
     cat.children.create name: "Celebrity Gossip"    
   end
+  
+  desc "Create posts"
+  task :posts => :environment do
+	user = User.first
+    @post = user.posts.build(content: "This is the first post", category_id: Category.find_by_name("Lacrosse"), shared: false)
+	@post.save
+	@post = user.posts.build(content: "This is the second post", category_id: Category.find_by_name("Basketball"), shared: true)
+	@post.save
+  end
+  
 end
     
     

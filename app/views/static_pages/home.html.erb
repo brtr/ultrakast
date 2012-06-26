@@ -8,8 +8,9 @@
 				<%= render 'shared/post_form' %>
 			</section>
 		</aside>
-		<div class="span8">
-			<h3>Newsfeed</h3>
+		<div id="feed" class="span8">
+			<h3>Newsfeed (viewing friends)</h3>
+			<%= link_to 'View everyone', switchfeed_path(:feed => "public"), :remote => true %>
 			<%= render 'shared/feed' %>
 		</div>
 	</div>

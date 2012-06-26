@@ -6,10 +6,12 @@ class Post < ActiveRecord::Base
   default_scope order: 'posts.created_at DESC'
   validates :user_id, presence: true
   
+  scope :shared, where(:shared => true)
   
-  def self.by_category(category)
-    where(:category_id => category.id)
+  def self.by_categories(categories)
+    where("category_id in (?)", categories)
   end
+  
   
   def root_category_list
     Category.roots.sort_by { |category| category.name }

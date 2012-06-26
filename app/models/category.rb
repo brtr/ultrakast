@@ -5,7 +5,9 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name, :parent_id
   
-
+  def child_name
+    self.children.sort_by { |child| child.name }
+  end
   
 
 end

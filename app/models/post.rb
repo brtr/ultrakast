@@ -6,14 +6,10 @@ class Post < ActiveRecord::Base
   default_scope order: 'posts.created_at DESC'
   validates :user_id, presence: true
   
-  def category_list
-    category_array = []
-    Category.roots.sort_by { |category| category.name }.each do |category|
-      category_array.push(category)
-      category.children.each do |sub|
-        category_array.push(sub)
-      end
-    end
-    category_array
+  def root_category_list
+    Category.roots.sort_by { |category| category.name }
   end
+  
 end
+
+

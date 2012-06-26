@@ -12,6 +12,7 @@ namespace :db do
   desc "Create categories"
   task :categories => :environment do
     cat = Category.create name: "Sports"
+    cat.children.create name: "General"    
     cat.children.create name: "Football"
     cat.children.create name: "Basketball"
     cat.children.create name: "Baseball"
@@ -25,6 +26,7 @@ namespace :db do
     cat.children.create name: "Extreme Sports"
     
     cat = Category.create name: "Fashion"
+    cat.children.create name: "General"
     cat.children.create name: "Women's Apparel"
     cat.children.create name: "Shoes"
     cat.children.create name: "Handbags"
@@ -33,6 +35,7 @@ namespace :db do
     cat.children.create name: "Men's"
     
     cat = Category.create name: "News"
+    cat.children.create name: "General"
     cat.children.create name: "Business"
     cat.children.create name: "World"
     cat.children.create name: "US"
@@ -42,6 +45,7 @@ namespace :db do
     cat.children.create name: "Health"
 
     cat = Category.create name: "Music"
+    cat.children.create name: "General"
     cat.children.create name: "Hip Hop/Rap"
     cat.children.create name: "Pop"
     cat.children.create name: "Rock"
@@ -54,6 +58,7 @@ namespace :db do
     cat.children.create name: "Soundtrack"
     
     cat = Category.create name: "Literature"
+    cat.children.create name: "General"
     cat.children.create name: "Fiction"
     cat.children.create name: "Non-fiction"
     cat.children.create name: "Short Stories"
@@ -62,6 +67,7 @@ namespace :db do
     cat.children.create name: "Biography"
 
     cat = Category.create name: "Movies"
+    cat.children.create name: "General"
     cat.children.create name: "Comedy"
     cat.children.create name: "Drama"
     cat.children.create name: "Action"
@@ -73,6 +79,7 @@ namespace :db do
     cat.children.create name: "Documentary"
     
     cat = Category.create name: "TV"
+    cat.children.create name: "General"
     cat.children.create name: "Comedy"
     cat.children.create name: "Drama"
     cat.children.create name: "Action"
@@ -82,6 +89,7 @@ namespace :db do
     cat.children.create name: "Documentary"
     
     cat = Category.create name: "Art"
+    cat.children.create name: "General"
     cat.children.create name: "Paintings"
     cat.children.create name: "Photo"
     cat.children.create name: "Street Art"
@@ -90,6 +98,7 @@ namespace :db do
     cat.children.create name: "Photoshop"
     
     cat = Category.create name: "Other"
+    cat.children.create name: "General"
     cat.children.create name: "Humor"
     cat.children.create name: "Food"
     cat.children.create name: "Autos"

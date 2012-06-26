@@ -3,3 +3,6 @@
 <% else %>
   $('#feed').html('<h3>Newsfeed (viewing friends)</h3><%= link_to 'View everyone', switchfeed_path(:feed => "public"), :remote => true %><%= escape_javascript(render(:partial => "shared/feed")) %>');
 <% end %>
+$('.posts').embedly({
+		maxWidth: 150,
+		key: '6c398a44d6034de4b75ea047c32e83fe'});

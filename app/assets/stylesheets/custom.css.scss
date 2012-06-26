@@ -194,17 +194,50 @@ input, textarea, select, .uneditable-input {
 	margin: 10px 0 0 0;
 	
 	li {
+		clear: both;
 		padding: 10px 0;
 		border-top: 1px solid #e8e8e8;
 	}
 }
 
+.post-header {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.provider {
+	visibility: hidden;
+}
+
+.thumb {
+	float: left;
+	padding: 0 10px 10px 0;
+}
+
+.embed {
+	display: block;
+	clear: both;
+	margin-top: 10px;
+	
+}
+
 .content {
 	display: block;
+	clear: both;
+	margin-left: 10px;
+}
+
+.category {
+	font-weight: bold;
 }
 
 .timestamp {
 	color: $grayLight;
+}
+
+.delete {
+	color: red;
 }
 
 
@@ -221,5 +254,10 @@ input, textarea, select, .uneditable-input {
 			border-bottom: 1px solid $grayLighter;
 		}
 	}
+}
+
+#category_links ul {
+	list-style: none;
+
 }
 	

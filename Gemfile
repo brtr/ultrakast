@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
 gem 'ancestry'
+gem 'rails_autolink'
 
 
 group :production, :staging do

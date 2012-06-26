@@ -1,0 +1,9 @@
+<ul>
+	<% current_user.categories.each do |category| %>
+		<% if category.ancestry.nil? %>
+			<strong><%= category.name %></strong>
+		<% else %>
+			<li><%= category.name %></li>
+		<% end %>
+	<% end %>
+</ul>

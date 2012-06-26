@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   def public_feed
     Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
   end
+
   
   
   private

@@ -13,7 +13,7 @@
 		</aside>
 		<div id="feed" class="span8">
 			<h3>Newsfeed (viewing friends)</h3>
-			<%= link_to 'View everyone', switchfeed_path(:feed => "public"), :remote => true %>
+			<%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %>
 			<%= render 'shared/feed' %>
 		</div>
 	</div>

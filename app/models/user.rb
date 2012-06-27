@@ -14,13 +14,15 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   
-  def feed
-    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
+  def feed(status, categories=Category.all)
+    if status == "public"
+	  Post.where("category_id in (?) AND (shared = ? OR user_id IN (?))", categories, true, id)
+	elsif status == "private"
+	  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
+	end
   end
   
-  def public_feed
-    Post.where("category_id in (?) AND (shared = ? OR user_id IN (?))", categories, true, id)
-  end
+
 
   
   

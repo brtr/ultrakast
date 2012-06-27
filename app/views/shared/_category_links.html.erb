@@ -1,9 +1,14 @@
 <ul>
+	<li>
+		<%= link_to "View all categories", switchfeed_path(:category_filter => current_user.category_ids), :remote => true %>
+	</li>
 	<% current_user.categories.each do |category| %>
+		<li>
 		<% if category.ancestry.nil? %>
-			<strong><%= category.name %></strong>
+		    <%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }), :remote => true, :class => "parent-link" %>
 		<% else %>
-			<li><%= category.name %></li>
+			<%= link_to category.name, switchfeed_path(:category_filter => category.id), :remote => true %>
 		<% end %>
+		</li>
 	<% end %>
 </ul>

@@ -1,12 +1,17 @@
 namespace :db do
   
   desc "Erase and fill database"
-  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories', 'db:posts']
+  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories']
   
   desc "Create users"
   task :users => :environment do
-    User.create name: "Jim", email: "j@j.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Bethany", email: "b@b.com", password: "111111", password_confirmation: "111111"
+    User.create name: "John Duffy", email: "account1@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Jackie Smith", email: "account2@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Margaret Wilson", email: "account3@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Sam Marcos", email: "account4@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Mike O'Neill", email: "account5@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Jill Compo", email: "account6@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Paul Speaker", email: "account7@example.com", password: "111111", password_confirmation: "111111"
   end
   
   desc "Create categories"
@@ -111,6 +116,7 @@ namespace :db do
     cat.children.create name: "Celebrity Gossip"    
   end
   
+  #currently disabled - add to task list above to re-enable
   desc "Create posts"
   task :posts => :environment do
 	user = User.first

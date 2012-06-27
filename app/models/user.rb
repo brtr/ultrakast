@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def public_feed
-    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
+    Post.where("category_id in (?) AND (shared = ? OR user_id IN (?))", categories, true, id)
   end
 
   

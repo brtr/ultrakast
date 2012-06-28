@@ -6,6 +6,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
 gem 'ancestry'
 gem 'rails_autolink'
+gem 'thin'
 
 
 group :production, :staging do

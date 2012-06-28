@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
 	user = User.find_by_email(params[:session][:email])
 	if user && user.authenticate(params[:session][:password])
-	  sign_in user
+	  sign_in(user, true)
 	  redirect_back_or user
 	else
 	  flash.now[:error] = 'Invalid email/password combination!'
@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
   
   def destroy
     sign_out
-	redirect_to root_path
-  end
+  	redirect_to root_path
+ end
 
 
 end

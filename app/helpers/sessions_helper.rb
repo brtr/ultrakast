@@ -1,8 +1,13 @@
 module SessionsHelper
 
-  def sign_in(user)
-    cookies.permanent[:remember_token] = user.remember_token
-	self.current_user = user
+  def sign_in(user, update_login=false)	  
+	  if update_login
+	    session[:prior_login] = user.last_login
+	    user.update_attribute(:last_login, Time.now)
+	  end
+	  cookies.permanent[:remember_token] = user.remember_token
+	  self.current_user = user
+    
   end
   
   def signed_in?

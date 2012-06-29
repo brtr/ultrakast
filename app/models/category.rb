@@ -9,5 +9,8 @@ class Category < ActiveRecord::Base
     self.children.sort_by { |child| child.name }
   end
   
-
+  def child_name_for(user_id)
+    user = User.find(user_id)
+	self.children.where("id IN (?)", user.categories).sort_by { |child| child.name }
+  end
 end

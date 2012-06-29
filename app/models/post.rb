@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   
+  acts_as_readable
+  
   attr_accessible :content, :category_id, :shared
   default_scope order: 'posts.created_at DESC'
   validates :user_id, presence: true
@@ -12,10 +14,16 @@ class Post < ActiveRecord::Base
     where("category_id in (?)", categories)
   end
   
-  
-  def root_category_list
-    Category.roots.sort_by { |category| category.name }
+  def self.unread_count(user, categories)
+    unread = by_categories(categories).find_unread_by(user).count
+	
+	unless unread == 0
+	  "(" + unread.to_s + " new)"
+	end
+	
+	
   end
+
   
 end
 

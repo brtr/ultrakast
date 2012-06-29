@@ -21,10 +21,7 @@ class User < ActiveRecord::Base
 	    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
 	  end
   end
-  
 
-
-  
   
   private
     def create_remember_token

@@ -16,8 +16,10 @@ class StaticPagesController < ApplicationController
 	
 	  unless params[:category_filter].nil?
 	    if params[:category_filter] == ""
-		  session[:category_filter] = Category.ids
-	    session[:category_filter] = params[:category_filter]
+		    session[:category_filter] = Category.ids
+		  else
+	      session[:category_filter] = params[:category_filter]
+	    end
 	  end
 	  
 	  unless params[:filter_title].nil?

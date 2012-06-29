@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'ancestry'
 gem 'rails_autolink'
 gem 'thin'
-gem 'eventmachine', '1.0.0.beta.4.1'
+#gem 'eventmachine', '1.0.0.beta.4.1'
 
 group :production, :staging do
   gem 'pg'

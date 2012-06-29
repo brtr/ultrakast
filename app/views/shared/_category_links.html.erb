@@ -1,6 +1,6 @@
 <ul>
 	<li>
-		<%= link_to "View all categories", switchfeed_path(:filter_title => "", :category_filter => Category.all.collect { |cat| cat.id }), :remote => true %>
+		<%= link_to "View all categories", switchfeed_path(:category_filter => Category.all.collect{ |cat| cat.id }, :filter_title => ""), :remote => true %>
 	</li>
 	<% current_user.categories.each do |category| %>
 		<li>

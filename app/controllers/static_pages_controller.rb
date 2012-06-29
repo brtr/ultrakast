@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def home
     if signed_in?
       @post = current_user.posts.build
-      session[:category_filter] = Category.all.collect{ |cat| cat.id }
+      session[:category_filter] = Category.all.collect{|cat| cat.id}
 	  session[:feed_status] = "private"
 	  session[:filter_title] = ""
 	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter])

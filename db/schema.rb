@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(:version => 20120706143825) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "likes", :force => true do |t|
+  create_table "post_actions", :force => true do |t|
+    t.string   "type"
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at", :null => false

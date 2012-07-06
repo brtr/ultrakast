@@ -1,7 +1,10 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  
+  has_many   :post_actions
   has_many   :likes
+  has_many   :favorites
   
   acts_as_readable
   

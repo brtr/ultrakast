@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :post_actions
   has_many   :likes
   has_many   :favorites
+  has_many   :comments 
   
   attr_accessible :email, :name, :password, :password_confirmation, :category_ids, :last_login
   has_secure_password

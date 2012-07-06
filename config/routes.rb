@@ -1,7 +1,9 @@
 Prototype::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy] do
+    resources :comments, only: [:create, :destroy], :controller => "post_actions", :type => "Comment"
+  end
   resources :friendships, only: [:create, :destroy]
   resources :likes,     only: [:create, :destroy], :controller => "post_actions", :type => "Like"
   resources :favorites, only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"

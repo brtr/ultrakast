@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   has_many   :likes
   has_many   :favorites
   
+  has_many   :comments
+  
   acts_as_readable
   
   attr_accessible :content, :category_id, :shared

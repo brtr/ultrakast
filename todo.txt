@@ -3,7 +3,7 @@ To-do:
 1. Post actions
 	1a. Likes - XXXXX
 	1b. Favorites - XXXXX
-	1c. Comments
+	1c. Comments - xxxxx (need to ajax the comment form, list number of comments, have a way to view the comments, etc)
 	1d. Shares
 
 2. Pagination

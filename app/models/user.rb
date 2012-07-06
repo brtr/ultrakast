@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :friendships
   has_many :friends, :through => :friendships
+  has_many :likes
   
   attr_accessible :email, :name, :password, :password_confirmation, :category_ids, :last_login
   has_secure_password

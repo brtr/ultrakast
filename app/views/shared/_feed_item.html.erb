@@ -12,4 +12,10 @@
 	</span>
 </div>
 	<span class="content"><%= auto_link(feed_item.content) %></span>
+	<span class="likes-<%= feed_item.id %>">
+		<%= like_link(current_user, feed_item) %>
+		<% unless feed_item.likes.empty? %>
+			-- liked by <%= pluralize(feed_item.likes.count, "user") %>
+		<% end %>
+	</span>
 </li>

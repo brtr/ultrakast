@@ -1,0 +1,4 @@
+Things to do before production:
+
+1. Jun needs Embed.ly account - change API key
+ 

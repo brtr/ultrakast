@@ -3,6 +3,7 @@ Prototype::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
   
 
   root to: 'static_pages#home'

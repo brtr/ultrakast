@@ -1,0 +1,26 @@
+To-do:
+
+1. Post actions
+	1a. Likes - XXXXX
+	1b. Favorites
+	1c. Comments
+	1d. Shares
+
+2. Pagination
+
+3. Facebook API/logon integration
+
+4. Images
+	4a. Paperclip/S3 integration
+	4b. Avatars
+		4b-a. Upload avatar
+		4b-b. Pull Facebook profile pic
+	4c. Images in posts
+	
+5. URL helper to grab titles if Embed.ly doesn't work
+
+6. Increase size of video window in posts
+
+7. Admin functionality
+
+8. Limit new post count to friends only

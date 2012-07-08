@@ -1,8 +1,0 @@
-Description:
-    Generates the standard migration for ActsAsReadable
-
-Example:
-    rails generate acts_as_readable_migration [MIGRATION_NAME]
-
-    This will create a migration file under:
-        db/migrate/

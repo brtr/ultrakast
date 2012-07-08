@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
   has_many   :likes
   has_many   :favorites
   has_many   :comments
-  has_many   :readings #this works with the acts-as-readable plugin - explicitly added here to prevent conflict with Devise
+  has_many   :readings
+  
+  acts_as_reader
   
   attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids
   

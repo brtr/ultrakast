@@ -29,12 +29,11 @@ class StaticPagesController < ApplicationController
 	      session[:filter_title] = "(filtered by " + params[:filter_title] + ")"
 	    end
 	  end
-	  
 	  @filter_title = session[:filter_title]
 	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter])
 	  unless @filter_title == ""
 	    @feed_items.each do |item|
-		  item.read_by!(current_user)
+		  item.mark_as_read! :for => current_user
 		end
 	  end
 	      respond_to do |format|

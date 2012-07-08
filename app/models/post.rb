@@ -7,8 +7,9 @@ class Post < ActiveRecord::Base
   has_many   :favorites
   
   has_many   :comments
-  
-  acts_as_readable
+
+  acts_as_readable :on => :created_at
+
   
   attr_accessible :content, :category_id, :shared
   default_scope order: 'posts.created_at DESC'
@@ -17,19 +18,20 @@ class Post < ActiveRecord::Base
   
   scope :shared, where(:shared => true)
   
+  
+  
   def self.by_categories(categories)
     where("category_id in (?)", categories)
   end
   
   def self.unread_count(user, categories)
-    unread = by_categories(categories).find_unread_by(user).count
-	
-	unless unread == 0
-	  "(" + unread.to_s + " new)"
-	end
-	
-	
+    unread = by_categories(categories).unread_by(user).count
+	  unless unread == 0
+	    "(" + unread.to_s + " new)"
+	  end
   end
+  
+
 
   
 end

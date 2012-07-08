@@ -2,7 +2,7 @@ Prototype::Application.routes.draw do
   devise_for :users
 
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+#  resources :sessions, only: [:new, :create, :destroy]
   resources :posts, only: [:create, :destroy] do
     resources :comments, only: [:create, :destroy], :controller => "post_actions", :type => "Comment"
   end
@@ -13,9 +13,9 @@ Prototype::Application.routes.draw do
 
   root to: 'static_pages#home'
   
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+#  match '/signup',  to: 'users#new'
+#  match '/signin',  to: 'devise/sessions#new'
+#  match '/signout', to: 'devise/sessions#destroy', via: :delete
   match '/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'
 
   

@@ -12,21 +12,20 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, :through => :friendships
 
-  has_many :post_actions
+  has_many   :post_actions
   has_many   :likes
   has_many   :favorites
   has_many   :comments
   has_many   :readings #this works with the acts-as-readable plugin - explicitly added here to prevent conflict with Devise
   
-  attr_accessible :email, :name, :password, :password_confirmation, :category_ids, :last_login
-  has_secure_password
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids
   
   before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
+
   
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  validates :name,  presence: true
+
   
   def feed(status, categories=Category.all)
     if status == "public"
@@ -36,11 +35,7 @@ class User < ActiveRecord::Base
 	  end
   end
 
-  
-  private
-    def create_remember_token
-	  self.remember_token = SecureRandom.urlsafe_base64
-	end
+
 
   
 end

@@ -3,7 +3,7 @@ class PostActionsController < ApplicationController
   def create
   #This needs to be all kindsa refactored - need JS for comments
     model = params[:type].constantize
-    @action = model.new(:user_id => current_user, :post_id => params[:post_id])
+    @action = model.new(:user_id => current_user.id, :post_id => params[:post_id])
 	if @action.type == "Comment"
 	  @action.content = params[:comment][:content]
 	  @action.save

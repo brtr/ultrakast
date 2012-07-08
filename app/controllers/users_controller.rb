@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update]
+  before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
 
   def new
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 	
 	  def correct_user
 	    @user = User.find(params[:id])
-	    redirect_to(root_path) unless current_user?(@user)
+	    #redirect_to(root_path) unless current_user?(@user)
 	  end
   
 end

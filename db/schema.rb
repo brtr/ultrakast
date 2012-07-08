@@ -62,25 +62,8 @@ ActiveRecord::Schema.define(:version => 20120708192531) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "u_sers", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "u_sers", ["email"], :name => "index_u_sers_on_email", :unique => true
-  add_index "u_sers", ["reset_password_token"], :name => "index_u_sers_on_reset_password_token", :unique => true
-
   create_table "users", :force => true do |t|
+    t.string   "name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"

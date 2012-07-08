@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :authenticate_user!
   before_filter :correct_user, only: :destroy
   
   def create

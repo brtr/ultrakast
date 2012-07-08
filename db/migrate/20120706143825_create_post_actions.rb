@@ -1,6 +1,6 @@
 class CreatePostActions < ActiveRecord::Migration
   def change
-    create_table :likes do |t|
+    create_table :post_actions do |t|
 	  t.string  :type
       t.integer :user_id
       t.integer :post_id

@@ -22,6 +22,8 @@
 	  <%= favorite_link(current_user, feed_item) %>
 	</span>
 	<span class="comments">
+	  <%= render :partial => 'shared/comment', collection: feed_item.comments %>
+
 	<%= form_for [feed_item, feed_item.comments.build] do |f| %>
 	  <%= f.text_field :content %>
 	  <%= f.submit %>

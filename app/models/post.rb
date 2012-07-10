@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
   has_many   :favorites
   has_many   :comments
 
-  
   attr_accessible :content, :category_id, :shared
   default_scope order: 'posts.created_at DESC'
   validates :user_id, presence: true
@@ -17,13 +16,10 @@ class Post < ActiveRecord::Base
   
   acts_as_readable
   
-  
-  def self.by_categories(categories)
-    where("category_id in (?)", categories)
-  end
-  
+  #Get count of unread posts, sorted by category, posted by a user's friends
+  #Returns a string showing number of new posts to append to the category links
   def self.unread_count(user, categories)
-    unread = by_categories(categories).find_unread_by(user).count
+    unread = where("category_id in (?) AND posts.user_id in (?)", categories, user.friends).find_unread_by(user).count
 	  unless unread == 0
 	    "(" + unread.to_s + " new)"
 	  end

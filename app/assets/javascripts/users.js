@@ -5,6 +5,10 @@ $(document).ready(function() {
 			{
 				$(this).parent().siblings('ul').children().children('input:checkbox').attr('checked', true);
 			}
+			else
+			{
+			    $(this).parent().parent().siblings('li').children('input:checkbox').attr('checked', true);
+			}
 		}
 		else
 		{

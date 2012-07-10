@@ -1,15 +1,13 @@
 To-do:
 
 1. Post actions
-	1a. Likes - XXXXX
-	1b. Favorites - XXXXX
 	1c. Comments - xxxxx (need to ajax the comment form, list number of comments, have a way to view the comments, etc)
 	1d. Shares
 
 2. Pagination
 
 3. Facebook API/logon integration
-	3a. Switch to Devise authentication
+	3b. Implement FB Connect/OpenAuth
 
 4. Images
 	4a. Paperclip/S3 integration
@@ -18,18 +16,42 @@ To-do:
 		4b-b. Pull Facebook profile pic
 	4c. Images in posts
 	
-5. URL helper to grab titles if Embed.ly doesn't work
+5. URL helper to grab titles if Embed.ly doesn't work - ????? MIGHT NOT NEED....
 
 6. Increase size of video window in posts
 
 7. Admin functionality
 
-8. Limit new post count to friends only
-
 9. Sorting by recency/popularity
 
-10. Fix unread post count to ignore posts by current_user
+13. Tag people in posts with @ symbol
 
-11. Fix category selection - when sub cats are selected, it should add the Parent cat to the user's listing!
+14. Alert users when they have been tagged
 
-12. Create better read solution
+15. Authentication model for friend requests
+
+16. Profile view
+	16a. View favorites
+
+17. User friend list (with avatars) on right-hand side showing friends subscribed to this category (when not filtering by ALL)
+
+18. Collapse category lists with + sign to expand
+
+
+
+DONE
+
+1. Post actions
+	1a. Likes - XXXXX
+	1b. Favorites - XXXXX
+	
+3. Facebook API/logon integration
+	3a. Switch to Devise authentication - XXXXX
+	
+8. Limit new post count to friends only - XXXXX
+
+10. Fix unread post count to ignore posts by current_user - XXXXX
+
+11. Fix category selection - when sub cats are selected, it should add the Parent cat to the user's listing! - XXXXX
+
+12. Create better read solution - XXXXX

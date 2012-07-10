@@ -17,4 +17,5 @@ class Category < ActiveRecord::Base
   def self.ids
     all.collect { |cat| cat.id }
   end
+
 end

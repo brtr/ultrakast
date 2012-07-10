@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/41northstudios/acts-as-readable.git
-  revision: a9c2b30e111bcb35225debfeba4696110ff70155
+  revision: 455db4477eace5deaeb7e89a8cf35fc98fc8a6a2
   specs:
     acts-as-readable (0.0.1)
       rails (~> 3.2.6)

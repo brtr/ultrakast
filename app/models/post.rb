@@ -5,10 +5,7 @@ class Post < ActiveRecord::Base
   has_many   :post_actions
   has_many   :likes
   has_many   :favorites
-  
   has_many   :comments
-
-  acts_as_readable :on => :created_at
 
   
   attr_accessible :content, :category_id, :shared
@@ -18,6 +15,7 @@ class Post < ActiveRecord::Base
   
   scope :shared, where(:shared => true)
   
+  acts_as_readable
   
   
   def self.by_categories(categories)
@@ -25,15 +23,12 @@ class Post < ActiveRecord::Base
   end
   
   def self.unread_count(user, categories)
-    unread = by_categories(categories).unread_by(user).count
+    unread = by_categories(categories).find_unread_by(user).count
 	  unless unread == 0
 	    "(" + unread.to_s + " new)"
 	  end
   end
-  
-
-
-  
+ 
 end
 
 

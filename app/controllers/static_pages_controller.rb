@@ -33,7 +33,7 @@ class StaticPagesController < ApplicationController
 	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter])
 	  unless @filter_title == ""
 	    @feed_items.each do |item|
-		  item.mark_as_read! :for => current_user
+		  item.read_by!(current_user)
 		end
 	  end
 	      respond_to do |format|

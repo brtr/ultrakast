@@ -9,7 +9,8 @@ gem 'rails_autolink'
 gem 'thin'
 gem 'eventmachine', '1.0.0.beta.4.1'
 gem 'devise'
-gem 'unread'
+
+gem 'acts-as-readable', :git => 'git://github.com/41northstudios/acts-as-readable.git'
 
 group :production, :staging do
   gem 'pg'

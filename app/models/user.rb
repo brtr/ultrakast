@@ -2,11 +2,15 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  #devise :database_authenticatable, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
+  
+  #Pass options to devise call - this was moved to config/initializers/devise.rb to prevent conflict with acts-as-readable extension of User class
+  @devise_options = [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids
+  
   has_and_belongs_to_many :categories
   has_many :posts, dependent: :destroy
   has_many :friendships
@@ -16,19 +20,12 @@ class User < ActiveRecord::Base
   has_many   :likes
   has_many   :favorites
   has_many   :comments
-  has_many   :readings
-  
-  acts_as_reader
-  
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids
-  
+
   before_save { |user| user.email = email.downcase }
 
-  
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
 
-  
   def feed(status, categories=Category.all)
     if status == "public"
 	    Post.where("category_id in (?) AND (shared = ? OR user_id IN (?))", categories, true, id)
@@ -37,7 +34,4 @@ class User < ActiveRecord::Base
 	  end
   end
 
-
-
-  
 end

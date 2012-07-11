@@ -1,7 +1,7 @@
 namespace :db do
   
   desc "Erase and fill database"
-  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories']
+  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories', 'db:posts', 'db:add_friendships', 'db:add_categories']
   
   desc "Create users"
   task :users => :environment do
@@ -116,16 +116,47 @@ namespace :db do
     cat.children.create name: "Celebrity Gossip"    
   end
   
-  #currently disabled - add to task list above to re-enable
-  desc "Create posts"
-  task :posts => :environment do
-	user = User.first
-    @post = user.posts.build(content: "This is the first post", category_id: Category.find_by_name("Lacrosse"), shared: false)
-	@post.save
-	@post = user.posts.build(content: "This is the second post", category_id: Category.find_by_name("Basketball"), shared: true)
-	@post.save
+  desc "Add categories to users"
+  task :add_categories => :environment do
+	(1..13).each do |k|
+	  category = Category.find(k)
+	  [1,3].each do |i|
+	    User.find(i).categories << category
+	  end
+	end
+	
+	(14..21).each do |k|
+	  category = Category.find(k)
+	  (2..4).each do |i|
+	    User.find(i).categories << category
+	  end
+	end
   end
   
+  desc "Create friendships"
+  task :add_friendships => :environment do
+    user1 = User.find(1)
+	user2 = User.find(2)
+	user3 = User.find(3)
+	user4 = User.find(4)
+	user1.friends << user2
+	user1.friends << user3
+	user2.friends << user4
+  end
+  
+  desc "Create posts"
+  task :posts => :environment do
+    (1..21).each do |k|
+	  cat = Category.find(k)
+	  (1..4).each do |i|
+	    user = User.find(i)
+		@post = user.posts.build(content: "I am posting a private post about #{cat.name}", category_id: k, shared: false)
+		@post.save
+		@post = user.posts.build(content: "I am posting a public post about #{cat.name}", category_id: k, shared: true)
+		@post.save
+	  end
+	end
+  end
 end
     
     

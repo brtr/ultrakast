@@ -139,9 +139,18 @@ namespace :db do
 	user2 = User.find(2)
 	user3 = User.find(3)
 	user4 = User.find(4)
-	user1.friends << user2
-	user1.friends << user3
-	user2.friends << user4
+    @friendship = user1.friendships.build(:friend_id => user2.id)
+	  @friendship.save
+	  @inverse = user2.friendships.build(:friend_id => user1.id)
+	  @inverse.save
+	  @friendship = user1.friendships.build(:friend_id => user3.id)
+	  @friendship.save
+	  @inverse = user3.friendships.build(:friend_id => user1.id)
+	  @inverse.save
+	  @friendship = user1.friendships.build(:friend_id => user4.id)
+	  @friendship.save
+	  @inverse = user4.friendships.build(:friend_id => user1.id)
+	  @inverse.save
   end
   
   desc "Create posts"

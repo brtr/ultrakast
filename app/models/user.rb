@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def feed(status, categories=Category.all)
     if status == "public"
-	    Post.where("category_id in (?) AND (shared = ? OR user_id IN (?))", categories, true, id)
+	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
 	  elsif status == "private"
 	    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
 	  end

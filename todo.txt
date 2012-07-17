@@ -5,6 +5,7 @@ To-do:
 	1d. Shares
 
 2. Pagination
+	-this should fix the switch_feed speed issues - limit page to 15-20 posts
 
 3. Facebook API/logon integration
 	3b. Implement FB Connect/OpenAuth
@@ -36,6 +37,10 @@ To-do:
 17. User friend list (with avatars) on right-hand side showing friends subscribed to this category (when not filtering by ALL)
 
 18. Collapse category lists with + sign to expand
+
+19. REPLACE LIKE/FAVORITE/COMMENT CODE IN feed_item
+
+20. Notification center for friend/tag alerts
 
 
 

@@ -5,8 +5,8 @@ namespace :db do
   
   desc "Create users"
   task :users => :environment do
-    User.create name: "John Duffy", email: "account1@example.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Jackie Smith", email: "account2@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "John Duffy", email: "1@1.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Jackie Smith", email: "2@2.com", password: "111111", password_confirmation: "111111"
     User.create name: "Margaret Wilson", email: "account3@example.com", password: "111111", password_confirmation: "111111"
     User.create name: "Sam Marcos", email: "account4@example.com", password: "111111", password_confirmation: "111111"
     User.create name: "Mike O'Neill", email: "account5@example.com", password: "111111", password_confirmation: "111111"

@@ -9,6 +9,8 @@ gem 'rails_autolink'
 gem 'thin'
 #gem 'eventmachine', '1.0.0.beta.4.1'
 gem 'devise'
+gem 'will_paginate', '3.0.3'
+#gem 'bootstrap-will_paginate', '0.0.6'
 
 gem 'acts-as-readable', :git => 'git://github.com/41northstudios/acts-as-readable.git'
 

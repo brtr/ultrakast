@@ -7,7 +7,6 @@ class PostActionsController < ApplicationController
 	if @action.type == "Comment"
 	  @action.content = params[:comment][:content]
 	  @action.save
-	  flash[:success] = "#{params}"
 	  redirect_to root_path
 	else #change to end
 	

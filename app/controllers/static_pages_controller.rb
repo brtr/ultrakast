@@ -2,10 +2,19 @@ class StaticPagesController < ApplicationController
   def home
     if user_signed_in?
       @post = current_user.posts.build
-      session[:category_filter] = Category.ids
-	    session[:feed_status] = "private"
-	    session[:filter_title] = ""
-	    @feed_items = current_user.feed(session[:feed_status], session[:category_filter])
+      #       if session[:category_filter].nil?
+      #         session[:category_filter] = Category.ids
+      # end
+	    
+      # if session[:feed_status].nil? 
+      #   session[:feed_status] = "private"
+      # end
+	    
+	    if session[:filter_title].nil?
+	      session[:filter_title] = ""
+	    end
+	    
+	    @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: params[:page], per_page: 10)
     end
   end
   
@@ -13,6 +22,13 @@ class StaticPagesController < ApplicationController
 	  unless params[:feed_status].nil?
 	    session[:feed_status] = params[:feed_status]
 	  end
+	  
+    if params[:page].nil?
+          session[:page] = 1
+        else
+          session[:page] = params[:page]
+        end
+    
 	
 	  unless params[:category_filter].nil?
 	    if params[:category_filter] == ""
@@ -21,23 +37,17 @@ class StaticPagesController < ApplicationController
 	      session[:category_filter] = params[:category_filter]
 	    end
 	  end
-	  
-	  unless params[:filter_title].nil?
-	    if params[:filter_title] == ""
-	      session[:filter_title] = ""
-	    else
-	      session[:filter_title] = "(filtered by " + params[:filter_title] + ")"
-	    end
-	  end
-	  @filter_title = session[:filter_title]
-	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter])
+    
+	  @filter_title = filter_title(params[:filter_title])
+	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: session[:page], per_page: 10)
 	  unless @filter_title == ""
 	    @feed_items.each do |item|
 		  item.read_by!(current_user)
 		end
 	  end
 	      respond_to do |format|
-	    format.js { render :layout => false }
+	        format.html
+	    format.js
 	  end 
   end
 end

@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(params[:post])
     if @post.save
-      flash[:success] = "Post created!"
-      redirect_to root_path
+      session[:category_filter] = params[:post][:category_id]
+	    @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: params[:page], per_page: 10)
+	    @filter_title = filter_title(Category.find(params[:post][:category_id]).name)
     else
       @feed_items = []
       render 'static_pages/home'

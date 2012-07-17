@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
 
-  def feed(status, categories=Category.all)
+  def feed(status="private", categories=Category.all)
     if status == "public"
 	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
 	  elsif status == "private"

@@ -12,6 +12,7 @@ gem 'devise'
 gem 'will_paginate', '3.0.3'
 gem 'omniauth-facebook'
 gem 'acts-as-readable', :git => 'git://github.com/41northstudios/acts-as-readable.git'
+gem 'newrelic_rpm'
 
 group :production, :staging do
   gem 'pg'

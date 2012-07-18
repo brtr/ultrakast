@@ -38,7 +38,7 @@ GEM
     ancestry (1.3.0)
       activerecord (>= 2.3.14)
     arel (3.0.2)
-    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.0)
     builder (3.0.0)
     coffee-rails (3.2.2)
@@ -55,7 +55,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     erubis (2.7.0)
-    eventmachine (0.12.10)
+    eventmachine (1.0.0.beta.4.1-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.1)
@@ -78,6 +78,7 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    newrelic_rpm (3.4.0.1)
     oauth2 (0.8.0)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -93,7 +94,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
-    pg (0.14.0)
+    pg (0.14.0-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -131,7 +132,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.6)
+    sqlite3 (1.3.6-x86-mingw32)
     thin (1.4.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -150,7 +151,7 @@ GEM
     will_paginate (3.0.3)
 
 PLATFORMS
-  ruby
+  x86-mingw32
 
 DEPENDENCIES
   acts-as-readable!
@@ -159,7 +160,9 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   coffee-rails (~> 3.2.1)
   devise
+  eventmachine (= 1.0.0.beta.4.1)
   jquery-rails
+  newrelic_rpm
   omniauth-facebook
   pg
   rails (= 3.2.6)

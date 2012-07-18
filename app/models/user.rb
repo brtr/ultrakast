@@ -27,11 +27,12 @@ class User < ActiveRecord::Base
   validates :name,  presence: true
 
   def feed(status, categories)
-    if status == "public"
-	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
-	  elsif status == "private"
-	    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
-	  end
+    #if status == "public"
+	#    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id)
+	#  elsif status == "private"
+	#    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
+	#  end
+	Post.all
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)

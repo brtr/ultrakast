@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 	#  elsif status == "private"
 	#    Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories)
 	#  end
-	Post.includes(:category, :post_action)
+	Post.includes(:category, :post_actions)
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)

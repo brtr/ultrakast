@@ -1,5 +1,5 @@
 Prototype::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   resources :users
 #  resources :sessions, only: [:new, :create, :destroy]
@@ -10,6 +10,7 @@ Prototype::Application.routes.draw do
   resources :likes,     only: [:create, :destroy], :controller => "post_actions", :type => "Like"
   resources :favorites, only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"
   
+
 
   root to: 'static_pages#home'
   

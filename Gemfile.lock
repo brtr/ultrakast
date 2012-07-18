@@ -160,7 +160,6 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   coffee-rails (~> 3.2.1)
   devise
-  eventmachine (= 1.0.0.beta.4.1)
   jquery-rails
   newrelic_rpm
   omniauth-facebook

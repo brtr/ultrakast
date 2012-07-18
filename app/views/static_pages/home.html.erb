@@ -1,24 +1,5 @@
 <% if user_signed_in? %>
-    <em>Last login time: <%= current_user.current_sign_in_at %><br />
-    	Prior login time: <%= current_user.last_sign_in_at %></em>
-    	<div class="row">
-		<aside class="span4">
-			<section>
-				<%= render 'shared/user_info' %>
-			</section>
-			<section id="post-form">
-				<%= render 'shared/post_form' %>
-			</section>
-			<section id="category_links">
-				<%= render 'shared/category_links' %>
-			</section>
-		</aside>
-		<div id="feed" class="span8">
-			<h3>Newsfeed (viewing friends)</h3>
-			<%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %>
-			<%= render 'shared/feed' %>
-		</div>
-	</div>
+    
 <% else %>	
 	<div class="center hero-unit">
   		<h1>Welcome to Prototype!</h1>

@@ -1,7 +1,7 @@
 namespace :db do
   
   desc "Erase and fill database"
-  task :reseed => [:environment, 'db:reset', 'db:users', 'db:categories', 'db:posts', 'db:add_friendships', 'db:add_categories']
+  task :reseed => [:environment, 'db:reset', 'db:migrate', 'db:categories']
   
   desc "Create users"
   task :users => :environment do

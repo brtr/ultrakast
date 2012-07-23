@@ -33,7 +33,7 @@ development:
     enabled: true
 
 production:
-    enabled: true
+    enabled: false
 
 test:
-    enabled: true
+    enabled: false

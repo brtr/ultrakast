@@ -14,16 +14,17 @@
 	<span class="content"><%= auto_link(feed_item.content) %></span>
 	<span class="like-<%= feed_item.id %>">
 			<%= like_link(feed_item) %>
-			<% unless feed_item.likes.empty? %>
-				-- liked by <%= pluralize(feed_item.likes.count, "user") %>
+			<% if feed_item.likes_count? %>
+				-- liked by <%= pluralize(feed_item.likes_count, "user") %>
 			<% end %>
 		</span>
 		<span class="favorite-<%= feed_item.id %>">
 		  <%= favorite_link(current_user, feed_item) %>
 		</span>
 		<span class="comments">
-		  <%= render :partial => 'shared/comment', collection: feed_item.comments %>
-
+		  <% if feed_item.comments_count? %>
+		    <%= render :partial => 'shared/comment', collection: feed_item.comments %>
+		  <% end %>
 		<%= form_for [feed_item, feed_item.comments.build] do |f| %>
 		  <%= f.text_field :content %>
 		  <%= f.submit %>

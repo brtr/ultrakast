@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718153702) do
+ActiveRecord::Schema.define(:version => 20120723170326) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -41,32 +41,23 @@ ActiveRecord::Schema.define(:version => 20120718153702) do
     t.string   "content"
   end
 
-  add_index "post_actions", ["type"], :name => "index_post_actions_on_type"
+  add_index "post_actions", ["type", "post_id", "user_id"], :name => "index_post_actions_on_type_and_post_id_and_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "shared",      :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "shared",          :default => false
+    t.integer  "likes_count",     :default => 0
+    t.integer  "favorites_count", :default => 0
+    t.integer  "comments_count",  :default => 0
   end
 
-  add_index "posts", ["category_id", "user_id"], :name => "index_posts_on_category_id_and_user_id"
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
-  add_index "posts", ["shared"], :name => "index_posts_on_shared"
-  add_index "posts", ["user_id", "created_at"], :name => "index_posts_on_user_id_and_created_at"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
-
-  create_table "read_marks", :force => true do |t|
-    t.integer  "readable_id"
-    t.integer  "user_id",                     :null => false
-    t.string   "readable_type", :limit => 20, :null => false
-    t.datetime "timestamp"
-  end
-
-  add_index "read_marks", ["user_id", "readable_type", "readable_id"], :name => "index_read_marks_on_user_id_and_readable_type_and_readable_id"
 
   create_table "readings", :force => true do |t|
     t.string   "readable_type"

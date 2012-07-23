@@ -20,9 +20,9 @@ class Post < ActiveRecord::Base
   #Returns a string showing number of new posts to append to the category links
   def self.unread_count(user, categories)
     unread = where("category_id in (?) AND posts.user_id in (?)", categories, user.friends).find_unread_by(user).count
-	  unless unread == 0
-	    "(" + unread.to_s + " new)"
-	  end
+    unless unread == 0
+      "(" + unread.to_s + " new)"
+    end
   end
  
 end

@@ -156,7 +156,8 @@ namespace :db do
   
   desc "Create posts"
   task :posts => :environment do
-    (1..21).each do |k|
+    (1..20).each do |v|
+	(1..21).each do |k|
 	  cat = Category.find(k)
 	  (1..4).each do |i|
 	    user = User.find(i)
@@ -165,6 +166,7 @@ namespace :db do
 		@post = user.posts.build(content: "I am posting a public post about #{cat.name}", category_id: k, shared: true)
 		@post.save
 	  end
+	end
 	end
   end
 end

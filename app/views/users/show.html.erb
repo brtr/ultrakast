@@ -5,13 +5,13 @@
 	  <h1>
 	    <%= avatar_for @user %>
 		<%= @user.name %><br />
-		Friends: <%= @user.friends.count %>
+		Friends: <%= @user.friends.size %>
 	  </h1>
 	</section>
   </aside>
   <div class="span8">
     <% if @user.posts.any? %>
-	<h3>Posts (<%= @user.posts.count %>)</h3>
+	<h3>Posts (<%= @user.posts.size %>)</h3>
 	<ol class="posts">
 	  <%= render @posts %>
 	</ol>

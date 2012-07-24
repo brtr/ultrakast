@@ -13,6 +13,7 @@ class PostActionsController < ApplicationController
 	@feed_item = Post.find(params[:post_id])
 	if @action.save
 	  respond_to do |format|
+	    @feed_item.reload
 	    case @action.type
 		  #when "Comment"
 		  #  flash[:success] = "Comment saved!"

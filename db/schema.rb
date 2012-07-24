@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723170326) do
+ActiveRecord::Schema.define(:version => 20120724191019) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -20,10 +20,15 @@ ActiveRecord::Schema.define(:version => 20120723170326) do
     t.string   "ancestry"
   end
 
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+
   create_table "categories_users", :id => false, :force => true do |t|
     t.integer "category_id"
     t.integer "user_id"
   end
+
+  add_index "categories_users", ["category_id"], :name => "index_categories_users_on_category_id"
+  add_index "categories_users", ["user_id"], :name => "index_categories_users_on_user_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +36,9 @@ ActiveRecord::Schema.define(:version => 20120723170326) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
+  add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
   create_table "post_actions", :force => true do |t|
     t.string   "type"
@@ -41,7 +49,9 @@ ActiveRecord::Schema.define(:version => 20120723170326) do
     t.string   "content"
   end
 
-  add_index "post_actions", ["type", "post_id", "user_id"], :name => "index_post_actions_on_type_and_post_id_and_user_id"
+  add_index "post_actions", ["post_id"], :name => "index_post_actions_on_post_id"
+  add_index "post_actions", ["type"], :name => "index_post_actions_on_type"
+  add_index "post_actions", ["user_id"], :name => "index_post_actions_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "content"
@@ -67,6 +77,9 @@ ActiveRecord::Schema.define(:version => 20120723170326) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "readings", ["readable_id"], :name => "index_readings_on_readable_id"
+  add_index "readings", ["user_id"], :name => "index_readings_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email",                  :default => "", :null => false
@@ -81,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20120723170326) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "posts_count",            :default => 0
+    t.integer  "friends_count",          :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

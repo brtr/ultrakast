@@ -1,2 +1,3 @@
 class Comment < PostAction
+
 end

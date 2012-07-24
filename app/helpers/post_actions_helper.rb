@@ -17,12 +17,12 @@ module PostActionsHelper
     if post.favorites_count?
       favorite = post.favorites.find_by_user_id(user.id)
 	  if favorite.nil?
-	    link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method > :post, :remote => true)
+	    link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method => :post, :remote => true)
 	  else
 	    link_to((image_tag 'favorite.png', :height => "2.5%", :width => "2.5%"), favorite, :method => :delete, :remote => true)
 	  end
 	else
-	  link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method > :post, :remote => true)
+	  link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method => :post, :remote => true)
 	end
   end
  

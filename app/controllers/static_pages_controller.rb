@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       @post = current_user.posts.build
       if session[:category_filter].nil?
-        session[:category_filter] = Category.ids
+        session[:category_filter] = "all"
       end
 	    
       if session[:feed_status].nil? 
@@ -33,7 +33,7 @@ class StaticPagesController < ApplicationController
 	
 	  unless params[:category_filter].nil?
 	    if params[:category_filter] == ""
-		    session[:category_filter] = Category.ids
+		    session[:category_filter] = "all"
 		  else
 	      session[:category_filter] = params[:category_filter]
 	    end
@@ -41,11 +41,12 @@ class StaticPagesController < ApplicationController
     
 	  @filter_title = filter_title(params[:filter_title])
 	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: session[:page], per_page: 10)
-	  unless @filter_title == ""
-	    @feed_items.each do |item|
-		  item.read_by!(current_user)
-		end
-	  end
+	  # NEED TO REFACTOR THE UNREAD COUNT FUNCTIONALITY
+	  #unless @filter_title == ""
+	  #  @feed_items.each do |item|
+	  #  item.read_by!(current_user)
+	  #end
+	  #end
 	      respond_to do |format|
 	        format.html
 	    format.js

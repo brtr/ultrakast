@@ -1,2 +1,3 @@
 class Favorite < PostAction
+
 end

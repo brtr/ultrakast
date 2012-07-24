@@ -8,5 +8,5 @@
 	<%= link_to "View my profile", current_user %>
 </span>
 <span>
-	<%= pluralize(current_user.posts.count, "post") %>
+	<%= pluralize(current_user.posts.size, "post") %>
 </span>

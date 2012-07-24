@@ -8,7 +8,7 @@
 		    <%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name), :remote => true, :class => "parent-link" %>
 		<% else %>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.id, :filter_title => category.name), :remote => true %>
-			<em><%= Post.unread_count(current_user, category) %></em>
+			<em><%#<%= Post.unread_count(current_user, category) %></em>
 		<% end %>
 		</li>
 	<% end %>

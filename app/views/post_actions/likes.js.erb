@@ -1,2 +1,2 @@
-$('.like-<%= @feed_item.id %>').html('<%= like_link(@feed_item) %><% if @feed_item.likes_count? %> -- liked by <%= pluralize(@feed_item.likes_count, "user") %><% end %>');
+$('#like-<%= @feed_item.id %>').html('<%= like_link(@feed_item) %><% if @feed_item.likes_count? %> - <%= @feed_item.likes_count %><% end %>');
 

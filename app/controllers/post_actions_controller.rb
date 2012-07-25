@@ -7,7 +7,7 @@ class PostActionsController < ApplicationController
 	if @action.type == "Comment"
 	  @action.content = params[:comment][:content]
 	  @action.save
-	  redirect_to root_path
+	  @feed_item = Post.find(params[:post_id])
 	else #change to end
 	
 	@feed_item = Post.find(params[:post_id])
@@ -34,6 +34,7 @@ class PostActionsController < ApplicationController
 	@action.destroy
 	
     respond_to do |format|
+	  @feed_item.reload
 	  case @action.type
 	    #when "Comment"
 		#  flash[:success] = "Comment deleted!"

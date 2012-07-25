@@ -32,10 +32,11 @@ To-do:
 
 18. Collapse category lists with + sign to expand
 
-
 20. Notification center for friend/tag alerts
 
+24. Create favorites count indicator on posts?
 
+25. Refactor comment code - do not render comments unless user clicks on the link
 
 DONE
 
@@ -59,3 +60,9 @@ DONE
 12. Create better read solution - XXXXX
 
 19. REPLACE LIKE/FAVORITE/COMMENT CODE IN feed_item - XXXXX
+
+21. AJAX-ify comment creation - XXXXX
+
+22. Create comment count indicator on posts - XXXXX
+
+23. Create like count indicator on posts? - XXXXX

@@ -1,1 +1,11 @@
-<span class="comment"><%= comment.content %> - posted by <%= comment.user.name %></span>
+<li class="comment">
+<div class="post-header">
+			<%= link_to avatar_for(comment.user, size: "small"), comment.user %>
+			<span class="user">
+				<%= link_to comment.user.name, comment.user %>
+			</span>
+			<span class="timestamp">
+				Posted <%= time_ago_in_words(comment.created_at) %> ago
+			</span>
+		</div><!-- END .post-header -->
+<%= comment.content %></li>

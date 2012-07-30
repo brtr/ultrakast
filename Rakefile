@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Prototype::Application.load_tasks
+Ultrakast::Application.load_tasks

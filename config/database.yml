@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql
-  database: prototype
+  database: ultrakast
   pool: 5
   timeout: 5000
   username: root

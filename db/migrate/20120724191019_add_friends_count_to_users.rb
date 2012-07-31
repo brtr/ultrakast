@@ -2,9 +2,9 @@ class AddFriendsCountToUsers < ActiveRecord::Migration
   def change
     add_column :users, :friends_count, :integer, :default => 0
 	
-	User.reset_column_information
-	User.all.each do |u|
-	  u.update_attribute :friends_count, u.friends.length
-	end
+	  User.reset_column_information
+  	User.find_each do |u|
+	    User.reset_counters u.id, :friends
+  	end
   end
 end

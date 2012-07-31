@@ -11,7 +11,7 @@ gem 'thin'
 gem 'devise'
 gem 'will_paginate', '3.0.3'
 gem 'omniauth-facebook'
-gem 'mysql'
+
 
 
 # Performance testing gems - do not enable in production!!
@@ -28,6 +28,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'mysql'
 end
 
 

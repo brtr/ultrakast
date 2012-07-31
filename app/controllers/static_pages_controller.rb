@@ -2,19 +2,11 @@ class StaticPagesController < ApplicationController
   def home
     if user_signed_in?
       @post = current_user.posts.build
-      if session[:category_filter].nil?
-        session[:category_filter] = "all"
-      end
+      session[:category_filter] = "all"
+      session[:feed_status] = "private"
+      session[:filter_title] = ""
 	    
-      if session[:feed_status].nil? 
-        session[:feed_status] = "private"
-      end
-	    
-	  if session[:filter_title].nil?
-	    session[:filter_title] = ""
-	  end
-	    
-	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: params[:page], per_page: 10)
+  	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter]).paginate(page: params[:page], per_page: 10)
 
     end
   end

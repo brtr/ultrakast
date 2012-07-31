@@ -4,7 +4,7 @@ class AddFriendsCountToUsers < ActiveRecord::Migration
 	
 	  User.reset_column_information
   	User.find_each do |u|
-	    User.reset_counters u.id, :friends
+	    User.reset_counters u.id, :friendships
   	end
   end
 end

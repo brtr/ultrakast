@@ -7,6 +7,7 @@
 		<%= @user.name %><br />
 		Friends: <%= @user.friends.size %>
 	  </h1>
+	  <p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
 	</section>
   </aside>
   <div class="span8">
@@ -19,4 +20,4 @@
   </div>  
 </div>
 
-<%= link_to "Edit profile", edit_user_registration_path(@user) %>
+

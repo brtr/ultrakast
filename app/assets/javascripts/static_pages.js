@@ -22,4 +22,22 @@ $(document).ready(function() {
 		$(this).attr('class', 'comment-link').text($(this).data('link-text'));
 	});
 	
+	//$("#parent-dropdown").bind("change", function() {
+	//	alert("value changed!");
+	//});
+	
+	$('a.expand-link').live("click", function(e) {
+		e.preventDefault();
+		category_id = "div#children-" + $(this).data('category-id');
+		$(category_id).show();
+		$(this).attr('class', 'contract-link').text('-');
+	});
+	
+	$('a.contract-link').live("click", function(e) {
+		e.preventDefault();
+		category_id = "div#children-" + $(this).data('category-id');
+		$(category_id).hide();
+		$(this).attr('class', 'expand-link').text('+');
+	});
+	
 });

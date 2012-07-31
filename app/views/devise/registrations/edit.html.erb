@@ -28,9 +28,7 @@
 	  <!-- <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
 	  <%= f.password_field :current_password %></div> -->
 	
-	<div id="category-checklist">
-	  <%= categories_to_checkboxes Category.arrange(:order => :name) %>
-	</div>
+		<%= render 'shared/category_checkboxes' %>
 	  <%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 	<% end %>
 

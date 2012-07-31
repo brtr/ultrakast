@@ -19,9 +19,7 @@
 	  
 	  <%= f.label :password_confirmation, "Confirm password" %>
 	  <%= f.password_field :password_confirmation %>
-	<div id="category-checklist">
-	  <%= categories_to_checkboxes Category.arrange(:order => :name) %>
-	</div>
+	  <%= render 'shared/category_checkboxes' %>
 	  <%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 	<% end %>
 	<%= render "devise/shared/links" %>

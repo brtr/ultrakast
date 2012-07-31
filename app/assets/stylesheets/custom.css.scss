@@ -41,6 +41,10 @@ textarea {
 	}
 }
 
+a:focus {
+	outline: none;
+}
+
 .cf:before,
 .cf:after 
 {
@@ -307,6 +311,11 @@ input, textarea, select, .uneditable-input {
 
 #category_links ul {
 	list-style: none;
+}
+
+.children-list {
+	display: none;
+	margin-left: 20px;
 }
 
 .parent-link {

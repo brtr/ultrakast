@@ -1,0 +1,19 @@
+	<div id="category-checklist">
+		<% Category.roots.order('name ASC').each do |category| %>
+			<ul>
+				<li class="parent <%= category.name %>">
+					<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
+					<%= render('categories/category', :category => category) %>
+				</li>
+				<div id="children-<%= category.id %>" class="children-list">
+					<ul>
+						<% category.children.order('name ASC').each do |child| %>
+							<li>
+								<%= content_tag(:li, render('categories/category', :category => child), :class => "child #{category.name}") %>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			</ul>
+		<% end %>		
+	</div>

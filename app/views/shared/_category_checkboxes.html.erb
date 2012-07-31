@@ -5,15 +5,13 @@
 					<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 					<%= render('categories/category', :category => category) %>
 				</li>
-				<div id="children-<%= category.id %>" class="children-list">
-					<ul>
-						<% category.children.order('name ASC').each do |child| %>
-							<li>
-								<%= content_tag(:li, render('categories/category', :category => child), :class => "child #{category.name}") %>
-							</li>
-						<% end %>
-					</ul>
-				</div>
+				<ul id="children-<%= category.id %>" class="children-list">
+					<% category.children.order('name ASC').each do |child| %>
+						<li>
+							<%= content_tag(:li, render('categories/category', :category => child), :class => "child #{category.name}") %>
+						</li>
+					<% end %>
+				</ul>
 			</ul>
 		<% end %>		
 	</div>

@@ -7,13 +7,13 @@
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name), :remote => true, :class => "parent-link" %>
 		</li>
-		<div id="children-<%= category.id %>" class="children-list">
+		<ul id="children-<%= category.id %>" class="children-list">
 			<% category.children.order('name ASC').each do |child| %>
 				<li>
 					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name), :remote => true %>
 					<em><%#<%= Post.unread_count(current_user, category) %></em>
 				</li>
 			<% end %>
-		</div>
+		</ul>
 	<% end %>
 </ul>

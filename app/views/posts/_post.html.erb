@@ -1,6 +1,6 @@
 <li>
 	<span class="content"><%= post.content %></span>
-	<span class="content">Posted in: <%= display_category(post) %></span>
+	<span class="content">Posted in: <%= display_category(post.category) %></span>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(post.created_at) %> ago.
 	</span>

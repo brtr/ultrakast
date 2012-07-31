@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 	  if categories == "all"
 	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category )
 	  else
-		Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category )
+		  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category )
 	  end
 	end
 

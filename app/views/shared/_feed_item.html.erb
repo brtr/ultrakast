@@ -30,7 +30,7 @@
 			|
 			
 			<span class="comment-count">
-				<a href="#" id="<%= feed_item.id %>" class="comment-link">
+				<a href="#" id="comment-link-<%= feed_item.id %>" data-post-id="<%= feed_item.id %>" class="comment-link">
 					<% if feed_item.comments_count? %>
 						<%= pluralize(feed_item.comments_count, "comment") %>
 					<% else %>

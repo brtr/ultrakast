@@ -8,7 +8,7 @@ $(document).ready(function() {
 	
 	$('a.comment-link').live("click", function(e) {
 		e.preventDefault();
-		post_id = "div#comments-" + $(this).attr('id');
+		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
 		$(this).data("link-text", $(this).text());
 		$(this).attr('class', 'hide-comment-link').text("Hide comments");
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	
 	$('a.hide-comment-link').live("click", function(e) {
 		e.preventDefault();
-		post_id = "div#comments-" + $(this).attr('id');
+		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
 		$(this).attr('class', 'comment-link').text($(this).data('link-text'));
 	});

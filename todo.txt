@@ -13,11 +13,11 @@ To-do:
 	
 5. URL helper to grab titles if Embed.ly doesn't work - ????? MIGHT NOT NEED....
 
-6. Increase size of video window in posts
-
 7. Admin functionality
 
 9. Sorting by recency/popularity
+
+12. Create better read solution
 
 13. Tag people in posts with @ symbol
 
@@ -30,13 +30,11 @@ To-do:
 
 17. User friend list (with avatars) on right-hand side showing friends subscribed to this category (when not filtering by ALL)
 
-18. Collapse category lists with + sign to expand
-
 20. Notification center for friend/tag alerts
 
-24. Create favorites count indicator on posts?
-
 25. Refactor comment code - do not render comments unless user clicks on the link
+
+26. Speed up queries on user edit page (category lists)
 
 DONE
 
@@ -51,13 +49,15 @@ DONE
 	3a. Switch to Devise authentication - XXXXX
 	3b. Implement FB Connect/OpenAuth - XXXXX
 	
+6. Increase size of video window in posts - XXXXX
+
 8. Limit new post count to friends only - XXXXX
 
 10. Fix unread post count to ignore posts by current_user - XXXXX
 
 11. Fix category selection - when sub cats are selected, it should add the Parent cat to the user's listing! - XXXXX
 
-12. Create better read solution - XXXXX
+18. Collapse category lists with + sign to expand - XXXXX
 
 19. REPLACE LIKE/FAVORITE/COMMENT CODE IN feed_item - XXXXX
 
@@ -66,3 +66,5 @@ DONE
 22. Create comment count indicator on posts - XXXXX
 
 23. Create like count indicator on posts? - XXXXX
+
+24. Create favorites count indicator on posts? - XXXXX NIXED

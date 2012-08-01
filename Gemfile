@@ -16,8 +16,8 @@ gem 'omniauth-facebook'
 
 # Performance testing gems - do not enable in production!!
 
-#gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
-#gem 'bullet'
+gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
+gem 'bullet'
 
 
 

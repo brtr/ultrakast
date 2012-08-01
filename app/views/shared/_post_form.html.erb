@@ -2,7 +2,7 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
 		<%= f.text_area :content, placeholder: "Compose new post..." %>
-		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots, :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
+		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots, :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }, { :id => "category-dropdown" }) %>
 		<strong>Privacy option:</strong><br /><br />
 		
 		<%= select(:post, :shared, options_for_select([["Friends Only", false], ["Public", true]])) %>

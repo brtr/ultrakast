@@ -18,7 +18,7 @@
 	<%= yield %>
 	<%= render 'layouts/footer' %>
 	<%= debug(params) if Rails.env.development? %>
-	<%#<%= query_review_output if Rails.env.development? %>
+	<%= query_review_output if Rails.env.development? %>
   </div><!-- END .container -->
 </body>
 </html>

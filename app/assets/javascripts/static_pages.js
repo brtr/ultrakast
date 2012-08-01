@@ -22,9 +22,6 @@ $(document).ready(function() {
 		$(this).attr('class', 'comment-link').text($(this).data('link-text'));
 	});
 	
-	//$("#parent-dropdown").bind("change", function() {
-	//	alert("value changed!");
-	//});
 	
 	$('a.expand-link').live("click", function(e) {
 		e.preventDefault();

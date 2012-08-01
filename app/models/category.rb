@@ -14,6 +14,11 @@ class Category < ActiveRecord::Base
 	  self.children.where("id IN (?)", user.categories).sort_by { |child| child.name }
   end
   
+  def return_filtered_categories(categories)
+   
+    self.children.where("id IN (?)", categories).sort_by { |child| child.name }
+  end
+  
   def self.ids
     all.collect { |cat| cat.id }
   end

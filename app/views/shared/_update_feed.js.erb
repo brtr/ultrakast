@@ -12,3 +12,5 @@ $('.posts').embedly({
 		key: '6c398a44d6034de4b75ea047c32e83fe'});
 		
 $('.pagination a').attr('data-remote', 'true');
+
+$('#category-dropdown').html('<%= escape_javascript(grouped_collection_select(:post, :category_id, @dropdown_parents, :"return_filtered_categories(#{@dropdown_children})", :name, :id, :name, { :prompt => "Please choose a category..." }, { :id => "category-dropdown" })) %>');

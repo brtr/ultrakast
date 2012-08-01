@@ -29,15 +29,15 @@ class User < ActiveRecord::Base
   def feed(status, categories)
     if status == "public"
 	  if categories == "all"
-	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category )
+	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category)
       else
-	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id).includes(:user, {:comments => :user}, :category )
+	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id).includes(:user, {:comments => :user}, :category)
 	  end
 	elsif status == "private"
 	  if categories == "all"
-	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category )
+	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category)
 	  else
-		  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category )
+		  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
 	  end
 	end
 

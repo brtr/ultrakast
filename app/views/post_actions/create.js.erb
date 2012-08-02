@@ -1,0 +1,7 @@
+html_id = '#comment-list-' + <%= @feed_item.id %>;
+$("<%= escape_javascript(render 'shared/comment', :comment => @action) %>").appendTo(html_id).hide().show();
+$('#new_comment #comment_content').val("");
+$('#comment-link-' + <%= @feed_item.id %>).data("link-text", "<%= pluralize(@feed_item.comments_count, 'comment') %>");
+
+
+

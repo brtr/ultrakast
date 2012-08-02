@@ -1,33 +1,55 @@
 <li id="<%= feed_item.id %>">
-<div class="post-header">
-	<%= link_to avatar_for(feed_item.user, size: "small"), feed_item.user %>
-	<span class="user">
-		<%= link_to feed_item.user.name, feed_item.user %>
-	</span>
-	<span class="timestamp">
-		Posted <%= time_ago_in_words(feed_item.created_at) %> ago in <span class="category"><%= display_category(feed_item.category) %>
-		<% if current_user?(feed_item.user) %>
-		 - <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.content %></span></span>
-	<% end %>
-	</span>
-</div>
-	<span class="content"><%= auto_link(feed_item.content) %></span>
-	<span class="like-<%= feed_item.id %>">
-			<%= like_link(feed_item) %>
-			<% if feed_item.likes_count? %>
-				-- liked by <%= pluralize(feed_item.likes_count, "user") %>
+	<div class="post-container">
+		<div class="post-header">
+			<%= link_to avatar_for(feed_item.user, size: "small"), feed_item.user %>
+			<span class="user">
+				<%= link_to feed_item.user.name, feed_item.user %>
+			</span>
+			<span class="timestamp">
+				Posted <%= time_ago_in_words(feed_item.created_at) %> ago in <span class="category"><%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name), :remote => true %>
+				<% if current_user?(feed_item.user) %>
+					- <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.content %></span></span>
+				<% end %>
+			</span>
+		</div><!-- END .post-header -->
+	
+		<span class="content cf"><%= auto_link(feed_item.content) %></span>
+	
+		<div class="status-bar">
+			<span id="like-<%= feed_item.id %>" class="like-count">
+				<%= like_link(feed_item) %>
+				<% if feed_item.likes_count? %>
+					- <%= feed_item.likes_count %>
+				<% end %>
+			</span>
+			|
+			
+			<span id="favorite-<%= feed_item.id %>" class="favorite-count">
+				<%= favorite_link(current_user, feed_item) %>
+			</span>
+			|
+			
+			<span class="comment-count">
+				<a href="#" id="comment-link-<%= feed_item.id %>" data-post-id="<%= feed_item.id %>" class="comment-link">
+					<% if feed_item.comments_count? %>
+						<%= pluralize(feed_item.comments_count, "comment") %>
+					<% else %>
+						Comment
+					<% end %>
+				</a>
+			</span>
+		</div>
+		
+		<div id="comments-<%= feed_item.id %>" class="comments">
+			<ul id="comment-list-<%= feed_item.id %>">
+				<% if feed_item.comments_count? %>
+					<%= render :partial => 'shared/comment', collection: feed_item.comments %>
+				<% end %>
+			</ul>
+			<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>
+				<%= f.text_field :content %>
+				<%= f.submit %>
 			<% end %>
-		</span>
-		<span class="favorite-<%= feed_item.id %>">
-		  <%= favorite_link(current_user, feed_item) %>
-		</span>
-		<span class="comments">
-		  <% if feed_item.comments_count? %>
-		    <%= render :partial => 'shared/comment', collection: feed_item.comments %>
-		  <% end %>
-		<%= form_for [feed_item, feed_item.comments.build] do |f| %>
-		  <%= f.text_field :content %>
-		  <%= f.submit %>
-		<% end %>
-		</span>
-	</li>
+		</div>
+	</div>
+</li>

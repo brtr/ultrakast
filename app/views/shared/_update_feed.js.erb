@@ -3,10 +3,12 @@
 <% else %>
   $('#feed').html('<h3>Newsfeed (viewing friends)</h3><%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
 <% end %>
-$('#category_links').html('<%= escape_javascript(render(:partial => "shared/category_links")) %>');
+
+//Below line was here to clear unread counts - taking out because it now resets the user's list expansion everytime they click a category - handle unread count w/ ajax
+//$('#category_links').html('<%= escape_javascript(render(:partial => "shared/category_links")) %>');
 
 $('.posts').embedly({
-		maxWidth: 150,
+		maxWidth: 500,
 		key: '6c398a44d6034de4b75ea047c32e83fe'});
 		
 $('.pagination a').attr('data-remote', 'true');

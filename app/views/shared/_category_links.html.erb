@@ -2,14 +2,18 @@
 	<li>
 		<%= link_to "View all categories", switchfeed_path(:category_filter => "", :filter_title => ""), :remote => true %>
 	</li>
-	<% current_user.categories.each do |category| %>
+	<% current_user.categories.roots.order('name ASC').each do |category| %>
 		<li>
-		<% if category.ancestry.nil? %>
-		    <%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name), :remote => true, :class => "parent-link" %>
-		<% else %>
-			<%= link_to category.name, switchfeed_path(:category_filter => category.id, :filter_title => category.name), :remote => true %>
-			<em><%#<%= Post.unread_count(current_user, category) %></em>
-		<% end %>
+			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
+			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name), :remote => true, :class => "parent-link" %>
 		</li>
+		<ul id="children-<%= category.id %>" class="children-list">
+			<% category.child_name_for(current_user).each do |child| %>
+				<li>
+					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name), :remote => true %>
+					<em><%#<%= Post.unread_count(current_user, category) %></em>
+				</li>
+			<% end %>
+		</ul>
 	<% end %>
 </ul>

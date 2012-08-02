@@ -41,6 +41,29 @@ textarea {
 	}
 }
 
+a:focus {
+	outline: none;
+}
+
+.cf:before,
+.cf:after 
+{
+  content:"";
+  display:table;
+}
+
+.cf:after 
+{
+  clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf 
+{
+  zoom:1;
+}
+
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -194,10 +217,13 @@ input, textarea, select, .uneditable-input {
 	margin: 10px 0 0 0;
 	
 	li {
-		clear: both;
-		padding: 10px 0;
-		border-top: 1px solid #e8e8e8;
+		padding: 10px 0 35px 0;
 	}
+}
+
+.post-container {
+	padding: 10px;
+	border: 1px solid #e8e8e8;
 }
 
 .post-header {
@@ -217,15 +243,14 @@ input, textarea, select, .uneditable-input {
 
 .embed {
 	display: block;
-	clear: both;
 	margin-top: 10px;
 	
 }
 
 .content {
 	display: block;
-	clear: both;
 	margin-left: 10px;
+	margin-bottom: 20px;
 }
 
 .category {
@@ -238,6 +263,34 @@ input, textarea, select, .uneditable-input {
 
 .delete {
 	color: red;
+}
+
+.status-bar {
+	padding-top: 5px;
+	border-top: 1px solid #ccc;
+	margin-bottom: 15px;
+}
+
+.like-count {
+	margin-left: 2px;
+	margin-right: 10px;
+}
+
+.favorite-count {
+	margin: 0 10px;
+}
+
+.comment-count {
+	margin-left: 10px;
+}
+
+.comments {
+	display: none;
+}
+
+
+.comment {
+	margin: 10px 5px;
 }
 
 
@@ -258,6 +311,15 @@ input, textarea, select, .uneditable-input {
 
 #category_links ul {
 	list-style: none;
+}
+
+a.expand-link:hover, a.contract-link:hover {
+	text-decoration: none;
+}
+
+.children-list {
+	display: none;
+	margin-left: 20px;
 }
 
 .parent-link {

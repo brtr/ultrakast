@@ -5,13 +5,14 @@
 	  <h1>
 	    <%= avatar_for @user %>
 		<%= @user.name %><br />
-		Friends: <%= @user.friends.size %>
+		Friends: <%= @user.friends.count %>
 	  </h1>
+	  <p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
 	</section>
   </aside>
   <div class="span8">
     <% if @user.posts.any? %>
-	<h3>Posts (<%= @user.posts.size %>)</h3>
+	<h3>Posts (<%= @user.posts.count %>)</h3>
 	<ol class="posts">
 	  <%= render @posts %>
 	</ol>
@@ -19,4 +20,4 @@
   </div>  
 </div>
 
-<%= link_to "Edit profile", edit_user_registration_path(@user) %>
+

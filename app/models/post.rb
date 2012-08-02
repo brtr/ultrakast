@@ -2,10 +2,10 @@ class Post < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   belongs_to :category
   
-  has_many   :post_actions
-  has_many   :likes
-  has_many   :favorites
-  has_many   :comments
+  has_many   :post_actions, dependent: :destroy
+  has_many   :likes, dependent: :destroy
+  has_many   :favorites, dependent: :destroy
+  has_many   :comments, dependent: :destroy
 
   attr_accessible :content, :category_id, :shared
   default_scope order: 'posts.created_at DESC'

@@ -30,6 +30,7 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/edit
   def edit
+    @categories = @user.categories.all
     render :edit
   end
 

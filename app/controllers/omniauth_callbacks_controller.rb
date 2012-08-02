@@ -1,4 +1,4 @@
-class Devise::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
 #    raise request.env["omniauth.auth"].to_yaml
     # You need to implement the method below in your model (e.g. app/models/user.rb)

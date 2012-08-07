@@ -7,7 +7,9 @@
 		<%= @user.name %><br />
 		Friends: <%= @user.friends.count %>
 	  </h1>
+	  <% if @user == current_user %>
 	  <p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
+	  <% end %>
 	</section>
   </aside>
   <div class="span8">

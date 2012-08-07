@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates :name,  presence: true
   
   has_attached_file :avatar,
-    :styles => { :thumb => "50x50", :medium => "400x400" },
+    :styles => { :thumb => "50x50", :normal => "100x100", :medium => "400x400" },
 	:storage => :s3,
 	:s3_credentials => "#{Rails.root}/config/s3.yml",
 	:path => ":attachment/:id/:style.:extension",

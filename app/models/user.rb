@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
   
   
   has_attached_file :avatar,
-    :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, :convert_options => { :square => "-gravity center -extent 50x50" }
+    :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
+	:convert_options => { :square => "-gravity center -extent 50x50" },
 	:storage => :s3,
 	:s3_credentials => "#{Rails.root}/config/s3.yml",
 	:path => ":attachment/:id/:style.:extension",

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   @devise_options = [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at
   
   has_and_belongs_to_many :categories
   has_many :posts, dependent: :destroy
@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
+  
+  has_attached_file :avatar,
+    :styles => { :square => "50x50", :small => "50", :normal => "100", :large => "200" },
+	:storage => :s3,
+	:s3_credentials => "#{Rails.root}/config/s3.yml",
+	:path => ":attachment/:id/:style.:extension",
+	:bucket => "ultrakast_images"
+  
 
   def feed(status, categories)
     if status == "public"

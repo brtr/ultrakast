@@ -4,6 +4,7 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/sign_up
   def new
+	@categories = []
     resource = build_resource({})
     respond_with resource
   end

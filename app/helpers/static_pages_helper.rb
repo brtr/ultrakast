@@ -9,4 +9,11 @@ module StaticPagesHelper
       end
     end
   end
+  
+  
+
+  def get_friends
+    category = Category.includes(:users).find_by_name(session[:filter_title])
+    @friends = category.users.where("users.id IN (?)", current_user.friends)
+  end
 end

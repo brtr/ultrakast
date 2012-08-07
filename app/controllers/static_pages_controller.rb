@@ -65,5 +65,8 @@ class StaticPagesController < ApplicationController
   	    @dropdown_children = category.id
       end
     end
-	end
+	
+
+	
+  end
 end

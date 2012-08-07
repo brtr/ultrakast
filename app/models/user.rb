@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   @devise_options = [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider, :avatar
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at
   
   has_and_belongs_to_many :categories
   has_many :posts, dependent: :destroy

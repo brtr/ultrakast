@@ -2,7 +2,7 @@ module UsersHelper
 
   def avatar_for(user, options = { size: "normal" })
     size = options[:size]
-	if user.provider == "Facebook"
+	if user.provider == "facebook"
       facebook_id = user.uid
   	  image_url = "http://graph.facebook.com/#{facebook_id}/picture?type=#{size}"
     else

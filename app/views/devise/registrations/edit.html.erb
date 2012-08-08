@@ -30,14 +30,10 @@
 	  <% else %>
 	    <%= f.label :avatar, "Change your profile picture" %>
 	    <%= f.file_field :avatar %>
-	    <%= image_tag(current_user.avatar(:normal), alt: current_user.name, class: "avatar") %> <em>(your current picture)</em>
+	    <%= image_tag(current_user.avatar(:normal), alt: current_user.name, class: "avatar-edit") %> <em>(your current picture)</em>
 		<br />
 		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
+
 	  <% end %>
 	
 	  <% end %>

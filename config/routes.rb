@@ -1,5 +1,5 @@
 Ultrakast::Application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "devise/registrations" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "devise/omniauth_callbacks", :registrations => "devise/registrations" }
 
   resources :users
 #  resources :sessions, only: [:new, :create, :destroy]

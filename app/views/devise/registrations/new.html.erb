@@ -19,6 +19,10 @@
 	  
 	  <%= f.label :password_confirmation, "Confirm password" %>
 	  <%= f.password_field :password_confirmation %>
+	  
+	  <%= f.label :avatar, "Add a profile picture" %>
+	  <%= f.file_field :avatar %>
+	  
 	  <%= render 'shared/category_checkboxes' %>
 	  <%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 	<% end %>

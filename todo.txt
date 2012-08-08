@@ -1,14 +1,9 @@
 To-do:
 
 1. Post actions
-	1c. Comments - xxxxx (need to ajax the comment form, list number of comments, have a way to view the comments, etc)
 	1d. Shares
 
 4. Images
-	4a. Paperclip/S3 integration
-	4b. Avatars
-		4b-a. Upload avatar
-		4b-b. Pull Facebook profile pic
 	4c. Images in posts
 	
 5. URL helper to grab titles if Embed.ly doesn't work - ????? MIGHT NOT NEED....
@@ -17,7 +12,7 @@ To-do:
 
 9. Sorting by recency/popularity
 
-12. Create better read solution
+12. Create better unread solution
 
 13. Tag people in posts with @ symbol
 
@@ -28,19 +23,14 @@ To-do:
 16. Profile view
 	16a. View favorites
 
-17. User friend list (with avatars) on right-hand side showing friends subscribed to this category (when not filtering by ALL)
-
 20. Notification center for friend/tag alerts
-
-25. Refactor comment code - do not render comments unless user clicks on the link
-
-26. Speed up queries on user edit page (category lists)
 
 DONE
 
 1. Post actions
 	1a. Likes - XXXXX
 	1b. Favorites - XXXXX
+	1c. Comments - XXXXX
 	
 2. Pagination - XXXXX
 	-this should fix the switch_feed speed issues - limit page to 15-20 posts - XXXXX
@@ -49,6 +39,12 @@ DONE
 	3a. Switch to Devise authentication - XXXXX
 	3b. Implement FB Connect/OpenAuth - XXXXX
 	
+4. Images
+	4a. Paperclip/S3 integration - XXXXX
+	4b. Avatars - XXXXX
+		4b-a. Upload avatar - XXXXX
+		4b-b. Pull Facebook profile pic - XXXXX
+	
 6. Increase size of video window in posts - XXXXX
 
 8. Limit new post count to friends only - XXXXX
@@ -56,6 +52,8 @@ DONE
 10. Fix unread post count to ignore posts by current_user - XXXXX
 
 11. Fix category selection - when sub cats are selected, it should add the Parent cat to the user's listing! - XXXXX
+
+17. User friend list (with avatars) on right-hand side showing friends subscribed to this category (when not filtering by ALL) - XXXXX
 
 18. Collapse category lists with + sign to expand - XXXXX
 
@@ -68,3 +66,7 @@ DONE
 23. Create like count indicator on posts? - XXXXX
 
 24. Create favorites count indicator on posts? - XXXXX NIXED
+
+25. Refactor comment code - do not render comments unless user clicks on the link - XXXXX
+
+26. Speed up queries on user edit page (category lists) - XXXXX

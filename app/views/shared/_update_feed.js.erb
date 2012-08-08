@@ -7,6 +7,8 @@
 //Below line was here to clear unread counts - taking out because it now resets the user's list expansion everytime they click a category - handle unread count w/ ajax
 //$('#category_links').html('<%= escape_javascript(render(:partial => "shared/category_links")) %>');
 
+$('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();
+
 $('.posts').embedly({
 		maxWidth: 500,
 		key: '6c398a44d6034de4b75ea047c32e83fe'});

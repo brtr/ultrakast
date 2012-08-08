@@ -7,14 +7,16 @@
 		<%= @user.name %><br />
 		Friends: <%= @user.friends.count %>
 	  </h1>
+	  <% if @user == current_user %>
 	  <p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
+	  <% end %>
 	</section>
   </aside>
   <div class="span8">
-    <% if @user.posts.any? %>
-	<h3>Posts (<%= @user.posts.count %>)</h3>
+    <% if @user.favorites.any? %>
+	<h3>Favorites (<%= @user.favorites.count %>)</h3>
 	<ol class="posts">
-	  <%= render @posts %>
+		<%= render partial: 'shared/feed_item', collection: @feed_items %>
 	</ol>
 	<% end %>
   </div>  

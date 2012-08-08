@@ -4,6 +4,7 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/sign_up
   def new
+	@categories = []
     resource = build_resource({})
     respond_with resource
   end
@@ -30,6 +31,7 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/edit
   def edit
+    @categories = @user.categories.all
     render :edit
   end
 
@@ -51,6 +53,7 @@ class Devise::RegistrationsController < DeviseController
       sign_in resource_name, resource, :bypass => true
       respond_with resource, :location => after_update_path_for(resource)
     else
+	  @categories = @user.categories.all
       clean_up_passwords resource
       respond_with resource
     end

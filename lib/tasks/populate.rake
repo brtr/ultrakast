@@ -6,13 +6,13 @@ namespace :db do
   
   desc "Create users"
   task :users => :environment do
-    User.create name: "John Duffy", email: "1@1.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Jackie Smith", email: "2@2.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Margaret Wilson", email: "account3@example.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Sam Marcos", email: "account4@example.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Mike O'Neill", email: "account5@example.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Jill Compo", email: "account6@example.com", password: "111111", password_confirmation: "111111"
-    User.create name: "Paul Speaker", email: "account7@example.com", password: "111111", password_confirmation: "111111"
+    User.create name: "John Duffy", email: "1@1.com", password: "111111", password_confirmation: "111111", avatar_file_name: "Penguins.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 777835, avatar_updated_at: "2012-08-07 15:28:49"
+    User.create name: "Jackie Smith", email: "2@2.com", password: "111111", password_confirmation: "111111", avatar_file_name: "Koala.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 780831, avatar_updated_at: "2012-08-07 15:18:38"
+    User.create name: "Margaret Wilson", email: "3@3.com", password: "111111", password_confirmation: "111111", avatar_file_name: "Tulips.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 620888, avatar_updated_at: "2012-08-07 15:24:38"
+    User.create name: "Sam Marcos", email: "4@4.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Mike O'Neill", email: "5@5.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Jill Compo", email: "6@6.com", password: "111111", password_confirmation: "111111"
+    User.create name: "Paul Speaker", email: "7@7.com", password: "111111", password_confirmation: "111111"
   end
   
   desc "Create categories"

@@ -9,7 +9,7 @@
 			<ul id="children-<%= category.id %>" class="children-list">
 				<% category.children.order('name ASC').each do |child| %>
 					<li class="child <%= child.name %>">
-						<%= check_box_tag "user[category_ids][]", child.id, @user.categories.include?(child) %>
+						<%= check_box_tag "user[category_ids][]", child.id, @categories.include?(child) %>
 						<span><%= child.name %></span>
 					</li>
 				<% end %>

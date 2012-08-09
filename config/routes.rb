@@ -1,7 +1,11 @@
 Ultrakast::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "devise/omniauth_callbacks", :registrations => "devise/registrations" }
 
-  resources :users
+  resources :users do
+    collection do
+      get 'live_search'
+    end
+  end
 #  resources :sessions, only: [:new, :create, :destroy]
   resources :posts, only: [:create, :destroy] do
     resources :comments, only: [:create, :destroy], :controller => "post_actions", :type => "Comment"

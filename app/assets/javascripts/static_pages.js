@@ -45,21 +45,30 @@ $(document).ready(function() {
 
 	
 function myLiveSearch() {
+	var search = false;
 	var counter = 0;
 	var searchString = '';
+	var url = "/users/live_search?searchString=";
 	$('#post-box').bind("keypress", function(e) {
 		var c = String.fromCharCode(e.which);
-		if (c == '@') {
-			alert(counter);
+
+		if (search === true) {
 			counter++;
 			searchString = searchString + c;
+			$.get(url + searchString, function(html) {
+				alert(html);
+			  $("#user-search-results").html(html);	
+			});
 		}
+
+	
+		if (c == '@') {
+			search = true;
+		}		
+			
 	});
-	alert("outside");
-	if (counter == 3) {
-		alert(searchString);
-		('#post-box').unbind();
-	}
+
+
 }
 
 

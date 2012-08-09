@@ -41,6 +41,13 @@ $(document).ready(function() {
 	});
 	
 	myLiveSearch();
+	
+	$('a.live-search-result').live("click", function(e) {
+		e.preventDefault();
+		result = '<a href="users/' + $(this).id + '">' + $(this).text() + '</a>';
+		replaceResult(result);
+		$("#user-search-results").html("");
+	});
 });
 
 	
@@ -49,16 +56,19 @@ function myLiveSearch() {
 	var counter = 0;
 	var searchString = '';
 	var url = "/users/live_search?searchString=";
+	var pattern = /@(\w*)(\s\w*)?/;
 	$('#post-box').bind("keypress", function(e) {
 		var c = String.fromCharCode(e.which);
-
 		if (search === true) {
-			counter++;
-			searchString = searchString + c;
-			$.get(url + searchString, function(html) {
-				alert(html);
-			  $("#user-search-results").html(html);	
-			});
+			value = $('#post-box').val() + c;
+			matched = value.match(pattern);
+			if (matched[0].length > 3) {
+				$.get(url + matched[0].substring(1, matched[0].length), function(html) {
+					$("#user-search-results").html(html);	
+				});
+			} else {
+				$("#user-search-results").html("");
+			}
 		}
 
 	
@@ -67,8 +77,12 @@ function myLiveSearch() {
 		}		
 			
 	});
+}
 
-
+function replaceResult(result) {
+	var pattern = /@(\w*)(\s\w*)?/;
+	value = $('#post-box').val();
+	$('#post-box').html(value.replace(pattern, result));
 }
 
 

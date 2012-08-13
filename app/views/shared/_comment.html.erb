@@ -7,5 +7,8 @@
 			<span class="timestamp">
 				Posted <%= time_ago_in_words(comment.created_at) %> ago
 			</span>
+			<% if current_user?(comment.user) %>
+			 - <span class="delete"><%= link_to "delete", [feed_item, comment], method: :delete, data: { confirm: "You sure?" }, :remote => true %></span></span>
+			<% end %>
 		</div><!-- END .post-header -->
 <%= comment.content %></li>

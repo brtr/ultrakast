@@ -7,18 +7,16 @@ class PostActionsController < ApplicationController
 	if @action.type == "Comment"
 	  @action.content = params[:comment][:content]
 	  @action.save
-	  @feed_item = Post.find(params[:post_id])
-	else #change to end
+	end
 	
 	@feed_item = Post.find(params[:post_id])
 	if @action.save
 	  respond_to do |format|
 	    @feed_item.reload
 	    case @action.type
-		  
-		  #when "Comment"
-		  #  flash[:success] = "Comment saved!"
-		  #	redirect_to root_path
+		  when "Comment"
+		    @comments = @feed_item.comments
+			format.js { render :layout => false, :action => "comments" } 
 		  when "Like"
 	        format.js { render :layout => false, :action => "likes" }
 		  when "Favorite"
@@ -26,7 +24,6 @@ class PostActionsController < ApplicationController
 		end
 	  end
     end
-	end #take out
   end
   
   def destroy
@@ -35,6 +32,7 @@ class PostActionsController < ApplicationController
 	@action.destroy
       respond_to do |format|
 	    @feed_item.reload
+		@comments = @feed_item.comments
 	    case @action.type
 		  when "Comment"
 		    format.js { render :layout => false, :action => "comments" }

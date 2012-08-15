@@ -4,16 +4,33 @@ var taggedIds = [];
 
 $(document).ready(function() {
 	
+		
+	$('.content').attr('target', '_blank');
 	//Translate links in post text to embedded content
-	$('.posts').embedly({
+	$('.content').embedly({
+		//Place embedded content after post
+		method: "after",
 		maxWidth: 500,
-		key: '6c398a44d6034de4b75ea047c32e83fe'}); //TODO: CHANGE THIS TO CLIENT'S API KEY
+		chars: 150,
+		key: '6c398a44d6034de4b75ea047c32e83fe', //TODO: CHANGE THIS TO CLIENT'S API KEY
+		
+		//Override default success callback to insert target into anchors
+		success: function(oembed, dict){
+			var _a, elem = $(dict.node);
+			if (! (oembed) ) { return null; }
+			oembed.code = oembed.code.replace('<a href', '<a target="_blank" href');
+			return elem.after(oembed.code);
+		}
+	});
+	
+	
 
 	//AJAXify pagination links
 	$('.pagination a').attr('data-remote', 'true');
 	
+	
 	//Code to show and hide comments
-	$('a.comment-link').live("click", function(e) {
+	$('a.comment-link').on("click", function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
@@ -22,7 +39,7 @@ $(document).ready(function() {
 		
 	});
 	
-	$('a.hide-comment-link').live("click", function(e) {
+	$('a.hide-comment-link').on("click", function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
@@ -30,14 +47,14 @@ $(document).ready(function() {
 	});
 	
 	//Code to show and hide expanded category lists
-	$('a.expand-link').live("click", function(e) {
+	$('a.expand-link').on("click", function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).show();
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
-	$('a.contract-link').live("click", function(e) {
+	$('a.contract-link').on("click", function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).hide();
@@ -48,7 +65,7 @@ $(document).ready(function() {
 	myLiveSearch();
 	
 	//Bind to live search result links
-	$('a.live-search-result').live("click", function(e) {
+	$('a.live-search-result').on("click", function(e) {
 		e.preventDefault();
 		//Format text to be placed into post box
 		result = '@' + $(this).text() + ' ';
@@ -65,14 +82,13 @@ $(document).ready(function() {
 	});
 	
 	//When post is submitted, convert tagged users to their profile links
-	$('.post-submit-button').live("click", function() {
+	$('.post-submit-button').on("click", function() {
 		value = $('#post-box').val();
 		for (i = 0; i <= taggedNames.length - 1; i++) {
 			value = value.replace(taggedNames[i], '<a href="users/' + taggedIds[i] + '">' + taggedNames[i] + '</a>');
 		}
 		$('#post-box').val(value);
 	});
-		
 });
 
 	

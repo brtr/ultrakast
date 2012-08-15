@@ -41,15 +41,18 @@
 		</div>
 		
 		<div id="comments-<%= feed_item.id %>" class="comments">
+
 			<ul id="comment-list-<%= feed_item.id %>">
 				<% if feed_item.comments_count? %>
-					<%= render :partial => 'shared/comment', collection: feed_item.comments %>
+					<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item }%>
 				<% end %>
 			</ul>
 			<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>
 				<%= f.text_field :content %>
 				<%= f.submit %>
 			<% end %>
+	
+
 		</div>
 	</div>
 </li>

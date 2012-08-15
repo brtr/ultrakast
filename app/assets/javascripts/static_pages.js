@@ -125,5 +125,9 @@ function replaceResult(result) {
 	$('#post-box').val(value.replace(matched[0], result));
 	//Return focus to the text area
 	$('#post-box').focus();
+	//This is a workaround to get the cursor to the end of the text area
+	var val = $('#post-box').val();
+	$('#post-box').val('');
+	$('#post-box').val(val);
 }
 

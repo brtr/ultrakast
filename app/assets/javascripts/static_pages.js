@@ -30,35 +30,57 @@ $(document).ready(function() {
 	
 	
 	//Code to show and hide comments
-	$('a.comment-link').on("click", function(e) {
+	$('.status-bar').on("click", 'a.comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
 		$(this).data("link-text", $(this).text());
 		$(this).attr('class', 'hide-comment-link').text("Hide comments");
-		
 	});
 	
-	$('a.hide-comment-link').on("click", function(e) {
+	$('.status-bar').on("click", 'a.hide-comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
 		$(this).attr('class', 'comment-link').text($(this).data('link-text'));
 	});
 	
+	//Code to show and hide likes
+	
+	$('.status-bar').on("click", 'a.likes-link', function(e) {
+		e.preventDefault();
+		post_id = "div#likes-for-" + $(this).data('post-id');
+		$(post_id).show();
+		$(this).data("link-text", $(this).text());
+		$(this).attr('class', 'hide-likes-link').text("Hide likes");
+	});
+	
+	$('.status-bar').on("click", 'a.hide-likes-link', function(e) {
+		e.preventDefault();
+		post_id = "div#likes-for-" + $(this).data('post-id');
+		$(post_id).hide();
+		$(this).attr('class', 'likes-link').text($(this).data('link-text'));
+	});
+	
 	//Code to show and hide expanded category lists
-	$('a.expand-link').on("click", function(e) {
+	$('#category_links').on("click", 'a.expand-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).show();
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
-	$('a.contract-link').on("click", function(e) {
+	$('#category_links').on("click", 'a.contract-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).hide();
 		$(this).attr('class', 'expand-link').text('+');
+	});
+	
+	$('#category_links').on("click", 'a.parent-link', function(e) {		
+		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
+		$(category_id).show();
+		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');
 	});
 	
 	//Run method to initialize tagging search functionality

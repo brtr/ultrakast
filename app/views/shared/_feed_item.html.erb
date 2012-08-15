@@ -19,7 +19,7 @@
 			<span id="like-<%= feed_item.id %>" class="like-count">
 				<%= like_link(feed_item) %>
 				<% if feed_item.likes_count? %>
-					- <%= feed_item.likes_count %>
+					- <a href="#" id="like-list-<%= feed_item.id %>" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
 				<% end %>
 			</span>
 			|
@@ -39,7 +39,16 @@
 				</a>
 			</span>
 		</div>
-		
+		<div id="likes-for-<%= feed_item.id %>" class="likes">
+			<% if feed_item.likes_count? %>
+				<strong>This post is liked by:</strong><br />
+				<ul id="likes-list-<%= feed_item.id %>">
+					<% feed_item.likes.each do |like| %>
+						<li><%= link_to(like.user.name, like.user) %></li>
+					<% end %>
+				</ul>
+			<% end %>
+		</div>
 		<div id="comments-<%= feed_item.id %>" class="comments">
 
 			<ul id="comment-list-<%= feed_item.id %>">

@@ -1,2 +1,1 @@
-$('#like-<%= @feed_item.id %>').html('<%= like_link(@feed_item) %><% if @feed_item.likes_count? %> - <%= @feed_item.likes_count %><% end %>');
-
+$('#like-<%= @feed_item.id %>').html('<%= like_link(@feed_item) %><% if @feed_item.likes_count? %> - <a href="#" id="like-list-<%= @feed_item.id %>" class="likes-link" data-post-id="<%= @feed_item.id %>"><%= @feed_item.likes_count %></a><% end %>');

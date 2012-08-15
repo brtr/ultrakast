@@ -71,7 +71,6 @@ $(document).ready(function() {
 			value = value.replace(taggedNames[i], '<a href="users/' + taggedIds[i] + '">' + taggedNames[i] + '</a>');
 		}
 		$('#post-box').val(value);
-		alert(value);
 	});
 		
 });

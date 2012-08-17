@@ -1,1 +1,3 @@
+html_id = '#likes-for-' + <%= @feed_item.id %>;
+$(html_id).html('<strong>This post is liked by:</strong><br /><ul id="likes-list-<%= @feed_item.id %>"><%= escape_javascript(render :partial => 'shared/like', collection: @likes) %></ul>');
 $('#like-<%= @feed_item.id %>').html('<%= like_link(@feed_item) %><% if @feed_item.likes_count? %> - <a href="#" id="like-list-<%= @feed_item.id %>" class="likes-link" data-post-id="<%= @feed_item.id %>"><%= @feed_item.likes_count %></a><% end %>');

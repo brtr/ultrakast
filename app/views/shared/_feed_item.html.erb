@@ -43,9 +43,7 @@
 			<% if feed_item.likes_count? %>
 				<strong>This post is liked by:</strong><br />
 				<ul id="likes-list-<%= feed_item.id %>">
-					<% feed_item.likes.each do |like| %>
-						<li><%= link_to(like.user.name, like.user) %></li>
-					<% end %>
+					<%= render :partial => 'shared/like', collection: feed_item.likes %>
 				</ul>
 			<% end %>
 		</div>
@@ -53,7 +51,7 @@
 
 			<ul id="comment-list-<%= feed_item.id %>">
 				<% if feed_item.comments_count? %>
-					<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item }%>
+					<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
 				<% end %>
 			</ul>
 			<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>

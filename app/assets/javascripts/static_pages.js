@@ -4,51 +4,90 @@ var taggedIds = [];
 
 $(document).ready(function() {
 	
+		
+	$('.content').attr('target', '_blank');
 	//Translate links in post text to embedded content
-	$('.posts').embedly({
+	$('.content').embedly({
+		//Place embedded content after post
+		method: "after",
 		maxWidth: 500,
-		key: '6c398a44d6034de4b75ea047c32e83fe'}); //TODO: CHANGE THIS TO CLIENT'S API KEY
+		chars: 150,
+		key: '6c398a44d6034de4b75ea047c32e83fe', //TODO: CHANGE THIS TO CLIENT'S API KEY
+		
+		//Override default success callback to insert target into anchors
+		success: function(oembed, dict){
+			var _a, elem = $(dict.node);
+			if (! (oembed) ) { return null; }
+			oembed.code = oembed.code.replace('<a href', '<a target="_blank" href');
+			return elem.after(oembed.code);
+		}
+	});
+	
+	
 
 	//AJAXify pagination links
 	$('.pagination a').attr('data-remote', 'true');
 	
+	
 	//Code to show and hide comments
-	$('a.comment-link').live("click", function(e) {
+	$('.status-bar').on("click", 'a.comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
 		$(this).data("link-text", $(this).text());
 		$(this).attr('class', 'hide-comment-link').text("Hide comments");
-		
 	});
 	
-	$('a.hide-comment-link').live("click", function(e) {
+	$('.status-bar').on("click", 'a.hide-comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
 		$(this).attr('class', 'comment-link').text($(this).data('link-text'));
 	});
 	
+	//Code to show and hide likes
+	
+	$('.status-bar').on("click", 'a.likes-link', function(e) {
+		e.preventDefault();
+		post_id = "div#likes-for-" + $(this).data('post-id');
+		$(post_id).show();
+		$(this).data("link-text", $(this).text());
+		$(this).attr('class', 'hide-likes-link').text("Hide likes");
+	});
+	
+	$('.status-bar').on("click", 'a.hide-likes-link', function(e) {
+		e.preventDefault();
+		post_id = "div#likes-for-" + $(this).data('post-id');
+		$(post_id).hide();
+		$(this).attr('class', 'likes-link').text($(this).data('link-text'));
+	});
+	
 	//Code to show and hide expanded category lists
-	$('a.expand-link').live("click", function(e) {
+	$('#category_links').on("click", 'a.expand-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).show();
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
-	$('a.contract-link').live("click", function(e) {
+	$('#category_links').on("click", 'a.contract-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).hide();
 		$(this).attr('class', 'expand-link').text('+');
 	});
 	
+	$('#category_links').on("click", 'a.parent-link', function(e) {		
+		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
+		$(category_id).show();
+		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');
+	});
+	
 	//Run method to initialize tagging search functionality
 	myLiveSearch();
 	
 	//Bind to live search result links
-	$('a.live-search-result').live("click", function(e) {
+	$('a.live-search-result').on("click", function(e) {
 		e.preventDefault();
 		//Format text to be placed into post box
 		result = '@' + $(this).text() + ' ';
@@ -65,14 +104,13 @@ $(document).ready(function() {
 	});
 	
 	//When post is submitted, convert tagged users to their profile links
-	$('.post-submit-button').live("click", function() {
+	$('.post-submit-button').on("click", function() {
 		value = $('#post-box').val();
 		for (i = 0; i <= taggedNames.length - 1; i++) {
 			value = value.replace(taggedNames[i], '<a href="users/' + taggedIds[i] + '">' + taggedNames[i] + '</a>');
 		}
 		$('#post-box').val(value);
 	});
-		
 });
 
 	

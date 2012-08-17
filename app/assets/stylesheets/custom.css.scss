@@ -252,6 +252,10 @@ input, textarea, select, .uneditable-input {
 	
 }
 
+.description {
+	margin-bottom: 10px;
+}
+
 .content {
 	display: block;
 	margin-left: 10px;
@@ -293,6 +297,9 @@ input, textarea, select, .uneditable-input {
 	display: none;
 }
 
+.likes {
+	display: none;
+}
 
 .comment {
 	margin: 10px 5px;

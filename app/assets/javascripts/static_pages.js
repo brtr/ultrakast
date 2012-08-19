@@ -5,7 +5,7 @@ var taggedIds = [];
 $(document).ready(function() {
 	
 		
-	$('.content').attr('target', '_blank');
+	$('.content a').attr('target', '_blank');
 	//Translate links in post text to embedded content
 	$('.content').embedly({
 		//Place embedded content after post
@@ -30,7 +30,7 @@ $(document).ready(function() {
 	
 	
 	//Code to show and hide comments
-	$('.status-bar').on("click", 'a.comment-link', function(e) {
+	$(document).on("click", 'a.comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		$(this).attr('class', 'hide-comment-link').text("Hide comments");
 	});
 	
-	$('.status-bar').on("click", 'a.hide-comment-link', function(e) {
+	$(document).on("click", 'a.hide-comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
@@ -47,7 +47,7 @@ $(document).ready(function() {
 	
 	//Code to show and hide likes
 	
-	$('.status-bar').on("click", 'a.likes-link', function(e) {
+	$(document).on("click", 'a.likes-link', function(e) {
 		e.preventDefault();
 		post_id = "div#likes-for-" + $(this).data('post-id');
 		$(post_id).show();
@@ -55,7 +55,7 @@ $(document).ready(function() {
 		$(this).attr('class', 'hide-likes-link').text("Hide likes");
 	});
 	
-	$('.status-bar').on("click", 'a.hide-likes-link', function(e) {
+	$(document).on("click", 'a.hide-likes-link', function(e) {
 		e.preventDefault();
 		post_id = "div#likes-for-" + $(this).data('post-id');
 		$(post_id).hide();

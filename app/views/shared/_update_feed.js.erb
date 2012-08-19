@@ -9,6 +9,7 @@
 
 $('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();
 
+	$('.content a').attr('target', '_blank');
 	//Translate links in post text to embedded content
 	$('.content').embedly({
 		//Place embedded content after post

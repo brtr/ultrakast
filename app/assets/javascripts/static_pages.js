@@ -87,10 +87,10 @@ $(document).ready(function() {
 	myLiveSearch();
 	
 	//Bind to live search result links
-	$('a.live-search-result').on("click", function(e) {
+	$(document).on("click", 'a.live-search-result', function(e) {
 		e.preventDefault();
 		//Format text to be placed into post box
-		result = '@' + $(this).text() + ' ';
+		result = '@' + $(this).text();
 		//Add the tagged user to the arrays
 		taggedNames.push(result);
 		taggedIds.push($(this).attr('id'));
@@ -160,7 +160,7 @@ function replaceResult(result) {
 	}
 	var pattern = /@(\w*)(\s\w*)?/;
 	matched = editedVal.match(pattern);
-	$('#post-box').val(value.replace(matched[0], result));
+	$('#post-box').val(value.replace(matched[0], result + ' '));
 	//Return focus to the text area
 	$('#post-box').focus();
 	//This is a workaround to get the cursor to the end of the text area

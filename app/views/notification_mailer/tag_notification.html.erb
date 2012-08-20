@@ -1,0 +1,18 @@
+<% if Rails.env.development?
+     host = "10.211.55.3:3000"
+   else
+     host = "radiant-citadel-1711.herokuapp.com"
+   end %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+	Hello, <%= @user.name %> - 
+	<%= @post.user.name %> has tagged you in a post.<br />
+	<br />
+	<a href="<%= url_for(:host => host, :controller => 'posts', :action => 'show', :id => @post.id)%>">Read the post here</a>
+</body>
+</html>

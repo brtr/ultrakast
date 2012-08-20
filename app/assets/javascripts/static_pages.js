@@ -5,7 +5,7 @@ var taggedIds = [];
 $(document).ready(function() {
 	
 		
-	$('.content').attr('target', '_blank');
+	$('.content a').attr('target', '_blank');
 	//Translate links in post text to embedded content
 	$('.content').embedly({
 		//Place embedded content after post
@@ -30,7 +30,7 @@ $(document).ready(function() {
 	
 	
 	//Code to show and hide comments
-	$('.status-bar').on("click", 'a.comment-link', function(e) {
+	$(document).on("click", 'a.comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).show();
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		$(this).attr('class', 'hide-comment-link').text("Hide comments");
 	});
 	
-	$('.status-bar').on("click", 'a.hide-comment-link', function(e) {
+	$(document).on("click", 'a.hide-comment-link', function(e) {
 		e.preventDefault();
 		post_id = "div#comments-" + $(this).data('post-id');
 		$(post_id).hide();
@@ -47,7 +47,7 @@ $(document).ready(function() {
 	
 	//Code to show and hide likes
 	
-	$('.status-bar').on("click", 'a.likes-link', function(e) {
+	$(document).on("click", 'a.likes-link', function(e) {
 		e.preventDefault();
 		post_id = "div#likes-for-" + $(this).data('post-id');
 		$(post_id).show();
@@ -55,7 +55,7 @@ $(document).ready(function() {
 		$(this).attr('class', 'hide-likes-link').text("Hide likes");
 	});
 	
-	$('.status-bar').on("click", 'a.hide-likes-link', function(e) {
+	$(document).on("click", 'a.hide-likes-link', function(e) {
 		e.preventDefault();
 		post_id = "div#likes-for-" + $(this).data('post-id');
 		$(post_id).hide();
@@ -63,21 +63,21 @@ $(document).ready(function() {
 	});
 	
 	//Code to show and hide expanded category lists
-	$('#category_links').on("click", 'a.expand-link', function(e) {
+	$(document).on("click", 'a.expand-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).show();
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
-	$('#category_links').on("click", 'a.contract-link', function(e) {
+	$(document).on("click", 'a.contract-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).hide();
 		$(this).attr('class', 'expand-link').text('+');
 	});
 	
-	$('#category_links').on("click", 'a.parent-link', function(e) {		
+	$(document).on("click", 'a.parent-link', function(e) {		
 		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
 		$(category_id).show();
 		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');
@@ -87,10 +87,10 @@ $(document).ready(function() {
 	myLiveSearch();
 	
 	//Bind to live search result links
-	$('a.live-search-result').on("click", function(e) {
+	$(document).on("click", 'a.live-search-result', function(e) {
 		e.preventDefault();
 		//Format text to be placed into post box
-		result = '@' + $(this).text() + ' ';
+		result = '@' + $(this).text();
 		//Add the tagged user to the arrays
 		taggedNames.push(result);
 		taggedIds.push($(this).attr('id'));
@@ -160,7 +160,7 @@ function replaceResult(result) {
 	}
 	var pattern = /@(\w*)(\s\w*)?/;
 	matched = editedVal.match(pattern);
-	$('#post-box').val(value.replace(matched[0], result));
+	$('#post-box').val(value.replace(matched[0], result + ' '));
 	//Return focus to the text area
 	$('#post-box').focus();
 	//This is a workaround to get the cursor to the end of the text area

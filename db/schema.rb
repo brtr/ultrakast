@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815195014) do
+ActiveRecord::Schema.define(:version => 20120820204633) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(:version => 20120815195014) do
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
+  create_table "groups", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups_users", :id => false, :force => true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
   create_table "post_actions", :force => true do |t|
     t.string   "type"
     t.integer  "user_id"
@@ -74,12 +86,13 @@ ActiveRecord::Schema.define(:version => 20120815195014) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "shared",          :default => false
-    t.integer  "likes_count",     :default => 0
-    t.integer  "favorites_count", :default => 0
-    t.integer  "comments_count",  :default => 0
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "shared",             :default => false
+    t.integer  "likes_count",        :default => 0
+    t.integer  "favorites_count",    :default => 0
+    t.integer  "comments_count",     :default => 0
+    t.integer  "post_actions_count", :default => 0
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"

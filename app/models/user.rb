@@ -25,9 +25,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
-  
-  
-  
+
+
   has_attached_file :avatar,
     :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
 	:convert_options => { :square => "-gravity center -extent 50x50" },
@@ -37,7 +36,7 @@ class User < ActiveRecord::Base
 	:bucket => "ultrakast_images"
   
 
-  def feed(status, categories)
+  def feed(status, categories, sort)
     if status == "public"
 	  if categories == "all"
 	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category)
@@ -48,7 +47,7 @@ class User < ActiveRecord::Base
 	  if categories == "all"
 	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category)
 	  else
-		  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
+		Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
 	  end
 	end
 

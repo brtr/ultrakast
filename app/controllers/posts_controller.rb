@@ -7,7 +7,9 @@ class PostsController < ApplicationController
     if @post.save
       tagged_users = @post.content.scan(/<a href="users\/(\d*)/).flatten
       tagged_users.each do |user|
-        NotificationMailer.delay.test_email(@post, User.find(user))
+	    #Delayed_job version of the mailer below - commenting out so heroku does not use BG process
+        #NotificationMailer.delay.tag_notification(@post, User.find(user))
+		NotificationMailer.tag_notification(@post, User.find(user)).deliver
       end
 	    @feed_items = current_user.feed(session[:feed_status], session[:category_filter])
 	    unless @feed_items.nil?

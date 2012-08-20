@@ -63,21 +63,21 @@ $(document).ready(function() {
 	});
 	
 	//Code to show and hide expanded category lists
-	$('#category_links').on("click", 'a.expand-link', function(e) {
+	$(document).on("click", 'a.expand-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).show();
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
-	$('#category_links').on("click", 'a.contract-link', function(e) {
+	$(document).on("click", 'a.contract-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
 		$(category_id).hide();
 		$(this).attr('class', 'expand-link').text('+');
 	});
 	
-	$('#category_links').on("click", 'a.parent-link', function(e) {		
+	$(document).on("click", 'a.parent-link', function(e) {		
 		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
 		$(category_id).show();
 		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');

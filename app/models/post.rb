@@ -8,13 +8,16 @@ class Post < ActiveRecord::Base
   has_many   :comments, dependent: :destroy
 
   attr_accessible :content, :category_id, :shared
-  default_scope order: 'posts.created_at DESC'
   validates :user_id, presence: true
   validates :category_id, presence: true
   
-  scope :shared, where(:shared => true)
-  
-  
+  scope :shared, lambda { |user| where("shared = ? OR user_id = ?", true, user) unless user.nil? }
+  scope :by_users, lambda { |users| where("user_id IN (?)", users) unless users.nil? }
+  scope :by_categories, lambda { |categories| where("category_id IN (?)", categories) unless categories.nil? }
+  scope :popular, order("posts.post_actions_count desc")
+  scope :recent, order("posts.created_at DESC")
+  scope :favorites, lambda { |user| where("id IN (?)", User.find(user).favorites.collect(&:post_id)) unless user.nil? }
+ 
   # ENTIRE UNREAD FUNCTIONALITY NEEDS TO BE REWORKED FROM SCRATCH
   #acts_as_readable
   #Get count of unread posts, sorted by category, posted by a user's friends

@@ -1,3 +1,4 @@
+<div id="feed-items">
 <% if @feed_items.any? %>
 	<%= will_paginate @feed_items, :renderer => 'BootstrapLinkRenderer', :base_link_url => 'static_pages/switchfeed', :inner_window => 2, :next_label => '&raquo;', :previous_label => '&laquo;'	%>
 	<ol class="posts">
@@ -5,3 +6,4 @@
 	</ol>
 
 <% end %>
+</div>

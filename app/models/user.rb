@@ -25,9 +25,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
-  
-  
-  
+
+
   has_attached_file :avatar,
     :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
 	:convert_options => { :square => "-gravity center -extent 50x50" },
@@ -37,22 +36,44 @@ class User < ActiveRecord::Base
 	:bucket => "ultrakast_images"
   
 
-  def feed(status, categories)
+  def feed(status, categories, sort)
     if status == "public"
-	  if categories == "all"
-	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category)
-      else
-	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id).includes(:user, {:comments => :user}, :category)
-	  end
+	  posts = Post.shared(id)
 	elsif status == "private"
-	  if categories == "all"
-	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category)
-	  else
-		  Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
-	  end
+	  ((users = []) << id << friend_ids).flatten!
+	  posts = Post.by_users(users)
+	elsif status == "favorites"
+	  posts = Post.favorites(id)
+	end
+    
+    unless categories == "all"
+      posts = posts.by_categories(categories)
+    end
+
+    if sort == "popular"
+      posts = posts.popular
+    else
+	  posts = posts.recent
 	end
 
+	posts.includes(:user, {:comments => :user}, :category)
+
   end
+
+#    if status == "public"
+#	  if categories == "all"
+#	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category)
+#      else
+#	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id).includes(:user, {:comments => :user}, :category)
+#	  end
+#	elsif status == "private"
+#	  if categories == "all"
+#	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category)
+#	  else
+#		Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
+#	  end
+#	end
+# end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

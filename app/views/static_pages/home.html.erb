@@ -14,8 +14,9 @@
 			</section>
 		</aside>
 		<div id="feed" class="span6">
-			<h3>Newsfeed (viewing friends)</h3>
-			<%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %>
+			<h3>Newsfeed (viewing friends by most recent)</h3>
+			<%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %> 
+			-- <%= link_to 'Sort by most popular', switchfeed_path(:sort_order => "popular"), :remote => true %>
 			<%= render 'shared/feed' %>
 		</div>
 		<aside class="span2">

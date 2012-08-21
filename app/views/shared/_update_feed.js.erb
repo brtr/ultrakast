@@ -1,7 +1,15 @@
 <% if session[:feed_status] == "public" %>
-  $('#feed').html('<h3>Newsfeed (viewing everyone)</h3><%= link_to 'View friends', switchfeed_path(:feed_status => "private"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% if session[:sort_order] == "recent" %>
+    $('#feed').html('<h3>Newsfeed (viewing everyone by most recent)</h3> <%= link_to 'View friends', switchfeed_path(:feed_status => "private"), :remote => true %> -- <%= link_to 'Sort by most popular', switchfeed_path(:sort_order => "popular"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% else %>
+    $('#feed').html('<h3>Newsfeed (viewing everyone by most popular)</h3> <%= link_to 'View friends', switchfeed_path(:feed_status => "private"), :remote => true %> -- <%= link_to 'Sort by most recent', switchfeed_path(:sort_order => "recent"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% end %>
 <% else %>
-  $('#feed').html('<h3>Newsfeed (viewing friends)</h3><%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% if session[:sort_order] == "recent" %>
+    $('#feed').html('<h3>Newsfeed (viewing friends by most recent)</h3>	<%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %> -- <%= link_to 'Sort by most popular', switchfeed_path(:sort_order => "popular"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% else %>
+    $('#feed').html('<h3>Newsfeed (viewing friends by most popular)</h3> <%= link_to 'View everyone', switchfeed_path(:feed_status => "public"), :remote => true %> -- <%= link_to 'Sort by most recent', switchfeed_path(:sort_order => "recent"), :remote => true %> <%= escape_javascript(@filter_title) %><%= escape_javascript(render(:partial => "shared/feed")) %>');
+  <% end %>
 <% end %>
 
 //Below line was here to clear unread counts - taking out because it now resets the user's list expansion everytime they click a category - handle unread count w/ ajax

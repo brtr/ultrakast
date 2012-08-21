@@ -16,6 +16,7 @@ class Post < ActiveRecord::Base
   scope :by_categories, lambda { |categories| where("category_id IN (?)", categories) unless categories.nil? }
   scope :popular, order("posts.post_actions_count desc")
   scope :recent, order("posts.created_at DESC")
+  scope :favorites, lambda { |user| where("id IN (?)", User.find(user).favorites.collect(&:post_id)) unless user.nil? }
  
   # ENTIRE UNREAD FUNCTIONALITY NEEDS TO BE REWORKED FROM SCRATCH
   #acts_as_readable

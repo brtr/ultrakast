@@ -344,3 +344,34 @@ a.expand-link:hover, a.contract-link:hover {
 	display: block;
 	margin: 5px 0;
 }
+
+.filter-button {
+	border: 2px solid #000;
+	padding: 10px;
+	text-align: center;
+	margin: 0 5px;
+}
+
+a.filter-button {
+	text-decoration: none;
+}
+
+.filter-button:hover, .selected {
+	border: 2px solid #0000ff;
+	background: #eef;
+}
+
+#filter-settings {
+	clear: both;
+}
+
+#feed-items {
+clear: both;
+}
+
+.button-wrap {
+display: block;
+clear: both;
+margin: 0 auto 40px auto;
+text-align: center;
+}

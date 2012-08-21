@@ -39,9 +39,11 @@ class User < ActiveRecord::Base
   def feed(status, categories, sort)
     if status == "public"
 	  posts = Post.shared(id)
-	else
+	elsif status == "private"
 	  ((users = []) << id << friend_ids).flatten!
 	  posts = Post.by_users(users)
+	elsif status == "favorites"
+	  posts = Post.favorites(id)
 	end
     
     unless categories == "all"

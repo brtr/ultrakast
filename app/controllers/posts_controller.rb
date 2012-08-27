@@ -4,6 +4,13 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(params[:post])
+	
+	if params[:commit] == "Rekast"
+	  @post.rekast = true
+	  #TODO: add a class in before the href to match a new regex - use that to send emails about rekasted posts
+	  @post.content = params[:share_content] + '<br /><br />' + @post.content + ' (Rekasted via <a href="users/' + params[:original_author] + '">' + User.find(params[:original_author]).name + '</a>)'
+	end
+	
     if @post.save
 	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter], session[:sort_order])
 	  unless @feed_items.nil?
@@ -19,6 +26,7 @@ class PostsController < ApplicationController
       @feed_items = []
       render 'static_pages/home'
     end
+	@post = current_user.posts.build(params[:post])
   end
   
   def show

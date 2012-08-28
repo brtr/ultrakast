@@ -41,6 +41,7 @@ class StaticPagesController < ApplicationController
 	  #  item.read_by!(current_user)
 	  #end
 	  #end
+	  @post = current_user.posts.build(params[:post])
 	  respond_to do |format|
 	    format.html
 	    format.js

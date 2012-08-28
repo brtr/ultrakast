@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820204633) do
+ActiveRecord::Schema.define(:version => 20120827181042) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20120820204633) do
     t.integer  "favorites_count",    :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "post_actions_count", :default => 0
+    t.boolean  "rekast",             :default => false
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"

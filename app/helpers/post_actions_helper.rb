@@ -25,6 +25,5 @@ module PostActionsHelper
 	  link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method => :post, :remote => true)
 	end
   end
- 
 
 end

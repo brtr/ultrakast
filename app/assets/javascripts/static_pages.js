@@ -62,6 +62,23 @@ $(document).ready(function() {
 		$(this).attr('class', 'likes-link').text($(this).data('link-text'));
 	});
 	
+	//Code to show and hide share section
+	$(document).on("click", 'a.share-link', function(e) {
+		e.preventDefault();
+		post_id = "div#share-" + $(this).data('post-id');
+		$(post_id).show();
+		$(this).data("link-text", $(this).text());
+		$(this).attr('class', 'hide-share-link').text("Cancel rekast");
+	});
+	
+	$(document).on("click", 'a.hide-share-link', function(e) {
+		e.preventDefault();
+		post_id = "div#share-" + $(this).data('post-id');
+		$(post_id).hide();
+		$(this).attr('class', 'share-link').text($(this).data('link-text'));
+	});
+	
+	
 	//Code to show and hide expanded category lists
 	$(document).on("click", 'a.expand-link', function(e) {
 		e.preventDefault();

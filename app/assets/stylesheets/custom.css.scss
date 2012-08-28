@@ -291,7 +291,25 @@ input, textarea, select, .uneditable-input {
 
 .comment-count {
 	margin-left: 10px;
+	margin-right: 10px;
 }
+
+.share-link {
+	margin-left: 10px;
+}
+
+.share-form {
+	display: none;
+}
+
+.rekast {
+
+	margin-top: 10px;
+	border-top: 1px solid #dedede;
+	padding-top: 10px;
+}
+
+
 
 .comments {
 	display: none;

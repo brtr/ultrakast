@@ -8,7 +8,7 @@
 		</div>
 		<strong>Privacy option:</strong><br /><br />
 		
-		<%= select(:post, :shared, options_for_select([["Friends Only", false], ["Public", true]])) %>
+		<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
 	</div>
 	<%= f.submit "Post", class: "btn btn-large btn-primary post-submit-button" %>
 <% end %>

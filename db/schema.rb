@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827181042) do
+ActiveRecord::Schema.define(:version => 20120902191018) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -94,6 +94,10 @@ ActiveRecord::Schema.define(:version => 20120827181042) do
     t.integer  "comments_count",     :default => 0
     t.integer  "post_actions_count", :default => 0
     t.boolean  "rekast",             :default => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"

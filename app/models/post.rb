@@ -7,9 +7,16 @@ class Post < ActiveRecord::Base
   has_many   :favorites, dependent: :destroy
   has_many   :comments, dependent: :destroy
 
-  attr_accessible :content, :category_id, :shared
+  attr_accessible :content, :category_id, :shared, :image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at
   validates :user_id, presence: true
   validates :category_id, presence: true
+  
+  has_attached_file :image,
+    :styles => { :normal => "250", :large => "450" }, 
+	  :storage => :s3,
+	  :s3_credentials => "#{Rails.root}/config/s3.yml",
+	  :path => ":attachment/:id/:style.:extension",
+	  :bucket => "ultrakast_images"
   
   scope :shared, lambda { |user| where("shared = ? OR user_id = ?", true, user) unless user.nil? }
   scope :by_users, lambda { |users| where("user_id IN (?)", users) unless users.nil? }

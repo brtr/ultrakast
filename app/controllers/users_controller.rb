@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 	  @categories = @user.categories
 	  @feed_items = Post.where("id IN (?)", @user.favorites.collect { |fav| fav.post_id })
 	  @post = current_user.posts.build(params[:post])
+	  @reload = true
   end
   
   def create

@@ -57,6 +57,9 @@
 			<%= f.hidden_field :content, :value => feed_item.content %>
 			<%= f.hidden_field :category_id, :value => feed_item.category_id %>
 			<%= hidden_field_tag 'original_author', feed_item.user_id %>
+			<% if @reload %>
+   				<%= hidden_field_tag 'reload', true %>
+			<% end %>
 			<%= text_field_tag 'share_content', nil, :placeholder => "Enter a comment on this rekast" %>
 			<strong>Privacy option:</strong><br /><br />
 			<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>

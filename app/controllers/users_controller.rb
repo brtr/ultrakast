@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 	  @user = User.includes( { :posts => :category } ).find(params[:id])
 	  @categories = @user.categories
 	  @feed_items = Post.where("id IN (?)", @user.favorites.collect { |fav| fav.post_id })
+	  @post = current_user.posts.build(params[:post])
   end
   
   def create

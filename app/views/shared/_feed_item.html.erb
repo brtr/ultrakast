@@ -18,7 +18,12 @@
 			</span>
 		</div><!-- END .post-header -->
 	
-		<span class="content cf"><%= auto_link(feed_item.content) %></span>
+		<span class="content cf">
+		<%= auto_link(feed_item.content) %>
+		<% unless feed_item.image_file_name.nil? %>
+		  <%= image_tag feed_item.image.url %>
+		<% end %>
+		</span>
 	
 		<div class="status-bar">
 			<span id="like-<%= feed_item.id %>" class="like-count">

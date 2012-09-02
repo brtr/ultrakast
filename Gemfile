@@ -16,6 +16,7 @@ gem 'aws-s3'
 gem 'aws-sdk'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem "remotipart"
 
 
 # Performance testing gems - do not enable in production!!

@@ -6,6 +6,7 @@
 		<div id="category-dropdown">
 		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('name ASC'), :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
 		</div>
+		<%= f.file_field :image %>
 		<strong>Privacy option:</strong><br /><br />
 		
 		<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>

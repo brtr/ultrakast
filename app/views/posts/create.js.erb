@@ -3,3 +3,6 @@ $('#post-box').val("");
 taggedNames = [];
 taggedIds = [];
 myLiveSearch();
+<% if @reload %>
+	window.location = '/';
+<% end %>

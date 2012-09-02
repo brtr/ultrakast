@@ -26,11 +26,13 @@ class PostsController < ApplicationController
 	    rekasted_users.each do |user|
 	      NotificationMailer.rekast_notification(@post, User.find(user)).deliver
 	    end
+	    @reload = params[:reload]
     else
       @feed_items = []
       render 'static_pages/home'
     end
 	@post = current_user.posts.build(params[:post])
+
   end
   
   def show

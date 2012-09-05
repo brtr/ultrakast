@@ -12,7 +12,7 @@
 	  <% end %>
 	</section>
   </aside>
-  <div class="span8">
+  <div class="span8" id="feed-items">
     <% if @user.favorites.any? %>
 	<h3>Favorites (<%= @user.favorites.count %>)</h3>
 	<ol class="posts">

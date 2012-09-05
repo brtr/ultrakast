@@ -12,14 +12,8 @@
 	  <% end %>
 	</section>
   </aside>
-  <div class="span8" id="feed-items">
-    <% if @user.favorites.any? %>
-	<h3>Favorites (<%= @user.favorites.count %>)</h3>
-	<ol class="posts">
-		<%= render partial: 'shared/feed_item', collection: @feed_items %>
-	</ol>
-	<% end %>
-  </div>  
+  <%= render 'shared/feed' %>
+
 </div>
 
 

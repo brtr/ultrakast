@@ -14,7 +14,7 @@ Ultrakast::Application.routes.draw do
   resources :likes,     only: [:create, :destroy], :controller => "post_actions", :type => "Like"
   resources :favorites, only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"
   
-
+  match '/friendships/process', to: 'friendships#process_friendship', :as => 'process_friendship'
 
   root to: 'static_pages#home'
   

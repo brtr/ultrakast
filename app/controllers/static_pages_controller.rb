@@ -6,12 +6,17 @@ class StaticPagesController < ApplicationController
       session[:feed_status] = "private"
       session[:filter_title] = ""
   	  session[:sort_order] = "recent"
-	  @feed_items = current_user.feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: params[:page], per_page: 10)
+	  session[:user] = current_user.id
+	  @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: params[:page], per_page: 10)
     end
   end
   
   def switch_feed
-  
+   
+    #set user
+	unless params[:user].nil?
+		session[:user] = params[:user]
+	end
 	#set sort
 	unless params[:sort_order].nil?
 	  session[:sort_order] = params[:sort_order]
@@ -32,7 +37,7 @@ class StaticPagesController < ApplicationController
     update_dropdown
     
 	@filter_title = filter_title(session[:filter_title])  
-	@feed_items = current_user.feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
+	@feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  
 	  
 	  # NEED TO REFACTOR THE UNREAD COUNT FUNCTIONALITY

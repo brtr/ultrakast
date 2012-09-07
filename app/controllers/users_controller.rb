@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   def show
 	  @user = User.includes( { :posts => :category } ).find(params[:id])
 	  @categories = @user.categories
-	  @feed_items = Post.where("id IN (?)", @user.favorites.collect { |fav| fav.post_id })
+	  session[:feed_status] = "favorites"
+	  session[:user] = @user.id
+	  @feed_items = @user.feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  @post = current_user.posts.build(params[:post])
 	  @reload = true
   end

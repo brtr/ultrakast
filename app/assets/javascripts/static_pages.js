@@ -1,6 +1,7 @@
 //Set these arrays up to hold currently tagged user names and ids
 var taggedNames = [];
 var taggedIds = [];
+var alertsHidden = true;
 
 $(document).ready(function() {
 	
@@ -27,6 +28,20 @@ $(document).ready(function() {
 
 	//AJAXify pagination links
 	$('.pagination a').attr('data-remote', 'true');
+	
+	
+	//Code to show and hide notifications window	
+	$(document).on("click", 'a#alerts-link', function(e) {
+		e.preventDefault();
+		if (alertsHidden == true)
+		{			
+			$('#alerts').show();
+			alertsHidden = false;
+		} else {			
+			$('#alerts').hide();
+			alertsHidden = true;		
+		}	
+	});
 	
 	
 	//Code to show and hide comments

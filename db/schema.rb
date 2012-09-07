@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902191018) do
+ActiveRecord::Schema.define(:version => 20120905190312) do
+
+  create_table "alerts", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "friend_id"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -50,8 +58,10 @@ ActiveRecord::Schema.define(:version => 20120902191018) do
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "pending",    :default => true
+    t.string   "status"
   end
 
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
@@ -67,6 +77,14 @@ ActiveRecord::Schema.define(:version => 20120902191018) do
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
     t.integer "user_id"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "content"
+    t.integer  "counterparty_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "post_actions", :force => true do |t|
@@ -135,6 +153,8 @@ ActiveRecord::Schema.define(:version => 20120902191018) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "notifications_count",    :default => 0
+    t.integer  "alerts_count",           :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

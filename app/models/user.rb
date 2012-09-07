@@ -14,12 +14,13 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :posts, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, :through => :friendships, dependent: :destroy
+  has_many :friends, :through => :friendships, dependent: :destroy, :conditions => ['status = ?', "approved"]
 
   has_many   :post_actions, dependent: :destroy
   has_many   :likes, dependent: :destroy
   has_many   :favorites, dependent: :destroy
   has_many   :comments, dependent: :destroy
+  has_many   :alerts, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
 

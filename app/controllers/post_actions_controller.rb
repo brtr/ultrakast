@@ -6,21 +6,20 @@ class PostActionsController < ApplicationController
 	  if @action.type == "Comment"
 	    @action.content = params[:comment][:content]
 	    @action.save
-	  end
-	
+	  end	
 	  @feed_item = Post.find(params[:post_id])
 	  if @action.save
 	    respond_to do |format|
 	      @feed_item.reload
 	      case @action.type
-		    when "Comment"
-		      @comments = @feed_item.comments
-			    format.js { render :layout => false, :action => "comments" } 
-		    when "Like"
-		      @likes = @feed_item.likes
-	        format.js { render :layout => false, :action => "likes" }
-		    when "Favorite"
-		      format.js { render :layout => false, :action => "favorites" }
+		      when "Comment"
+		        @comments = @feed_item.comments
+			      format.js { render :layout => false, :action => "comments" } 
+		      when "Like"
+		        @likes = @feed_item.likes
+	          format.js { render :layout => false, :action => "likes" }
+		      when "Favorite"
+		        format.js { render :layout => false, :action => "favorites" }
 		    end
 	    end
     end
@@ -28,18 +27,18 @@ class PostActionsController < ApplicationController
   
   def destroy
     @action = current_user.post_actions.find(params[:id])
-	@feed_item = Post.find(@action.post_id)
-	@action.destroy
-      respond_to do |format|
+	  @feed_item = Post.find(@action.post_id)
+	  @action.destroy
+    respond_to do |format|
 	    @feed_item.reload
-		@comments = @feed_item.comments
+		  @comments = @feed_item.comments
 	    case @action.type
-		  when "Comment"
-		    format.js { render :layout => false, :action => "comments" }
-		  when "Like"
+		    when "Comment"
+		      format.js { render :layout => false, :action => "comments" }
+		    when "Like"
 	        format.js { render :layout => false, :action => "likes" }
-		  when "Favorite"
-		    format.js { render :layout => false, :action => "favorites" }
+		    when "Favorite"
+		      format.js { render :layout => false, :action => "favorites" }
 	    end
 	  end
   end

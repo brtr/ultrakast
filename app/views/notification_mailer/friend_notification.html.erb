@@ -1,0 +1,16 @@
+<% if Rails.env.development?
+     host = "10.211.55.3:3000"
+   else
+     host = "furious-day-6517.herokuapp.com"
+   end %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+	Hello, <%= @friend.name %> - 
+	<%= @user.name %> has sent you a friend request.<br />
+</body>
+</html>

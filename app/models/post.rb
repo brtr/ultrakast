@@ -29,12 +29,24 @@ class Post < ActiveRecord::Base
   #acts_as_readable
   #Get count of unread posts, sorted by category, posted by a user's friends
   #Returns a string showing number of new posts to append to the category links
-  #def self.unread_count(user, categories)
-  #  unread = where("category_id in (?) AND posts.user_id in (?)", categories, user.friends).find_unread_by(user).count
-  #  unless unread == 0
-  #    "(" + unread.to_s + " new)"
-  #  end
-  #end
+  def self.unread_count(user, category)
+	read_time = ReadStatus.where("user_id = ? AND category_id = ?", user.id, category.id).first
+	if read_time.nil?
+		read_time = ReadStatus.create(:user_id => user.id, :category_id => category.id, :last_read_time => user.last_sign_in_at)
+	end
+	
+	if user.friends.empty?
+	  friends = NULL
+	else
+	  friends = user.friends
+	end
+	
+	
+	unread = where("category_id = ? AND user_id IN (?) AND updated_at > ?", category.id, friends, read_time.last_read_time).count
+    unless unread == 0
+      "(" + unread.to_s + " new)"
+	end
+  end
  
 end
 

@@ -11,7 +11,7 @@
 			<% category.child_name_for(current_user).each do |child| %>
 				<li>
 					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name), :remote => true, :class => "category-link" %>
-					<em><%#<%= Post.unread_count(current_user, category) %></em>
+					<span id="<%= child.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, child) %></em></span>
 				</li>
 			<% end %>
 		</ul>

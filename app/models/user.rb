@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
-
+  
+  default_scope :order => 'name ASC'
 
   has_attached_file :avatar,
     :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 

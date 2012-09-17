@@ -12,7 +12,12 @@
 				<div id="alerts">
 				<ul>
 				<% current_user.alerts.each do |a| %>
-				<li><%= a.content.html_safe %></li>
+				<li>
+					<%= a.content.html_safe %>
+					<% unless a.friend_id %>
+						- <%= link_to "clear", a, method: :delete %>
+					<% end %>
+				</li>
 				<% end %>
 				</ul>
 				</div>

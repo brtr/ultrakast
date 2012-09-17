@@ -1,6 +1,14 @@
 <% provide(:title, "All users") %>
 
-<h1>All users</h1>
+<h1>User List</h1>
+
+<div id="user-search">
+	<%= form_tag users_path, :method => 'get' do %>
+		<%= text_field_tag :search, params[:search] %>
+		Search by: <%= select_tag :search_type, "<option>Name</option><option>Email</option>".html_safe %></p>
+		<%= submit_tag "Search", :name => nil %>
+	<% end %>
+</div>
 
 <ul class="users">
   <% @users.each do |user| %>

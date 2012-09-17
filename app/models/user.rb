@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true
-
+  
+  default_scope :order => 'name ASC'
 
   has_attached_file :avatar,
     :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
@@ -36,16 +37,24 @@ class User < ActiveRecord::Base
 	:path => ":attachment/:id/:style.:extension",
 	:bucket => "ultrakast_images"
   
+  def self.search(search, type)
+    if search
+      where("UPPER(#{type}) LIKE UPPER(?)", "%#{search}%")
+    else
+      all
+    end
+  end
+  
 
   def feed(status, categories, sort)
     if status == "public"
-	  posts = Post.shared(id)
-	elsif status == "private"
-	  ((users = []) << id << friend_ids).flatten!
-	  posts = Post.by_users(users)
-	elsif status == "favorites"
-	  posts = Post.favorites(id)
-	end
+	    posts = Post.shared(id)
+	  elsif status == "private"
+	    ((users = []) << id << friend_ids).flatten!
+	    posts = Post.by_users(users)
+	  elsif status == "favorites"
+	    posts = Post.favorites(id)
+	  end
     
     unless categories == "all"
       posts = posts.by_categories(categories)
@@ -54,12 +63,11 @@ class User < ActiveRecord::Base
     if sort == "popular"
       posts = posts.popular
     else
-	  posts = posts.recent
+	    posts = posts.recent
+	  end
+
+	  posts.includes(:user, {:comments => :user}, :category)
 	end
-
-	posts.includes(:user, {:comments => :user}, :category)
-
-  end
 
 #    if status == "public"
 #	  if categories == "all"

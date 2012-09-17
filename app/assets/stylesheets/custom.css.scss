@@ -57,6 +57,12 @@ a:focus {
   clear:both;
 }
 
+a.selected-category {
+	font-weight: bold;
+	color: #fcb514;
+}
+
+
 /* For IE 6/7 (trigger hasLayout) */
 .cf 
 {

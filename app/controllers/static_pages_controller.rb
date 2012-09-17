@@ -39,13 +39,21 @@ class StaticPagesController < ApplicationController
 	@filter_title = filter_title(session[:filter_title])  
 	@feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  
-	  
-	  # NEED TO REFACTOR THE UNREAD COUNT FUNCTIONALITY
-	  #unless @filter_title == ""
-	  #  @feed_items.each do |item|
-	  #  item.read_by!(current_user)
-	  #end
-	  #end
+	if session[:category_filter] != "all"
+	  cat = Category.find_by_name(session[:filter_title])
+	  status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
+	  status.last_read_time = Time.now
+	  status.save
+	end
+	
+	
+	if status.nil?
+	  status = ReadStatus.create(:user_id => user, :category_id => category, :last_read_time => Time.now)
+	else
+	  status.last_read_time = Time.now
+	  status.save!
+	end
+
 	  @post = current_user.posts.build(params[:post])
 	  respond_to do |format|
 	    format.html

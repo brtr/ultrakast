@@ -19,10 +19,16 @@ class PostsController < ApplicationController
 	      @feed_items = @feed_items.paginate(page: params[:page], per_page: 10)
 	    end
 	    tagged_users = @post.content.scan(/<a href="users\/(\d*)/).flatten
-      tagged_users.each do |user|
+      tagged_users.each do |u|
+        user = User.find(u)
 	      #Delayed_job version of the mailer below - commenting out so heroku does not use BG process
+	      #TODO: Set back when they switch to paid Heroku
         #NotificationMailer.delay.tag_notification(@post, User.find(user))
-		    NotificationMailer.tag_notification(@post, User.find(user)).deliver
+		    NotificationMailer.tag_notification(@post, user).deliver
+		    alert = user.alerts.build
+		    alert.content = "<a href=\"/users/#{current_user.id}\">#{current_user.name}</a> has tagged you in <a href=\"/posts/#{@post.id}\">a post</a>"
+		    alert.save
+        
 	    end
 	    rekasted_users = @post.content.scan(/<a class="rekast-author" href="users\/(\d*)/).flatten
 	    rekasted_users.each do |user|

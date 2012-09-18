@@ -156,7 +156,7 @@ namespace :db do
   
   desc "Create posts"
   task :posts => :environment do
-	  (1..21).each do |k|
+	  (2..10).each do |k|
 	    cat = Category.find(k)
 	    (1..4).each do |i|
 	      user = User.find(i)

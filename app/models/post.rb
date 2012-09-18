@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 	  read_time = ReadStatus.create!(:user_id => user.id, :category_id => category.id, :last_read_time => Time.now)
 	end
 	
-	if user.friends.empty?
+	if user.friends.count == 0
 	  return
 	else
 	  friends = user.friends

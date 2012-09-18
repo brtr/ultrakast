@@ -13,6 +13,9 @@ module StaticPagesHelper
   
 
   def get_friends
+    if current_user.friends.count == 0
+	  return
+	end
     category = Category.includes(:users).find_by_name(session[:filter_title])
     @friends = category.users.where("users.id IN (?)", current_user.friends)
   end

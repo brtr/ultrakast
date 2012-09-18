@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   scope :popular, order("posts.post_actions_count desc")
   scope :recent, order("posts.created_at DESC")
   scope :favorites, lambda { |user| where("id IN (?)", User.find(user).favorites.collect(&:post_id)) unless user.nil? }
+  scope :since, lambda { |date| where("updated_at > ?", date) unless date.nil? }
  
   # ENTIRE UNREAD FUNCTIONALITY NEEDS TO BE REWORKED FROM SCRATCH
   #acts_as_readable
@@ -32,17 +33,18 @@ class Post < ActiveRecord::Base
   def self.unread_count(user, category)
 	read_time = ReadStatus.where("user_id = ? AND category_id = ?", user.id, category.id).first
 	if read_time.nil?
-		read_time = ReadStatus.create(:user_id => user.id, :category_id => category.id, :last_read_time => user.last_sign_in_at)
+	  read_time = ReadStatus.create!(:user_id => user.id, :category_id => category.id, :last_read_time => Time.now)
 	end
 	
 	if user.friends.empty?
-	  friends = NULL
+	  return
 	else
 	  friends = user.friends
 	end
 	
 	
-	unread = where("category_id = ? AND user_id IN (?) AND updated_at > ?", category.id, friends, read_time.last_read_time).count
+	#unread = where("updated_at > ? AND category_id = ? AND user_id IN (?)", category.id, read_time.last_read_time, friends).count
+	unread = by_users(friends).since(read_time.last_read_time).by_categories(category.id).count
     unless unread == 0
       "(" + unread.to_s + " new)"
 	end

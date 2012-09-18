@@ -1,6 +1,6 @@
 <ul>
 	<li>
-		<%= link_to "View all categories", switchfeed_path(:category_filter => "all", :filter_title => ""), :remote => true, :class => "category-link selected-category" %>
+		<%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => ""), :remote => true, :class => "category-link selected-category home-link" %>
 	</li>
 	<% current_user.categories.roots.order('name ASC').each do |category| %>
 		<li>
@@ -11,6 +11,7 @@
 			<% category.child_name_for(current_user).each do |child| %>
 				<li>
 					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name), :remote => true, :class => "category-link" %>
+					
 					<span id="<%= child.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, child) %></em></span>
 				</li>
 			<% end %>

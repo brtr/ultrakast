@@ -14,12 +14,10 @@
 				<% current_user.alerts.each do |a| %>
 				<li>
 					<%= a.content.html_safe %>
-					<% unless a.friend_id %>
-						- <%= link_to "clear", a, method: :delete %>
-					<% end %>
 				</li>
 				<% end %>
 				</ul>
+				<%= link_to "clear all alerts", :controller => "alerts", :action => "delete_all" %>
 				</div>
 				<% end %>
 				<li id="fat-menu" class="dropdown">

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
   
   def show
-	  @user = User.includes( { :posts => :category } ).find(params[:id])
+	  @user = User.find(params[:id])
 	  @categories = @user.categories
 	  session[:feed_status] = "favorites"
 	  session[:user] = @user.id

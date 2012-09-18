@@ -1,8 +1,8 @@
 namespace :db do
   
   desc "Erase and fill database"
-  #task :reseed => [:environment, 'db:reset', 'db:migrate', 'db:users', 'db:add_friendships', 'db:categories']
-  task :reseed => [:environment, 'db:reset', 'db:migrate', 'db:users', 'db:categories', 'db:add_categories', 'db:posts']
+  #task :reseed => [:environment, 'db:reset', 'db:migrate', 'db:users', 'db:add_friendships', 'db:categories', 'db:add_categories', 'db:posts']
+  task :reseed => [:environment, 'db:reset', 'db:migrate', 'db:users', 'db:categories']
   
   desc "Create users"
   task :users => :environment do
@@ -156,7 +156,7 @@ namespace :db do
   
   desc "Create posts"
   task :posts => :environment do
-	  (1..21).each do |k|
+	  (2..10).each do |k|
 	    cat = Category.find(k)
 	    (1..4).each do |i|
 	      user = User.find(i)

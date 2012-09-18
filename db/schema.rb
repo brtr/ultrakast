@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905190312) do
+ActiveRecord::Schema.define(:version => 20120918160414) do
 
   create_table "alerts", :force => true do |t|
     t.string   "content"
@@ -58,34 +58,13 @@ ActiveRecord::Schema.define(:version => 20120905190312) do
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "pending",    :default => true
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "status"
   end
 
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
-
-  create_table "groups", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "groups_users", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
-
-  create_table "notifications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "content"
-    t.integer  "counterparty_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
 
   create_table "post_actions", :force => true do |t|
     t.string   "type"
@@ -120,18 +99,20 @@ ActiveRecord::Schema.define(:version => 20120905190312) do
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
+  add_index "posts", ["updated_at"], :name => "index_posts_on_updated_at"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
-  create_table "readings", :force => true do |t|
-    t.string   "readable_type"
-    t.integer  "readable_id"
+  create_table "read_statuses", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "category_id"
+    t.datetime "last_read_time"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
-  add_index "readings", ["readable_id"], :name => "index_readings_on_readable_id"
-  add_index "readings", ["user_id"], :name => "index_readings_on_user_id"
+  add_index "read_statuses", ["category_id"], :name => "index_read_statuses_on_category_id"
+  add_index "read_statuses", ["user_id", "category_id"], :name => "index_read_statuses_on_user_id_and_category_id"
+  add_index "read_statuses", ["user_id"], :name => "index_read_statuses_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -153,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20120905190312) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "notifications_count",    :default => 0
     t.integer  "alerts_count",           :default => 0
   end
 

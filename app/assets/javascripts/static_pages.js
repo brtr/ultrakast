@@ -102,6 +102,11 @@ $(document).ready(function() {
 		$(this).attr('class', 'contract-link').text('-');
 	});
 	
+	$(document).on("click", 'a.category-link', function(e) {
+		$("a.category-link").removeClass('selected-category');
+		$(this).addClass('selected-category');
+	});
+	
 	$(document).on("click", 'a.contract-link', function(e) {
 		e.preventDefault();
 		category_id = "ul#children-" + $(this).data('category-id');
@@ -109,11 +114,31 @@ $(document).ready(function() {
 		$(this).attr('class', 'expand-link').text('+');
 	});
 	
-	$(document).on("click", 'a.parent-link', function(e) {		
+	$(document).on("click", 'a.parent-link', function(e) {
+		$(this).siblings('.contract-link').attr('class', 'expand-link').text('+');
+		$(this).parent().siblings('.children-list').hide();
+		$(this).parent().siblings().children('.contract-link').attr('class', 'expand-link').text('+');
 		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
 		$(category_id).show();
-		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');
+		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');		
 	});
+	
+	$(document).on("click", 'a.home-link', function(e) {
+		$('.children-list').hide();
+		$('.contract-link').attr('class', 'expand-link').text('+');
+	});
+	
+	$(document).on("click", 'a.post-category-link', function(e) {
+		$('.children-list').hide();
+		$('.contract-link').attr('class', 'expand-link').text('+');
+		//Move into function?
+		category_id = "ul#children-" + $(this).data('parent');
+		$(category_id).show();
+		$(category_id).siblings().children('#expand-' + $(this).data('parent')).attr('class', 'contract-link').text('-');		
+		$("a.category-link").removeClass('selected-category');
+		$('#' + $(this).data('category') + '-unread').siblings('.category-link').addClass('selected-category');
+	});
+
 	
 	//Run method to initialize tagging search functionality
 	myLiveSearch();

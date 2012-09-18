@@ -18,5 +18,14 @@ $(document).ready(function() {
 				}
 		}
 	});
+	
+	$(document).on("click", 'a.category-select-link', function(e) {
+		e.preventDefault();
+		$('.contract-link').attr('class', 'expand-link').text('+');
+		$('.children-list').hide();
+		category_id = "ul#children-" + $(this).data('category-id');
+		$(category_id).show();
+		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');	
+	});
 });
 

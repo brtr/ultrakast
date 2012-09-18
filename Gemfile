@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'ancestry'
 gem 'rails_autolink'
 gem 'thin'
-gem 'eventmachine', '1.0.0.beta.4.1'
+#gem 'eventmachine', '1.0.0.beta.4.1'
 gem 'devise'
 gem 'will_paginate', '3.0.3'
 gem 'omniauth-facebook'
@@ -21,8 +21,8 @@ gem "remotipart"
 
 # Performance testing gems - do not enable in production!!
 
-gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
-gem 'bullet'
+#gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
+#gem 'bullet'
 
 
 

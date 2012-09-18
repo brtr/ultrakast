@@ -19,7 +19,7 @@
 		</div><!-- END .post-header -->
 	
 		<span class="content cf">
-		<%= auto_link(feed_item.content) %>
+		<%= auto_link(feed_item.content) %><br /><br /><br />
 		<% unless feed_item.image_file_name.nil? %>
 		  <%= image_tag feed_item.image.url %>
 		<% end %>

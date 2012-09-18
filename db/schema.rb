@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917183421) do
+ActiveRecord::Schema.define(:version => 20120918160414) do
 
   create_table "alerts", :force => true do |t|
     t.string   "content"
@@ -66,18 +66,6 @@ ActiveRecord::Schema.define(:version => 20120917183421) do
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
-  create_table "groups", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "groups_users", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
-
   create_table "post_actions", :force => true do |t|
     t.string   "type"
     t.integer  "user_id"
@@ -111,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120917183421) do
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
+  add_index "posts", ["updated_at"], :name => "index_posts_on_updated_at"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "read_statuses", :force => true do |t|
@@ -121,16 +110,9 @@ ActiveRecord::Schema.define(:version => 20120917183421) do
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "readings", :force => true do |t|
-    t.string   "readable_type"
-    t.integer  "readable_id"
-    t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "readings", ["readable_id"], :name => "index_readings_on_readable_id"
-  add_index "readings", ["user_id"], :name => "index_readings_on_user_id"
+  add_index "read_statuses", ["category_id"], :name => "index_read_statuses_on_category_id"
+  add_index "read_statuses", ["user_id", "category_id"], :name => "index_read_statuses_on_user_id_and_category_id"
+  add_index "read_statuses", ["user_id"], :name => "index_read_statuses_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

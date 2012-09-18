@@ -42,16 +42,14 @@ class StaticPagesController < ApplicationController
 	if session[:category_filter] != "all"
 	  cat = Category.find_by_name(session[:filter_title])
 	  status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
-	  status.last_read_time = Time.now
-	  status.save
 	end
 	
 	
 	if status.nil?
-	  status = ReadStatus.create(:user_id => user, :category_id => category, :last_read_time => Time.now)
+	  status = ReadStatus.create(:user_id => current_user, :category_id => cat, :last_read_time => Time.now)
 	else
 	  status.last_read_time = Time.now
-	  status.save!
+	  status.save
 	end
 
 	  @post = current_user.posts.build(params[:post])

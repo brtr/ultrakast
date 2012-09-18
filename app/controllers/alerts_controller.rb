@@ -1,16 +1,18 @@
 class AlertsController < ApplicationController
   
-  before_filter :correct_user, only: :destroy
+  before_filter :correct_user, only: [:delete_all]
   
-  def destroy
-    @alert.destroy
-    redirect_to root_path
+  def delete_all
+	@alerts.each do |a|
+	  a.destroy
+	end
+	redirect_to root_path
   end
   
   private
   
     def correct_user
-      @alert = current_user.alerts.find_by_id(params[:id])
-      redirect_to root_path if @alert.nil?
+	  @alerts = current_user.alerts.where("friend_id IS NULL")
+      redirect_to root_path if @alerts.nil?
     end
 end

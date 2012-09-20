@@ -4,6 +4,11 @@ $(document).ready(function() {
 			if ($(this).parent().hasClass('parent'))
 			{
 				$(this).parent().siblings('ul').children().children('input:checkbox').attr('checked', true);
+				$('.contract-link').attr('class', 'expand-link').text('+');
+				$('.children-list').hide();
+				category_id = "ul#children-" + $(this).siblings('a.category-select-link').data('category-id');
+				$(category_id).show();
+				$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');
 			}
 			else
 			{

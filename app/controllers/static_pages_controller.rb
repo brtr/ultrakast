@@ -40,7 +40,11 @@ class StaticPagesController < ApplicationController
 	@feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  
 	if session[:category_filter] != "all"
-	  cat = Category.find_by_name(session[:filter_title])
+	  if session[:category_filter].class == String
+	    cat = Category.find(session[:category_filter])
+	  else
+	    cat = Category.find(session[:category_filter].first)
+	  end
 	  status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
 	end
 	
@@ -73,9 +77,12 @@ class StaticPagesController < ApplicationController
 	  if session[:category_filter] == "all"
 	    @dropdown_parents = current_user.categories.roots.order('name ASC')
     	@dropdown_children = current_user.category_ids
-    else
-      category = Category.find_by_name(session[:filter_title])
-
+      else
+	    if session[:category_filter].class == String
+		  category = Category.find(session[:category_filter])
+        else
+		  category = Category.find(session[:category_filter].first)
+		end
   	  if category.ancestry.nil? #Filtered on parent category - return all children
   	    @dropdown_parents = [category] #Needs to be passed as an array so grouped_collection_select can use map on it
   	    @dropdown_children = session[:category_filter]

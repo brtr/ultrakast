@@ -6,6 +6,7 @@
 		<li>
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name), :remote => true, :class => "parent-link category-link" %>
+			<span id="<%= category.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, category) %></em></span>
 		</li>
 		<ul id="children-<%= category.id %>" class="children-list">
 			<% category.child_name_for(current_user).each do |child| %>

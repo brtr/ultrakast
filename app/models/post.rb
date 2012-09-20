@@ -30,23 +30,49 @@ class Post < ActiveRecord::Base
   #acts_as_readable
   #Get count of unread posts, sorted by category, posted by a user's friends
   #Returns a string showing number of new posts to append to the category links
+  
+  #ideas to make this better?
+  #have unread check done at parent level, pass back array of counts, somehow add them to the child links? (dictionary with cat ID as key?)
+  #store these counts somewhere with last post time and don't refresh unless new post is made?
+  
+  
   def self.unread_count(user, category)
-	read_time = ReadStatus.where("user_id = ? AND category_id = ?", user.id, category.id).first
-	if read_time.nil?
-	  read_time = ReadStatus.create!(:user_id => user.id, :category_id => category.id, :last_read_time => Time.now)
-	end
 	
+	#No friends? No count. Exit
 	if user.friends.count == 0
 	  return
 	else
 	  friends = user.friends
 	end
+
+	if category.ancestry.nil?
+	  cat_ids = user.categories.ids & category.children.ids
+	else
+	  cat_ids = [category.id]
+	end
 	
+	#No posts in category or new posts since read_time? Exit
+	#if by_categories(cat_ids).last.nil?
+	#  return
+	#end
 	
+	#if read_time.last_read_time > by_categories(cat_ids).last.updated_at
+	#  return
+	#end
+
 	#unread = where("updated_at > ? AND category_id = ? AND user_id IN (?)", category.id, read_time.last_read_time, friends).count
-	unread = by_users(friends).since(read_time.last_read_time).by_categories(category.id).count
-    unless unread == 0
-      "(" + unread.to_s + " new)"
+	unread = 0
+	cat_ids.each do |c|
+	  read_time = ReadStatus.where("user_id = ? AND category_id = ?", user.id, c).first
+	  if read_time.nil?
+	    read_time = ReadStatus.create!(:user_id => user.id, :category_id => c, :last_read_time => Time.now)
+	  end
+		
+	  unread = unread + by_users(friends).since(read_time.last_read_time).by_categories(c).count
+	end
+	
+	unless unread == 0
+        "(" + unread.to_s + " new)"
 	end
   end
  

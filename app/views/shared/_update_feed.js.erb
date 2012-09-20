@@ -33,8 +33,16 @@ $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) 
 
 //Below line was here to clear unread counts - taking out because it now resets the user's list expansion everytime they click a category - handle unread count w/ ajax
 <% unless session[:category_filter] == "all" %>
-	<% cat = Category.find_by_name(session[:filter_title]) %>
-	$('#<%= cat.id %>-unread').html('<span id="<%= cat.id %>" style="display:inline;"><em><%= Post.unread_count(current_user, cat) %></em></span>');
+  <% if session[:category_filter].class == String
+    cat = Category.find(session[:category_filter])
+  else
+	cat = Category.find(session[:category_filter].first).root
+  end %>
+  <% unless cat.ancestry.nil? %>
+    $('#<%= cat.id %>-unread').html('<em><%= Post.unread_count(current_user, cat) %></em>');	
+    $('#<%= cat.root.id %>-unread').html('<em><%= Post.unread_count(current_user, cat.root) %></em>');
+  <% end %>
+  
 <% end %>
 $('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();
 

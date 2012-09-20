@@ -103,6 +103,7 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", 'a.category-link', function(e) {
+		e.preventDefault();
 		$("a.category-link").removeClass('selected-category');
 		$(this).addClass('selected-category');
 	});
@@ -115,20 +116,22 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", 'a.parent-link', function(e) {
-		$(this).siblings('.contract-link').attr('class', 'expand-link').text('+');
-		$(this).parent().siblings('.children-list').hide();
-		$(this).parent().siblings().children('.contract-link').attr('class', 'expand-link').text('+');
+		e.preventDefault();
+		$('.contract-link').attr('class', 'expand-link').text('+');
+		$('.children-list').hide();
 		category_id = "ul#children-" + $(this).siblings('.expand-link').data('category-id');
 		$(category_id).show();
 		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');		
 	});
 	
 	$(document).on("click", 'a.home-link', function(e) {
+		e.preventDefault();
 		$('.children-list').hide();
 		$('.contract-link').attr('class', 'expand-link').text('+');
 	});
 	
 	$(document).on("click", 'a.post-category-link', function(e) {
+		e.preventDefault();
 		$('.children-list').hide();
 		$('.contract-link').attr('class', 'expand-link').text('+');
 		//Move into function?

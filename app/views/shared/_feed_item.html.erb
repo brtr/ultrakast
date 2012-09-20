@@ -48,7 +48,7 @@
 					<% end %>
 				</a>
 			</span>
-			<% if feed_item.user_id != current_user.id %>
+			<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
 			|
 			
 			<span>

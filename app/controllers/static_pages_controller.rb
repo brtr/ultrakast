@@ -45,13 +45,9 @@ class StaticPagesController < ApplicationController
 	@feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  
 	if session[:category_filter] != "all"
-<<<<<<< Updated upstream
-	  cat = Category.find_by_name(session[:filter_title])
-=======
+
 	  cat = Category.find(session[:selected_category])
 	    
-
->>>>>>> Stashed changes
 	  status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
 	end
 	

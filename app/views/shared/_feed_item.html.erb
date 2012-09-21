@@ -58,20 +58,30 @@
 		</div>
 		<div id="share-<%= feed_item.id %>" class="share-form">
 			<%= form_for(@post, :remote => true) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			<%= f.hidden_field :content, :value => feed_item.content %>
-			<%= f.hidden_field :category_id, :value => feed_item.category_id %>
-			<%= hidden_field_tag 'original_id', feed_item.id %>
-			<%= hidden_field_tag 'original_author', feed_item.user_id %>
-			<% if @reload %>
-   				<%= hidden_field_tag 'reload', true %>
+				<%= render 'shared/error_messages', object: f.object %>
+				
+				<% if !feed_item.rekast %>
+					<%= f.hidden_field :content, :value => feed_item.content %>
+					<%= f.hidden_field :category_id, :value => feed_item.category_id %>
+					<%= f.hidden_field :original_post, :value => feed_item.id %>
+					<%= hidden_field_tag 'original_author', feed_item.user_id %>
+				<% else %>
+					<% orig_post = Post.find(feed_item.original_post) %>
+					<%= f.hidden_field :content, :value => orig_post.content %>
+					<%= f.hidden_field :category_id, :value => orig_post.category_id %>
+					<%= f.hidden_field :original_post, :value => orig_post.id %>
+					<%= hidden_field_tag 'original_author', orig_post.user_id %>
+				<% end %>
+				<% if @reload %>
+					<%= hidden_field_tag 'reload', true %>
+				<% end %>
+				<%= text_field_tag 'share_content', nil, :placeholder => "Enter a comment on this rekast" %>
+				
+				<strong>Privacy option:</strong><br /><br />
+				<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+				
+				<%= f.submit "Rekast", class: "btn btn-large btn-primary post-submit-button" %>
 			<% end %>
-			<%= text_field_tag 'share_content', nil, :placeholder => "Enter a comment on this rekast" %>
-			<strong>Privacy option:</strong><br /><br />
-			<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
-			
-			<%= f.submit "Rekast", class: "btn btn-large btn-primary post-submit-button" %>
-<% end %>
 		</div>
 		<div id="likes-for-<%= feed_item.id %>" class="likes">
 			<% if feed_item.likes_count? %>

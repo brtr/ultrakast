@@ -41,8 +41,12 @@ class FriendshipsController < ApplicationController
   	  friendship = Friendship.where("user_id = ? AND friend_id = ?", params[:user], params[:friend]).first.destroy
   	  friendship = Friendship.where("user_id = ? AND friend_id = ?", params[:friend], params[:user]).first.destroy
   	end
-	  Alert.where("user_id = ? AND friend_id = ?", params[:user], params[:friend]).first.destroy
-  	redirect_to root_path
+	alert = Alert.where("user_id = ? AND friend_id = ?", params[:user], params[:friend]).first
+	unless alert.nil?
+	  alert.destroy
+	end
+  	
+	redirect_to root_path
   end
   
   def destroy

@@ -17,7 +17,7 @@ class PostActionsController < ApplicationController
 			      format.js { render :layout => false, :action => "comments" } 
 		      when "Like"
 		        @likes = @feed_item.likes
-	          format.js { render :layout => false, :action => "likes" }
+	            format.js { render :layout => false, :action => "likes" }
 		      when "Favorite"
 		        format.js { render :layout => false, :action => "favorites" }
 		    end
@@ -36,7 +36,8 @@ class PostActionsController < ApplicationController
 		    when "Comment"
 		      format.js { render :layout => false, :action => "comments" }
 		    when "Like"
-	        format.js { render :layout => false, :action => "likes" }
+			  @likes = @feed_item.likes
+	          format.js { render :layout => false, :action => "likes" }
 		    when "Favorite"
 		      format.js { render :layout => false, :action => "favorites" }
 	    end

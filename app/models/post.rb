@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many   :favorites, dependent: :destroy
   has_many   :comments, dependent: :destroy
 
-  attr_accessible :content, :category_id, :shared, :image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at
+  attr_accessible :content, :category_id, :shared, :image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :original_post
   validates :user_id, presence: true
   validates :category_id, presence: true
   

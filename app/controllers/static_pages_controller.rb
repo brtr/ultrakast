@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
       session[:category_filter] = "all"
       session[:feed_status] = "private"
       session[:filter_title] = ""
+	  session[:selected_category] = "all"
   	  session[:sort_order] = "recent"
 	  session[:user] = current_user.id
 	  @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: params[:page], per_page: 10)
@@ -26,6 +27,10 @@ class StaticPagesController < ApplicationController
 	  session[:feed_status] = params[:feed_status]
 	end
 	
+	unless params[:selected_category].nil?
+	  session[:selected_category] = params[:selected_category]
+	end
+	
 	  
     #Set page
     if params[:page].nil?
@@ -40,7 +45,13 @@ class StaticPagesController < ApplicationController
 	@feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
 	  
 	if session[:category_filter] != "all"
+<<<<<<< Updated upstream
 	  cat = Category.find_by_name(session[:filter_title])
+=======
+	  cat = Category.find(session[:selected_category])
+	    
+
+>>>>>>> Stashed changes
 	  status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
 	end
 	
@@ -73,9 +84,15 @@ class StaticPagesController < ApplicationController
 	  if session[:category_filter] == "all"
 	    @dropdown_parents = current_user.categories.roots.order('name ASC')
     	@dropdown_children = current_user.category_ids
+<<<<<<< Updated upstream
     else
       category = Category.find_by_name(session[:filter_title])
 
+=======
+      else
+		category = Category.find(session[:selected_category])
+        
+>>>>>>> Stashed changes
   	  if category.ancestry.nil? #Filtered on parent category - return all children
   	    @dropdown_parents = [category] #Needs to be passed as an array so grouped_collection_select can use map on it
   	    @dropdown_children = session[:category_filter]

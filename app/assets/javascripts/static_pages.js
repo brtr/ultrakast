@@ -124,11 +124,7 @@ $(document).ready(function() {
 		$(this).siblings('.expand-link').attr('class', 'contract-link').text('-');		
 	});
 	
-	$(document).on("click", 'a.home-link', function(e) {
-		e.preventDefault();
-		$('.children-list').hide();
-		$('.contract-link').attr('class', 'expand-link').text('+');
-	});
+
 	
 	$(document).on("click", 'a.post-category-link', function(e) {
 		e.preventDefault();
@@ -139,6 +135,7 @@ $(document).ready(function() {
 		$(category_id).show();
 		$(category_id).siblings().children('#expand-' + $(this).data('parent')).attr('class', 'contract-link').text('-');		
 		$("a.category-link").removeClass('selected-category');
+		$("a.home-link").removeClass('selected-category');
 		$('#' + $(this).data('category') + '-unread').siblings('.category-link').addClass('selected-category');
 	});
 

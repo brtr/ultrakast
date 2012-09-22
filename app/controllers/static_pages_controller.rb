@@ -5,9 +5,9 @@ class StaticPagesController < ApplicationController
       session[:category_filter] = "all"
       session[:feed_status] = "private"
       session[:filter_title] = ""
-	  session[:selected_category] = "all"
+	    session[:selected_category] = "all"
   	  session[:sort_order] = "recent"
-	  session[:user] = current_user.id
+	    session[:user] = current_user.id
 	  @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: params[:page], per_page: 10)
     end
   end

@@ -1,19 +1,25 @@
 <%= provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-	  <h1>
-	    <%= avatar_for @user %>
-		<%= @user.name %><br />
-		Friends: <%= @user.friends.count %>
-	  </h1>
-	  <% if @user == current_user %>
-	  <p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
-	  <% end %>
-	</section>
-  </aside>
-
-  <%= render 'shared/feed' %>
+	<aside class="span4">
+    	<section>
+	  		<h1>
+	    		<%= avatar_for @user %>
+				<%= @user.name %><br />
+				Friends: <%= @user.friends.count %>
+	  		</h1>
+	  		<% if @user == current_user %>
+	  			<p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
+	  		<% end %>
+		</section>
+		<section id="category_links">
+			<%= render 'shared/category_links' %>
+		</section>
+  	</aside>
+	<div id="feed" class="span6">
+		<div id="filter-title">
+		</div>
+		<%= render 'shared/feed' %>
+	</div>
 
 </div>
 

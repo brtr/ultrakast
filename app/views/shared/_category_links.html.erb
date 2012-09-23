@@ -17,7 +17,9 @@
 				<li>
 					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id), :remote => true, :class => "category-link" %>
 					
-					<span id="<%= child.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, child) %></em></span>
+					<% unless params[:controller] == "users" %>
+						<span id="<%= child.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, child) %></em></span>
+					<% end %>
 				</li>
 			<% end %>
 		</ul>

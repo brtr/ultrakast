@@ -7,14 +7,17 @@
 			</span>
 			<span class="timestamp">
 				<% if feed_item.rekast %>
-				rekasted 
+					rekasted 
 				<% else %>
-				posted 
+					posted 
 				<% end %>
-				<%= time_ago_in_words(feed_item.created_at) %> ago in <span class="category"><%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name, :selected_category => feed_item.category.id), :remote => true, :class => "post-category-link", 'data-parent' => "#{feed_item.category.parent.id}", 'data-category' => "#{feed_item.category.id}" %>
-				<% if current_user?(feed_item.user) %>
-					- <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.content %></span></span>
-				<% end %>
+				<%= time_ago_in_words(feed_item.created_at) %> ago in 
+					<span class="category">
+						<%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name, :selected_category => feed_item.category.id), :remote => true, :class => "post-category-link", 'data-parent' => "#{feed_item.category.parent.id}", 'data-category' => "#{feed_item.category.id}" %>
+						<% if current_user?(feed_item.user) %>
+							- <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
+						<% end %>
+					</span>
 			</span>
 		</div><!-- END .post-header -->
 	

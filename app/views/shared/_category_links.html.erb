@@ -1,6 +1,10 @@
 <ul>
 	<li>
-		<%= link_to "Home", root_path, :class => "selected-category home-link" %>
+		<% if params[:controller] == "users" %>
+			<%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => "", :selected_category => "all"), :remote => true, :class => "selected-category home-link" %>
+		<% else %>
+			<%= link_to "Home", root_path, :class => "selected-category home-link" %>
+		<% end %>
 	</li>
 	<% current_user.categories.roots.order('name ASC').each do |category| %>
 		<li>
@@ -8,8 +12,9 @@
 
 
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link" %>
-			<span id="<%= category.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, category) %></em></span>
-
+			<% unless params[:controller] == "users" %>
+				<span id="<%= category.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, category) %></em></span>
+			<% end %>
 
 		</li>
 		<ul id="children-<%= category.id %>" class="children-list">

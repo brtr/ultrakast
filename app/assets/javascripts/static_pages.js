@@ -105,6 +105,7 @@ $(document).ready(function() {
 	$(document).on("click", 'a.category-link', function(e) {
 		e.preventDefault();
 		$("a.category-link").removeClass('selected-category');
+		$("a.home-link").removeClass('selected-category');
 		$(this).addClass('selected-category');
 	});
 	

@@ -73,7 +73,7 @@
 					<%= f.hidden_field :content, :value => orig_post.content %>
 					<%= f.hidden_field :category_id, :value => orig_post.category_id %>
 					<%= f.hidden_field :original_post, :value => orig_post.id %>
-					<%= hidden_field_tag 'original_author', orig_post.user_id %>
+					<%= hidden_field_tag 'original_author', feed_item.user_id %>
 				<% end %>
 				<% if @reload %>
 					<%= hidden_field_tag 'reload', true %>

@@ -6,17 +6,17 @@ class Category < ActiveRecord::Base
   attr_accessible :name, :parent_id
   
   def child_name
-    self.children.sort_by { |child| child.name }
+    self.children.sort_by { |child| child.id }
   end
   
   def child_name_for(user_id)
     user = User.find(user_id)
-	  self.children.where("id IN (?)", user.categories).sort_by { |child| child.name }
+	  self.children.where("id IN (?)", user.categories).sort_by { |child| child.id }
   end
   
   def return_filtered_categories(categories)
    
-    self.children.where("id IN (?)", categories).sort_by { |child| child.name }
+    self.children.where("id IN (?)", categories).sort_by { |child| child.id }
   end
   
   def self.ids

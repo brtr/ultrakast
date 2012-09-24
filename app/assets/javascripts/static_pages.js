@@ -137,9 +137,13 @@ $(document).ready(function() {
 		$(category_id).siblings().children('#expand-' + $(this).data('parent')).attr('class', 'contract-link').text('-');		
 		$("a.category-link").removeClass('selected-category');
 		$("a.home-link").removeClass('selected-category');
-		$('#' + $(this).data('category') + '-unread').siblings('.category-link').addClass('selected-category');
+		$('#' + $(this).data('category') + '-link').addClass('selected-category');
 	});
-
+	
+	$(document).on("click", 'a.home-link', function(e) {
+		$('a.category-link').removeClass('selected-category');
+		$(this).addClass('selected-category');
+	});
 	
 	//Run method to initialize tagging search functionality
 	myLiveSearch();

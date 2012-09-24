@@ -1,5 +1,5 @@
 <div id="category-checklist">
-	<% Category.roots.each do |category| %>
+	<% Category.roots.order('id ASC').each do |category| %>
 		<ul>
 			<li class="parent <%= category.name %>">
 				<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
@@ -7,7 +7,7 @@
 				<a href="#" class="category-select-link" data-category-id="<%= category.id %>"><%= category.name %></a>
 			</li>
 			<ul id="children-<%= category.id %>" class="children-list">
-				<% category.children.each do |child| %>
+				<% category.children.order('id ASC').each do |child| %>
 					<li class="child <%= child.name %>">
 						<%= check_box_tag "user[category_ids][]", child.id, @categories.include?(child) %>
 						<span><%= child.name %></span>

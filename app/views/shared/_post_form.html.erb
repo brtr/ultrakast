@@ -4,7 +4,7 @@
 		<%= f.text_area :content, :placeholder => "Compose new post...", :id => "post-box" %>
 		<div id="user-search-results"></div>
 		<div id="category-dropdown">
-		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('name ASC'), :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
+		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('id ASC'), :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
 		</div>
 		<%= f.file_field :image %>
 		<strong>Privacy option:</strong><br /><br />

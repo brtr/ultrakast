@@ -143,6 +143,8 @@ $(document).ready(function() {
 	$(document).on("click", 'a.home-link', function(e) {
 		$('a.category-link').removeClass('selected-category');
 		$(this).addClass('selected-category');
+		$('.children-list').hide();
+		$('.contract-link').attr('class', 'expand-link').text('+');
 	});
 	
 	//Run method to initialize tagging search functionality

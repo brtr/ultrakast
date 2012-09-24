@@ -78,7 +78,7 @@ class StaticPagesController < ApplicationController
 	  end
 	  
 	  if session[:category_filter] == "all"
-	    @dropdown_parents = current_user.categories.roots.order('name ASC')
+	    @dropdown_parents = current_user.categories.roots.order('id ASC')
     	@dropdown_children = current_user.category_ids
 
 

@@ -302,25 +302,25 @@ input, textarea, select, .uneditable-input {
 	margin-bottom: 15px;
 }
 
-.like-count {
+.likes-header {
 	margin-left: 2px;
 	margin-right: 10px;
 }
 
-.favorite-count {
+.favorite-header {
 	margin: 0 10px;
 }
 
-.comment-count {
+.comments-header {
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
-.share-link {
+.rekast-link {
 	margin-left: 10px;
 }
 
-.share-form {
+.rekast {
 	display: none;
 }
 
@@ -423,4 +423,43 @@ text-align: center;
 .category-select-link {
 	text-decoration: none;
 	color: #000;
+}
+
+#category-list, #category-checklist {
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	
+	ul {
+		list-style: none;
+		margin-left: 0;
+	}
+	
+	
+	.parent {
+		font-size: 1.7em;
+		font-weight: bold;
+		color: black;
+		margin-bottom: 10px;
+	}
+	
+	.child {
+		font-size: 1.25em;
+		font-weight: normal;
+		color: $grayLight;
+		margin-bottom: 10px;
+	}
+}
+
+#category-list {
+	text-align: center;
+	
+	li {
+		margin-left: 0;
+	}
+}
+
+#category-checklist ul {
+
+	margin-left: 20px;
+
 }

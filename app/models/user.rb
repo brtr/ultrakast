@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   validates :first_name,  presence: true
   validates :last_name,  presence: true
   
-  default_scope :order => 'name ASC'
+  default_scope :order => 'last_name ASC'
 
   #TODO: SET S3 BUCKET INFO FOR PRODUCTION
   has_attached_file :avatar,

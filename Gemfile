@@ -18,7 +18,7 @@ gem 'daemons'
 gem "remotipart"
 
 #Windows development only
-#gem 'eventmachine', '1.0.0.beta.4.1'
+gem 'eventmachine', '1.0.0.beta.4.1'
 
 # Performance testing gems - do not enable in production!!
 #gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'

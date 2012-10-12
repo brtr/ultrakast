@@ -116,7 +116,8 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
   add_index "read_statuses", ["user_id"], :name => "index_read_statuses_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -127,6 +128,12 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "provider"
     t.string   "uid"
     t.integer  "posts_count",            :default => 0

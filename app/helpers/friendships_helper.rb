@@ -9,7 +9,6 @@ module FriendshipsHelper
     elsif friendship.status == "requested"
       "Friend request pending"
     elsif friendship.status == "pending"
-      alert = Alert.where("user_id = ? AND friend_id = ?", current_user.id, user.id).first
       "Friend request pending - <a href=\"/friendships/process?decision=approve&user=#{current_user.id}&friend=#{user.id}\">Accept</a> or <a href=\"/friendships/process?decision=reject&user=#{current_user.id}&friend=#{user.id}\">Reject</a>".html_safe
     else
       link_to("Unfriend", friendship, :method => :delete)

@@ -22,18 +22,18 @@
 		</div><!-- .post-header -->
 	
 		<span class="content cf">
-      <%= auto_link(feed_item.content) %><br /><br /><br />
-      <% unless feed_item.image_file_name.nil? %>
-        <%= image_tag feed_item.image.url %>
-      <% end %>
+			<%= auto_link(feed_item.content) %><br /><br /><br />
+      		<% unless feed_item.image_file_name.nil? %>
+        		<%= image_tag feed_item.image.url %>
+      		<% end %>
 		</span><!-- .content -->
 	
 		<div class="status-bar">
-      <span id="likes-header-<%= feed_item.id %>" class="likes-header">
+      		<span id="likes-header-<%= feed_item.id %>" class="likes-header">
 				<%= like_link(feed_item) %>
-        <% if feed_item.likes_count? %>
-          - <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
-        <% end %>
+        		<% if feed_item.likes_count? %>
+          			- <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
+        		<% end %>
 			</span><!-- #likes-header-ID -->
 			|
 			
@@ -53,14 +53,14 @@
 			</span><!-- .comments-header -->
       
 			<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
-        |
-        <span class="rekast-header">
-          <a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
-        </span><!-- .rekast-header -->
+        		|
+        		<span class="rekast-header">
+          			<a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
+        		</span><!-- .rekast-header -->
 			<% end %>
 		</div><!-- .status-bar -->
 		
-    <div id="rekast-for-<%= feed_item.id %>" class="rekast">
+    	<div id="rekast-for-<%= feed_item.id %>" class="rekast">
 			<%= form_for(@post, :remote => true) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				
@@ -97,10 +97,10 @@
 			<% end %>
 		</div><!-- #likes-for-ID -->
 		
-    <div id="comments-for-<%= feed_item.id %>" class="comments">
-      <ul id="comment-list-<%= feed_item.id %>">
-        <% if feed_item.comments_count? %>
-          <%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
+    	<div id="comments-for-<%= feed_item.id %>" class="comments">
+      		<ul id="comment-list-<%= feed_item.id %>">
+        		<% if feed_item.comments_count? %>
+          			<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
 				<% end %>
 			</ul><!-- #comments-list-ID -->
 			<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>

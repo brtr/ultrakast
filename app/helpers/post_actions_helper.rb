@@ -16,6 +16,7 @@ module PostActionsHelper
   def favorite_link(user, post)
     if post.favorites_count?
       favorite = post.favorites.find_by_user_id(user.id)
+      #TODO: REPLACE FAVORITE ICON AND CHANGE THESE SIZES
       if favorite.nil?
         link_to((image_tag 'unfavorite.png', :height => "2.5%", :width => "2.5%"), favorites_path(:post_id => post), :method => :post, :remote => true)
       else

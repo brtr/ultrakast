@@ -4,6 +4,8 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
+
+  #TODO: CHANGE TO GOOD EMAIL ADDRESS
   config.mailer_sender = "jim@example.com"
 
   # Configure the class responsible to send e-mails.
@@ -207,6 +209,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
+  
+  #TODO: CHANGE THIS TO VALID FACEBOOK DEVELOPER CREDENTIALS
   config.omniauth :facebook, "177112275755584", "5176eff6eb23b8b26942cc5943ea33d6"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -232,6 +236,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 end
 
-User.class_eval do
-  devise *@devise_options #pass devise an array of options from the model
-end
+#The below is not in use anymore (along with the corresponding code in app/models/user.rb) - leaving it in for reference
+#User.class_eval do
+#  devise *@devise_options #pass devise an array of options from the model
+#end

@@ -1,4 +1,4 @@
-#TODO: CHANGE TO CLIENT'S API KEY
+#TODO: CHANGE TO CLIENT'S AMAZON S3 INFO API KEY
 access_key_id: AKIAIDPZ4UCBCSI6WOYQ
 secret_access_key: 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
 bucket: ultrakast_images

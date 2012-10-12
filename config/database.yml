@@ -3,6 +3,8 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+
+#TODO: CHANGE THESE CREDENTIALS
 development:
   adapter: mysql
   database: ultrakast

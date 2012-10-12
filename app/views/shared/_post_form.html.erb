@@ -1,15 +1,14 @@
 <%= form_for(@post, :remote => true) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.text_area :content, :placeholder => "Compose new post...", :id => "post-box" %>
-		<div id="user-search-results"></div>
-		<div id="category-dropdown">
-		<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('id ASC'), :"child_name_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
-		</div>
-		<%= f.file_field :image %>
-		<strong>Privacy option:</strong><br /><br />
-		
-		<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
-	</div>
-	<%= f.submit "Post", class: "btn btn-large btn-primary post-submit-button" %>
+    <div class="field">
+    	<%= f.text_area :content, :placeholder => "Compose new post...", :id => "post-box" %>
+        <div id="user-search-results"></div>
+        <div id="category-dropdown">
+        	<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('id ASC'), :"child_categories_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
+        </div>
+        <%= f.file_field :image %>
+        <strong>Privacy option:</strong><br /><br />
+        <%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-large btn-primary post-submit-button" %>
 <% end %>

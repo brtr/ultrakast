@@ -1,4 +1,5 @@
 class NotificationMailer < ActionMailer::Base
+  
   def tag_notification(post, user)
     @post = post
     @user = user
@@ -18,4 +19,4 @@ class NotificationMailer < ActionMailer::Base
   end
 end
 
-#TODO: Change email addresses from 41N to user emails
+#TODO: Change email addresses from 41N to user's email

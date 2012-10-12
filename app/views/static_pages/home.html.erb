@@ -1,34 +1,33 @@
 <% if user_signed_in? %>
-    <em>Last login time: <%= current_user.current_sign_in_at %><br />
+	<em>Last login time: <%= current_user.current_sign_in_at %><br />
     	Prior login time: <%= current_user.last_sign_in_at %></em>
-    	<div class="row">
-			<aside class="span4">
-				<section>
-					<%= render 'shared/user_info' %>
-				</section>
-				<section id="post-form">
-					<%= render 'shared/post_form' %>
-				</section>
-				<section id="category_links">
-					<%= render 'shared/category_links' %>
-				</section>
-			</aside>
-			<div id="feed" class="span6">
-				<div id="filter-settings">
-					<h3>Newsfeed (viewing friends by most recent)</h3>
+    <div class="row">
+		<aside class="span4">
+			<section>
+				<%= render 'shared/user_info' %>
+			</section>
+			<section id="post-form">
+				<%= render 'shared/post_form' %>
+			</section>
+			<section id="category_links">
+				<%= render 'shared/category_links' %>
+			</section>
+		</aside>
+		<div id="feed" class="span6">
+			<div id="filter-settings">
+				<h3>Newsfeed (viewing friends by most recent)</h3>
 			
-					<div class="button-wrap">
-						<%= link_to 'View friends',   switchfeed_path(:feed_status => "private"),   :remote => true, :class => "filter-button selected", :id => "private-button" %>
-						<%= link_to 'View everyone',  switchfeed_path(:feed_status => "public"),    :remote => true, :class => "filter-button", :id => "public-button" %>
-						<%= link_to 'View favorites', switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>
-					</div>
-					<div class="button-wrap">
-						<%= link_to 'Sort by most recent',  switchfeed_path(:sort_order => "recent"), :remote => true, :class => "filter-button selected", :id => "recent-button" %>
-						<%= link_to 'Sort by most popular', switchfeed_path(:sort_order => "popular"), :remote => true, :class => "filter-button", :id => "popular-button" %>
-					</div>
-					<div id="filter-title">
-					</div>
+				<div class="button-wrap">
+					<%= link_to 'View friends',   switchfeed_path(:feed_status => "private"),   :remote => true, :class => "filter-button selected", :id => "private-button" %>
+					<%= link_to 'View everyone',  switchfeed_path(:feed_status => "public"),    :remote => true, :class => "filter-button", :id => "public-button" %>
+					<%= link_to 'View favorites', switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>
 				</div>
+				<div class="button-wrap">
+					<%= link_to 'Sort by most recent',  switchfeed_path(:sort_order => "recent"), :remote => true, :class => "filter-button selected", :id => "recent-button" %>
+					<%= link_to 'Sort by most popular', switchfeed_path(:sort_order => "popular"), :remote => true, :class => "filter-button", :id => "popular-button" %>
+				</div>
+				<div id="filter-title"></div>
+			</div>
 			<%= render 'shared/feed' %>
 		</div>
 		<aside class="span2">
@@ -36,8 +35,7 @@
 				<%= render 'shared/friend_block' %>
 			</section>
 		</aside>
-		</div>
-
+	</div>
 <% else %>	
 	<div class="center hero-unit">
   		<h1>Welcome to Ultrakast!</h1>
@@ -45,7 +43,7 @@
 		<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook),class: "btn btn-large btn-primary" %>
   		<%= link_to "Sign in now!", new_user_session_path, class: "btn btn-large btn-primary" %>
 		<%= link_to "New user? Sign up!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-		<br /><br /><em>version 0.20a - 23 September 2012 </em>
+		<br /><br /><em>version 1.0b - 12 October 2012 </em>
 	</div>
 <% end %>
 

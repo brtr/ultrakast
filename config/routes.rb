@@ -6,22 +6,20 @@ Ultrakast::Application.routes.draw do
       get 'live_search'
     end
   end
-#  resources :sessions, only: [:new, :create, :destroy]
+
   resources :posts, only: [:show, :create, :destroy] do
     resources :comments, only: [:create, :destroy], :controller => "post_actions", :type => "Comment"
   end
+  
   resources :friendships, only: [:create, :destroy]
-  resources :likes,     only: [:create, :destroy], :controller => "post_actions", :type => "Like"
-  resources :favorites, only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"
+  resources :likes,       only: [:create, :destroy], :controller => "post_actions", :type => "Like"
+  resources :favorites,   only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"
+  
+  match '/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'
   match '/friendships/process', to: 'friendships#process_friendship', :as => 'process_friendship'
   match '/alerts/delete_all', to: 'alerts#delete_all'
-  root to: 'static_pages#home'
   
-#  match '/signup',  to: 'users#new'
-#  match '/signin',  to: 'devise/sessions#new'
-#  match '/signout', to: 'devise/sessions#destroy', via: :delete
-  match '/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'
-
+  root to: 'static_pages#home'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

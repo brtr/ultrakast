@@ -1,22 +1,30 @@
 <header class="navbar navbar-fixed-top">
-	<div class="container">
-		<%= link_to((image_tag 'ultrakast-logo.png'), root_path) %>
-		<nav>
-			<ul class="nav pull-right">
-		    	<li><%= link_to "Home", root_path %></li>
+    <div class="container">
+        
+    
+        <%= link_to((image_tag 'ultrakast-logo.png'), root_path) %>
+		
+        
+        
+        <nav>
+            <ul class="nav pull-right">
+                <% if user_signed_in? %>
+                    <% unless current_user.alerts.empty? %>
+                        <li><a id="alerts-link" class="alert-badge" href="#"><%= current_user.alerts_count %></a></li>
+                        <div id="alerts">
+                            <ul>
+                                <% current_user.alerts.each do |a| %>
+                                    <li><%= a.content.html_safe %></li>
+                                <% end %>
+                            </ul>
+                            <%= link_to "clear all alerts", :controller => "/alerts", :action => "delete_all" %>
+                        </div>
+                    <% end %>
+                    <li><%= link_to current_user.name, current_user %></li>
+                <% end %>
+                <li><%= link_to "Home", root_path %></li>
 				<% if user_signed_in? %>
-					<li><%= link_to "Users", users_path %></li>
-					<% unless current_user.alerts.empty? %>
-						<li><%= link_to "Alerts (#{current_user.alerts_count})", "#", :id => "alerts-link", :style => "color: red; font-weight: bold;" %></li>
-						<div id="alerts">
-							<ul>
-								<% current_user.alerts.each do |a| %>
-									<li><%= a.content.html_safe %></li>
-								<% end %>
-							</ul>
-							<%= link_to "clear all alerts", :controller => "/alerts", :action => "delete_all" %>
-						</div>
-					<% end %>
+                    <li><%= link_to "Users", users_path %></li>
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 						<ul class="dropdown-menu">

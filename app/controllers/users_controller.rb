@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
   
   def live_search
-    @users = current_user.friends.where("UPPER(name) LIKE UPPER(?)", "%#{params[:searchString]}%")
+    @users = current_user.friends.where("(UPPER(first_name) LIKE UPPER(?)) OR (UPPER(last_name) LIKE UPPER(?))", "%#{params[:searchString]}%", "%#{params[:searchString]}%")
     render :layout => false
   end
 end

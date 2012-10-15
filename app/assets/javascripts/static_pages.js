@@ -3,6 +3,8 @@ var taggedNames = [];
 var taggedIds = [];
 
 $(document).ready(function() {
+  $('#image-upload').hide();
+
   //Set links in posts to open in new window  
   $('.content a').attr('target', '_blank');
   
@@ -34,6 +36,18 @@ $(document).ready(function() {
       $('#alerts').hide();
     }  
   });
+  
+  //Show and hide image upload section
+  $(document).on("click", 'a#image-upload-link', function(e) {
+    e.preventDefault();
+    if (!$('#image-upload').is(":visible"))
+    {
+      $('#image-upload').show();
+    } else {
+      $('#image-upload').hide();
+    }
+  });
+
   
   //Show comments
   $(document).on("click", 'a.comments-link', function(e) {

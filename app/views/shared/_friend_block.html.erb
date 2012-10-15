@@ -1,6 +1,6 @@
 <% unless session[:category_filter] == "all" %>
 	<% get_friends %>
-	<div id="friend_avatars">
+	<div id="friend-avatars" class="cf">
 		<% unless @friends.nil? %>
 			<strong>Your friends also subscribed to <%= session[:filter_title] %>:</strong><br /><br />
 			<% @friends.each do |f| %>

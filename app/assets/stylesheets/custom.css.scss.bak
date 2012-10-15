@@ -23,7 +23,7 @@ html {
 }
 
 body {
-	padding-top: 140px;
+	padding-top: 60px;
 }
 
 section {
@@ -369,21 +369,13 @@ a.expand-link:hover, a.contract-link:hover {
 	text-decoration: none;
 }
 
-.expand-link, .contract-link {
-	font-size: 2.0em;
-}
-
 .children-list {
 	display: none;
 	margin-left: 20px;
 }
 
-.home-link {
-	font-size: 1.50em;
-}
-
 .parent-link {
-  font-size: 1.50em;
+  font-size: 1.25em;
   font-weight: bold;
   color: black;
 }
@@ -397,7 +389,7 @@ a.expand-link:hover, a.contract-link:hover {
 	border: 2px solid #000;
 	padding: 10px;
 	text-align: center;
-	margin: 0;
+	margin: 0 5px;
 }
 
 a.filter-button {
@@ -409,25 +401,19 @@ a.filter-button {
 	background: #eef;
 }
 
-
-#feed-items {
+#filter-settings {
 	clear: both;
 }
 
+#feed-items {
+clear: both;
+}
+
 .button-wrap {
-	float: left;
-	margin: 0 auto 40px auto;
-	text-align: center;
-}
-
-#filter-settings p {
-	margin-bottom: 15px;
-}
-
-#filter-settings {
-	text-align: center;
-	margin: 0 auto;
-	width: 374px;
+display: block;
+clear: both;
+margin: 0 auto 40px auto;
+text-align: center;
 }
 
 #user-search {
@@ -448,6 +434,7 @@ a.filter-button {
 		margin-left: 0;
 	}
 	
+	
 	.parent {
 		font-size: 1.7em;
 		font-weight: bold;
@@ -456,7 +443,7 @@ a.filter-button {
 	}
 	
 	.child {
-		font-size: 1.5em;
+		font-size: 1.25em;
 		font-weight: normal;
 		color: $grayLight;
 		margin-bottom: 10px;
@@ -475,77 +462,4 @@ a.filter-button {
 
 	margin-left: 20px;
 
-}
-
-
-/*
-#91d6e6: baby blue
-#314d78: dark slate blue
-#69a3ff: light slate blue
-#152133: very dark blue
-*/
-
-
-
-header {
-	background-color: #152133;
-	width: 100%;
-	
-	img {
-		padding: 10px;
-		width: 341px;
-		height: 70px;
-	}
-}
-
-nav {
-	float: right;
-	margin-top: 50px;
-}
-
-#user-info img {
-	float: none;
-}
-
-.user-link {
-	margin-top: 15px;
-}
-
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
-.pad-right {
-	padding-right: 20px;
-}
-
-#post-form {
-	border-bottom: 3px solid #ddd;
-}
-
-#post_category_id, #post_shared {
-	width: 210px;
-	margin-top: 5px;
-}
-
-#category-dropdown, #privacy-dropdown {
-	float: left;
-	margin-top: 5px;
-}
-
-#privacy-dropdown {
-	margin-left: 15px;
-}
-
-#post-submit {
-	margin: 27px 0 0 86px;
-}
-
-#filter-wrap {
-	border-bottom: 3px solid #ddd;
 }

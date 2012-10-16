@@ -14,7 +14,8 @@ Ultrakast::Application.configure do
   config.action_controller.perform_caching = false
 
   #ActionMailer config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #TODO: CHANGE TO GOOD SERVER
+  config.action_mailer.default_url_options = { :host => 'mail.41northstudios.com' }
   config.action_mailer.delivery_method = :smtp
   # change to false to prevent email from being sent during development
   config.action_mailer.perform_deliveries = true

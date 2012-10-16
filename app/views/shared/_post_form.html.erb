@@ -1,14 +1,18 @@
 <%= form_for(@post, :remote => true) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
     <div class="field">
-    	<%= f.text_area :content, :placeholder => "Compose new post...", :id => "post-box" %>
+        <%= f.text_area :content, :placeholder => "What do you want to broadkast?", :id => "post-box", :rows => 1 %>
         <div id="user-search-results"></div>
         <div id="category-dropdown">
+			<strong>Category:</strong><br />
         	<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('id ASC'), :"child_categories_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>
         </div>
-        <%= f.file_field :image %>
-        <strong>Privacy option:</strong><br /><br />
-        <%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+		<div id="privacy-dropdown">
+			<strong>Privacy option:</strong><br />
+        	<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+		</div>
+        <a href="#" id="image-upload-link"><%= image_tag 'image-icon.png' %></a>
+		<%= f.submit "Broadkast", class: "btn btn-large btn-primary post-submit-button", id: "post-submit" %>
     </div>
-    <%= f.submit "Post", class: "btn btn-large btn-primary post-submit-button" %>
+    <div id="image-upload"><strong>Select an image to broadkast</strong><br /><%= f.file_field :image %></div>
 <% end %>

@@ -9,7 +9,7 @@
 				<% if feed_item.rekast %>
 					rekasted 
 				<% else %>
-					posted 
+					broadkasted 
 				<% end %>
 				<%= time_ago_in_words(feed_item.created_at) %> ago in 
 				<span class="category">
@@ -34,13 +34,13 @@
         		<% if feed_item.likes_count? %>
           			- <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
         		<% end %>
-			</span><!-- #likes-header-ID -->
-			|
+      </span><!-- #likes-header-ID -->
+			
 			
 			<span id="favorite-header-<%= feed_item.id %>" class="favorite-header">
 				<%= favorite_link(current_user, feed_item) %>
-			</span><!-- #favorite-ID -->
-			|
+      </span><!-- #favorite-ID -->
+			
 			
 			<span class="comments-header">
 				<a href="#" id="comments-link-<%= feed_item.id %>" class="comments-link" data-post-id="<%= feed_item.id %>">
@@ -53,9 +53,9 @@
 			</span><!-- .comments-header -->
       
 			<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
-        		|
+        		
         		<span class="rekast-header">
-          			<a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
+              <a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
         		</span><!-- .rekast-header -->
 			<% end %>
 		</div><!-- .status-bar -->

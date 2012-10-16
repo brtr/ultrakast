@@ -4,12 +4,12 @@ module PostActionsHelper
     if post.likes_count?
       like = post.likes.find_by_user_id(current_user)
       if like.nil?
-        link_to("Like", likes_path(:post_id => post), :method => :post, :remote => true)
+        link_to((image_tag 'satellite.png'), likes_path(:post_id => post), :method => :post, :remote => true)
       else
-        link_to("Unlike", like, :method => :delete, :remote => true)
+        link_to((image_tag 'satellite.png'), like, :method => :delete, :remote => true)
       end
     else
-      link_to("Like", likes_path(:post_id => post), :method => :post, :remote => true)
+      link_to((image_tag 'satellite.png'), likes_path(:post_id => post), :method => :post, :remote => true)
     end
   end
   

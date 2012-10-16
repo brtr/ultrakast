@@ -11,7 +11,7 @@
 					<% if feed_item.rekast %>
 						rekasted 
 					<% else %>
-						posted 
+						broadkasted 
 					<% end %>
 					<%= time_ago_in_words(feed_item.created_at) %> ago in <span class="category"><%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name), :remote => true %>
 					<% if current_user?(feed_item.user) %>
@@ -22,52 +22,44 @@
 				</span>
 			</div><!-- END .post-header -->
 
-			<span class="content cf"><%= auto_link(feed_item.content) %></span>
+			<span class="content cf">
+        <%= auto_link(feed_item.content) %><br /><br /><br />
+      		<% unless feed_item.image_file_name.nil? %>
+        		<%= image_tag feed_item.image.url %>
+      		<% end %>
+      </span><!-- .content -->
 
 			<div class="status-bar">
-				<span id="like-<%= feed_item.id %>" class="like-count">
-					<%= like_link(feed_item) %>
-					<% if feed_item.likes_count? %>
-						- <a href="#" id="like-list-<%= feed_item.id %>" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
+      		<span id="likes-header-<%= feed_item.id %>" class="likes-header">
+				<%= like_link(feed_item) %>
+        		<% if feed_item.likes_count? %>
+          			- <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
+        		<% end %>
+      </span><!-- #likes-header-ID -->
+			
+			
+			<span id="favorite-header-<%= feed_item.id %>" class="favorite-header">
+				<%= favorite_link(current_user, feed_item) %>
+      </span><!-- #favorite-ID -->
+			
+			
+			<span class="comments-header">
+				<a href="#" id="comments-link-<%= feed_item.id %>" class="comments-link" data-post-id="<%= feed_item.id %>">
+					<% if feed_item.comments_count? %>
+						<%= pluralize(feed_item.comments_count, "comment") %>
+					<% else %>
+						Comment
 					<% end %>
-				</span>
-				|
-
-				<span id="favorite-<%= feed_item.id %>" class="favorite-count">
-					<%= favorite_link(current_user, feed_item) %>
-				</span>
-				|
-
-				<span class="comment-count">
-					<a href="#" id="comment-link-<%= feed_item.id %>" data-post-id="<%= feed_item.id %>" class="comment-link">
-						<% if feed_item.comments_count? %>
-							<%= pluralize(feed_item.comments_count, "comment") %>
-						<% else %>
-							Comment
-						<% end %>
-					</a>
-				</span>
-				
-				<div id="likes-for-<%= feed_item.id %>" class="likes">
-					<% if feed_item.likes_count? %>
-						<strong>This post is liked by:</strong><br />
-						<ul id="likes-list-<%= feed_item.id %>">
-							<%= render :partial => 'shared/like', collection: feed_item.likes %>
-						</ul>
-					<% end %>
-				</div>
-				<div id="comments-<%= feed_item.id %>" class="comments">
-					<ul id="comment-list-<%= feed_item.id %>">
-						<% if feed_item.comments_count? %>
-							<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
-						<% end %>
-					</ul>
-					<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>
-						<%= f.text_field :content %>
-						<%= f.submit %>
-						<% end %>
-				</div>
-			</div>
+				</a>
+			</span><!-- .comments-header -->
+      
+			<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
+        		
+        		<span class="rekast-header">
+              <a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
+        		</span><!-- .rekast-header -->
+			<% end %>
+		</div><!-- .status-bar -->
 		</li>
 	<% end %>
 </ol>

@@ -2,7 +2,8 @@ class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
     create_table(:users) do |t|
       
-      t.string :name
+      t.string :first_name
+      t.string :last_name
       
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""
@@ -23,10 +24,10 @@ class AddDeviseToUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
@@ -38,7 +39,7 @@ class AddDeviseToUsers < ActiveRecord::Migration
 
 
       # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps
+      t.timestamps
     end
 
     add_index :users, :email,                :unique => true

@@ -3,9 +3,9 @@ module StaticPagesHelper
   def filter_title(base_title)
     unless base_title.nil?
       if base_title == ""
-        base_title
+        "All Topics"
       else
-        "(filtered by " + base_title + ")"
+        base_title
       end
     end
   end

@@ -8,8 +8,9 @@
 				<%= render 'shared/category_links' %>
 			</section>
 		</aside>
-		
-		<div id="feed" class="span8">
+
+		<div id="feed" class="span7">
+      <div id="filter-title">All Topics</div>
 			<section id="post-form">
 				<%= render 'shared/post_form' %>
 			</section>
@@ -26,7 +27,6 @@
 						<%= link_to 'recent',  switchfeed_path(:sort_order => "recent"), :remote => true, :class => "filter-button selected", :id => "recent-button" %>
 						<%= link_to 'popular', switchfeed_path(:sort_order => "popular"), :remote => true, :class => "filter-button", :id => "popular-button" %>
 					</div>
-					<div id="filter-title"></div>
 				</div>
 			</div>
 			<%= render 'shared/feed' %>

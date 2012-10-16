@@ -84,12 +84,12 @@ class StaticPagesController < ApplicationController
         @dropdown_children = current_user.category_ids
       else
         category = Category.find(session[:selected_category])
-        if category.ancestry.nil? #Filtered on parent category - return all children
+        if category.ancestry.nil? #Filtered on parent category - return all children user is subscribed to
           @dropdown_parents = [category] #Needs to be passed as an array so grouped_collection_select can use map on it
-          @dropdown_children = session[:category_filter]
+          @dropdown_children = current_user.categories.where("ancestry = ?", category.id).ids
         else
           @dropdown_parents = [category.parent]
-          @dropdown_children = category.id
+          @dropdown_children = [category.id]
         end
       end
     end

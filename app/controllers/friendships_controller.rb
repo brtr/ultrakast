@@ -14,15 +14,15 @@ class FriendshipsController < ApplicationController
         alert.content = "You have received a friend request from <a href=\"/users/#{current_user.id}\">#{current_user.name}</a>. <a href=\"/friendships/process?decision=approve&user=#{friend.id}&friend=#{current_user.id}\">Accept</a> or <a href=\"/friendships/process?decision=reject&user=#{friend.id}&friend=#{current_user.id}\">Reject</a>"
         alert.save
         NotificationMailer.friend_notification(friend, current_user).deliver
-        redirect_to root_path
+        redirect_to users_path
       else
         flash[:error] = "Unable to complete both sides of relationship"
         Friendship.find(friendship.id).destroy
-        redirect_to root_path
+        redirect_to users_path
       end
     else
       flash[:error] = "Unable to add friend"
-      redirect_to root_path
+      redirect_to users_path
     end
   end
   
@@ -54,6 +54,6 @@ class FriendshipsController < ApplicationController
     inverse = User.find(friendship.friend_id).friendships.find_by_friend_id(current_user)
     inverse.destroy
     flash[:success] = "Removed friend"
-    redirect_to current_user
+    redirect_to users_path
   end
 end

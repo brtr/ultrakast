@@ -1,5 +1,5 @@
 <%= form_for(@post, :remote => true) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+	<%= render 'shared/error_messages', object: f.object %>
     <div class="field">
         <%= f.text_area :content, :placeholder => "What do you want to broadkast?", :id => "post-box", :rows => 1 %>
         <div id="user-search-results"></div>
@@ -15,5 +15,4 @@
 		<%= f.submit "Broadkast", class: "btn btn-large btn-primary post-submit-button", id: "post-submit" %>
     </div>
     <div id="image-upload"><strong>Select an image to broadkast</strong><br /><%= f.file_field :image %></div>
-    
 <% end %>

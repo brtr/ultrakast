@@ -32,8 +32,7 @@ class User < ActiveRecord::Base
 
   #TODO: SET S3 BUCKET INFO FOR PRODUCTION
   has_attached_file :avatar,
-    :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
-	  :convert_options => { :square => "-gravity center -extent 50x50" },
+    :styles => { :square => "50x50^", :small => "50x50", :normal => "100x100", :large => "200x200" }, 
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",
@@ -74,11 +73,12 @@ class User < ActiveRecord::Base
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
     unless user
-      user = User.create(name:auth.extra.raw_info.name,
-                         provider:auth.provider,
-                         uid:auth.uid,
-                         email:auth.info.email,
-                         password:Devise.friendly_token[0,20])
+      user = User.create(first_name: auth.extra.raw_info.first_name,
+                         last_name: auth.extra.raw_info.last_name, 
+                         provider: auth.provider,
+                         uid: auth.uid,
+                         email: auth.info.email,
+                         password: Devise.friendly_token[0,20])
     end
     user
   end

@@ -3,7 +3,7 @@ module StaticPagesHelper
   def filter_title(base_title)
     unless base_title.nil?
       if base_title == ""
-        "All Topics"
+        "Home"
       else
         base_title
       end

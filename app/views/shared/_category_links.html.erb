@@ -6,7 +6,7 @@
 			<%= link_to "Home", root_path, :class => "selected-category home-link" %>
 		<% end %>
 	</li>
-	<% current_user.categories.roots.each do |category| %>
+	<% current_user.categories.roots.order("name ASC").each do |category| %>
 		<li>
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>

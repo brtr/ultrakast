@@ -6,11 +6,13 @@
 
 #TODO: CHANGE THESE CREDENTIALS
 development:
-  adapter: mysql
+  #adapter: mysql
+  adapter: postgresql
   database: ultrakast
   pool: 5
   timeout: 5000
-  username: root
+  #username: root
+  username: rails
   password: w3bpa55
 
 # Warning: The database defined as "test" will be erased and

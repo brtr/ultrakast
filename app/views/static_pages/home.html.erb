@@ -17,13 +17,11 @@
 			<div id="filter-wrap" class="cf">
 				<div id="filter-settings" class="cf">
 					<div class="button-wrap pad-right">
-						<p>Filter by</p>
 						<%= link_to 'friends',   switchfeed_path(:feed_status => "private"),   :remote => true, :class => "filter-button selected", :id => "private-button" %>
 						<%= link_to 'everyone',  switchfeed_path(:feed_status => "public"),    :remote => true, :class => "filter-button", :id => "public-button" %>
 						<%= link_to 'favorites', switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>
 					</div>
 					<div class="button-wrap">
-						<p>Sort by</p>
 						<%= link_to 'recent',  switchfeed_path(:sort_order => "recent"), :remote => true, :class => "filter-button selected", :id => "recent-button" %>
 						<%= link_to 'popular', switchfeed_path(:sort_order => "popular"), :remote => true, :class => "filter-button", :id => "popular-button" %>
 					</div>

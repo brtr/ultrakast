@@ -60,7 +60,7 @@
 			<% end %>
 		</div><!-- .status-bar -->
 		
-    	<div id="rekast-for-<%= feed_item.id %>" class="rekast">
+    	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">
 			<%= form_for(@post, :remote => true) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				

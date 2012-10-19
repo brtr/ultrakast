@@ -20,7 +20,7 @@
   	$('#popular-button').addClass('selected');
 <% end %>
   
-$('#filter-title').html('<%= escape_javascript(@filter_title) %>');
+$('#filter-title').html('<%= escape_javascript(filter_title(session[:filter_title])) %>');
 $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) %>');
 
 <% unless session[:category_filter] == "all" %>

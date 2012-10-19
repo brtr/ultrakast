@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     if params[:commit] == "Rekast"
       @post.rekast = true
       #TODO: WHAT? add a class in before the href to match a new regex - use that to send emails about rekasted posts
-      @post.content = params[:share_content] + '<div class="rekast">' + @post.content + ' (via <a class="rekast-author" href="users/' + params[:original_author] + '">' + User.find(params[:original_author]).name + '</a>)</div>'
+      @post.content = params[:rekast_content] + '<div class="rekast">' + @post.content + ' (via <a class="rekast-author" href="users/' + params[:original_author] + '">' + User.find(params[:original_author]).name + '</a>)</div>'
       original_post = Post.find(params[:post][:original_post])
       @post.image = original_post.image
     end

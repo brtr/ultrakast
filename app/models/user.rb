@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
 	    posts = Post.by_users(users)
 	  elsif status == "favorites"
 	    posts = Post.favorites(id)
+    elsif status == "user"
+      posts = Post.by_users(self)
+    elsif status == "tagged"
+      posts = Post.with_tagged_user(self.name)
 	  end
     
     unless categories == "all"

@@ -1,22 +1,51 @@
 <%= provide(:title, @user.name) %>
+
 <div class="row">
-	<aside class="span4">
-    	<section>
-	  		<h1>
-	    		<%= avatar_for @user %>
-				<%= @user.name %><br />
-				Friends: <%= @user.friends.count %>
-	  		</h1>
-	  		<% if @user == current_user %>
-	  			<p><%= link_to "Edit profile", edit_user_registration_path(@user) %></p>
-	  		<% end %>
+    <aside id="category-sidebar" class="span2">
+    <h1><%= @user.first_name %>'s Interests</h1>
+        <section id="category_links">
+            <%= render 'shared/category_links_for_show' %>
 		</section>
-		<section id="category_links">
-			<%= render 'shared/category_links' %>
+	</aside>
+
+
+		
+	<aside id="user-sidebar" class="span2">
+        <h1 class="user-title">
+            <%= link_to @user.name, @user %>
+        </h1>
+        <section id="show-user-info">
+            <a href="<%= user_path(@user) %>">
+                <%= avatar_for(@user, :class => "show-avatar", :size => "normal") %>
+            </a>
+            <p>
+                <% if @user != current_user %>
+                    <%= friendship_link(@user) %>
+                <% end %>
+            </p>
 		</section>
-  	</aside>
-	<div id="feed" class="span6">
-		<div id="filter-title"></div>
-		<%= render 'shared/feed' %>
+        <% unless @user.friends.count == 0 %>
+            <section id="friend-list">
+                <h2><%= @user.friends.count %> friends</h2>
+                <% @user.friends.each do |f| %>
+                    <%= link_to avatar_for(f, size: "square"), f %>
+                <% end %>
+            </section>
+        <% end %>
+	</aside>
+    
+    <div id="user-feed" class="span7">
+    			<div id="user-filter-wrap" class="cf">
+				<div id="user-filter-settings" class="cf">
+					<div class="button-wrap pad-right">
+						<%= link_to "#{@user.first_name}'s posts",   switchfeed_path(:feed_status => "user"), :remote => true, :class => "filter-button selected", :id => "user-posts-button" %>
+						<%= link_to "@#{@user.first_name}",  switchfeed_path(:feed_status => "tagged"),    :remote => true, :class => "filter-button", :id => "tagged-button" %>
+						<%= link_to "#{@user.first_name}'s favorites", switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>
+					</div>
+				</div>
+			</div>
+        <div id="filter-title">Home</div>
+        <%= render 'shared/feed' %>
 	</div>
-</div>
+    
+</div><!-- .row -->

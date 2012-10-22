@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   scope :since, lambda { |date| where("updated_at > ?", date) unless date.nil? }
   scope :popular, order("posts.post_actions_count desc")
   scope :recent, order("posts.created_at DESC")
-  
+  scope :with_tagged_user, lambda { |name| where("content LIKE ?", "%#{name}%") unless name.nil? } 
   
   #TODO: REFACTOR UNREAD FUNCTIONALITY
   #ideas to make this better?

@@ -1,15 +1,25 @@
 <% if session[:feed_status] == "public" %>
-	$('#public-button').addClass('selected');
+	  $('#public-button').addClass('selected');
   	$('#private-button').removeClass('selected');
   	$('#favorites-button').removeClass('selected');
 <% elsif session[:feed_status] == "favorites" %>
   	$('#public-button').removeClass('selected');
+    $('#user-posts-button').removeClass('selected');
+    $('#tagged-button').removeClass('selected');
   	$('#private-button').removeClass('selected');
   	$('#favorites-button').addClass('selected');
 <% elsif session[:feed_status] == "private" %>
   	$('#public-button').removeClass('selected');
   	$('#private-button').addClass('selected');
   	$('#favorites-button').removeClass('selected');
+<% elsif session[:feed_status] == "tagged" %>
+    $('#user-posts-button').removeClass('selected');
+    $('#favorites-button').removeClass('selected');
+  	$('#tagged-button').addClass('selected');
+<% elsif session[:feed_status] == "user" %>
+    $('#user-posts-button').addClass('selected');
+    $('#favorites-button').removeClass('selected');
+  	$('#tagged-button').removeClass('selected');
 <% end %>
 
 <% if session[:sort_order] == "recent" %>

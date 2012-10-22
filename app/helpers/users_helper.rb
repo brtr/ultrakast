@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def avatar_for(user, options = { size: "normal" })
+  def avatar_for(user, options = { class: "avatar", size: "normal" })
     case options[:size]
       when "square"
         width = 50
@@ -25,6 +25,6 @@ module UsersHelper
         image_url = user.avatar(options[:size])
       end    
     end
-    image_tag(image_url, alt: user.name, class: "avatar")
+    image_tag(image_url, alt: user.name, class: options[:class])
   end
 end

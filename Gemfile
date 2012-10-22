@@ -30,7 +30,8 @@ end
 
 group :development, :test do
   #gem 'sqlite3'
-  gem 'mysql'
+  #gem 'mysql'
+  gem 'pg'
 end
 
 

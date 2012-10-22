@@ -1,1 +1,1 @@
-$('#category-dropdown').html('<strong>Category:</strong><br /><%= escape_javascript(grouped_collection_select(:post, :category_id, @dropdown_parents, :"return_filtered_categories(#{@dropdown_children})", :name, :id, :name, { :prompt => "Please choose a category..." }, { :id => "post_category_id" })) %>');
+$('#category-dropdown').html('<%= escape_javascript(grouped_collection_select(:post, :category_id, @dropdown_parents, :"return_filtered_categories(#{@dropdown_children})", :name, :id, :name, { :prompt => "Please choose a category..." }, { :id => "post_category_id" })) %>');

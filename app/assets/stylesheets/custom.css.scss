@@ -691,10 +691,6 @@ a.filter-button {
   margin: 0;
   padding: 0;
 
-  images {
-	margin: 0 auto;
-  }
-
   img {
     margin: 5px;
   }
@@ -704,6 +700,10 @@ a.filter-button {
     margin-top: 10px;
   	text-align: center;
   }
+}
+
+#images {
+  margin: 0 auto;
 }
 
 

@@ -1,18 +1,16 @@
-<ul>
+﻿<ul>
 	<li>
-		<%= link_to "Home", root_path, :class => "selected-category home-link" %>
+    <%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => "", :selected_category => "all"), :remote => true, :class => "selected-category home-link" %>		
 	</li>
-	<% current_user.categories.roots.each do |category| %>
+	<% @user.categories.roots.each do |category| %>
 		<li>
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
-				<span id="<%= category.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, category) %></em></span>
 		</li>
 		<ul id="children-<%= category.id %>" class="children-list">
-			<% category.child_categories_for(current_user).each do |child| %>
+			<% category.child_categories_for(@user).each do |child| %>
 				<li>
 					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
-						<span id="<%= child.id %>-unread" style="display:inline;"><em><%= Post.unread_count(current_user, child) %></em></span>
 				</li>
 			<% end %>
 		</ul>

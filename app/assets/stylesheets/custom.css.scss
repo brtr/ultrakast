@@ -640,6 +640,11 @@ a.filter-button {
 	text-align: center;
 }
 
+.user-button-wrap {
+	margin: 0 auto 15px auto;
+	text-align: center;
+}
+
 #filter-title {
 	margin-bottom: 15px;
   font-size: 2.0em;
@@ -656,9 +661,6 @@ a.filter-button {
   width: 400px;
 }
 
-#user-filter-settings {
-  width: 290px;
-}
 
 
 
@@ -717,7 +719,20 @@ a.filter-button {
 }
 
 #user-feed {
-  margin-left: 100px;
+  margin-left: 0;
+  margin-bottom: -10000px;
+  padding-bottom: 10000px;
+}
+
+#user-sidebar {
+  margin: 0 30px -10000px 30px;
+  padding: 0 30px 10000px 30px;
+  border-left: 1px #ccc solid;
+  border-right: 1px #ccc solid;
+}
+
+.row {
+  overflow: hidden;
 }
 
 #user-sidebar h1, #category-sidebar h1 {

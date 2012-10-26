@@ -41,7 +41,7 @@
     <div id="user-feed" class="span7">
     			<div id="user-filter-wrap" class="cf">
 				<div id="user-filter-settings" class="cf">
-					<div class="button-wrap">
+					<div class="user-button-wrap">
 						<%= link_to "#{@user.first_name}'s posts",   switchfeed_path(:feed_status => "user"), :remote => true, :class => "filter-button selected", :id => "user-posts-button" %>
 						<%= link_to "@#{@user.first_name}",  switchfeed_path(:feed_status => "tagged"),    :remote => true, :class => "filter-button", :id => "tagged-button" %>
 						<%= link_to "#{@user.first_name}'s favorites", switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>

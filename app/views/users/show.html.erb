@@ -28,7 +28,7 @@
             <section id="friend-list">
                 <h2><%= @user.friends.count %> friends</h2>
                 <% @user.friends.each do |f| %>
-                    <%= link_to avatar_for(f, size: "small"), f %>
+                    <%= link_to avatar_for(f, size: "square"), f %>
                 <% end %>
             </section>
         <% end %>

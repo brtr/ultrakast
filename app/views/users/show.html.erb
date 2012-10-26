@@ -26,7 +26,7 @@
 		</section>
         <% unless @user.friends.count == 0 %>
             <section id="friend-list">
-                <h2><%= pluralize(@user.friends.count, friend) %></h2>
+                <h2><%= pluralize(@user.friends.count, "friend") %></h2>
                 <div id="images">
 					<% @user.friends.each do |f| %>
 	                    <%= link_to avatar_for(f, size: "square"), f %>

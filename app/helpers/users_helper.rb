@@ -17,7 +17,12 @@ module UsersHelper
     end
 	  if user.provider == "facebook"
       facebook_id = user.uid
-  	  image_url = "http://graph.facebook.com/#{facebook_id}/picture?height=#{height}&width=#{width}"
+      if options[:size] = "square"
+        image_url = "http://graph.facebook.com/#{facebook_id}/picture?type=square"
+      else
+        image_url = "http://graph.facebook.com/#{facebook_id}/picture?height=#{height}&width=#{width}"
+      end  
+  	  
     else
       if user.avatar_file_name.nil?
         image_url = "default_avatar_#{options[:size]}.gif"

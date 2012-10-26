@@ -14,14 +14,16 @@
         <h1 class="user-title">
             <%= link_to @user.name, @user %>
         </h1>
-        <section id="show-user-info">
+        <section id="show-user-info">      
             <a href="<%= user_path(@user) %>">
-                <%= avatar_for(@user, :class => "show-avatar", :size => "normal") %>
+              <%= avatar_for(@user, :class => "show-avatar", :size => "normal") %>
             </a>
             <p>
-                <% if @user != current_user %>
-                    <%= friendship_link(@user) %>
-                <% end %>
+              <% if @user == current_user %>
+                <%= link_to "Edit profile", edit_user_registration_path(@user) %>
+              <% else %>
+                <%= friendship_link(@user) %>
+              <% end %>
             </p>
 		</section>
         <% unless @user.friends.count == 0 %>

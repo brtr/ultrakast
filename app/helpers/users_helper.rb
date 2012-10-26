@@ -17,7 +17,7 @@ module UsersHelper
     end
 	  if user.provider == "facebook"
       facebook_id = user.uid
-      if options[:size] = "square"
+      if options[:size] == "square"
         image_url = "http://graph.facebook.com/#{facebook_id}/picture?type=square"
       else
         image_url = "http://graph.facebook.com/#{facebook_id}/picture?height=#{height}&width=#{width}"

@@ -52,7 +52,8 @@ class Devise::RegistrationsController < DeviseController
       sign_in resource_name, resource, :bypass => true
       respond_with resource, :location => after_update_path_for(resource)
     else
-      @categories = @user.categories.all
+      @categories = Category.where("id IN (?)", params[:user][:category_ids])
+      #@categories = [Category.find_by_name("TV")
       clean_up_passwords resource
       respond_with resource
     end

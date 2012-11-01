@@ -1,24 +1,26 @@
 <li id="post-<%= feed_item.id %>">
 	<div class="post-container">
 		<div class="post-header">
-			<%= link_to avatar_for(feed_item.user, size: "small"), feed_item.user %>
-			<span class="user">
-				<%= link_to feed_item.user.name, feed_item.user %>
-			</span><!-- .user -->
-			<span class="timestamp">
-				<% if feed_item.rekast %>
-					rekasted 
-				<% else %>
-					broadkasted 
-				<% end %>
-				<%= time_ago_in_words(feed_item.created_at) %> ago in 
-				<span class="category">
-					<%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name, :selected_category => feed_item.category.id), :remote => true, :class => "post-category-link", 'data-parent' => "#{feed_item.category.parent.id}", 'data-category' => "#{feed_item.category.id}" %>
-					<% if current_user?(feed_item.user) %>
-						- <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
-					<% end %>
-				</span><!-- .category -->
-			</span><!-- .timestamp -->
+			<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
+			<div class="headline">
+                <span class="user">
+                    <%= link_to feed_item.user.name, feed_item.user %>
+                </span><!-- .user -->
+                <span class="timestamp">
+                    <% if feed_item.rekast %>
+                        rekasted 
+                    <% else %>
+                        broadkasted 
+                    <% end %>
+                    <%= time_ago_in_words(feed_item.created_at) %> ago in 
+                    <span class="category">
+                        <%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name, :selected_category => feed_item.category.id), :remote => true, :class => "post-category-link", 'data-parent' => "#{feed_item.category.parent.id}", 'data-category' => "#{feed_item.category.id}" %>
+                        <% if current_user?(feed_item.user) %>
+                            - <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
+                        <% end %>
+                    </span><!-- .category -->
+                </span><!-- .timestamp -->
+            </div><!-- .headline -->
 		</div><!-- .post-header -->
 	
 		<span class="content cf">
@@ -60,7 +62,7 @@
 			<% end %>
 		</div><!-- .status-bar -->
 		
-    	<div id="rekast-for-<%= feed_item.id %>" class="rekast">
+    	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">
 			<%= form_for(@post, :remote => true) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				

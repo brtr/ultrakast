@@ -331,7 +331,7 @@ input, textarea, select, .uneditable-input {
   border-left: 1px solid #152133;
 }
 
-.rekast {
+.rekast-form {
 	display: none;
 }
 
@@ -474,7 +474,7 @@ a.expand-link:hover, a.contract-link:hover {
 
 #category-list {
 	text-align: center;
-	
+  
 	li {
 		margin-left: 0;
 	}
@@ -516,8 +516,16 @@ nav {
 	float: none;
 }
 
+#show-user-info {
+  text-align: center;
+}
+
 .user-link {
 	margin-top: 15px;
+}
+
+.user-title {
+  margin-bottom: 15px;
 }
 
 
@@ -560,9 +568,13 @@ nav {
 	margin: 34px 0 0 60px;
 }
 
-#filter-wrap {
+#filter-wrap, #user-filter-wrap {
 	border-bottom: 3px solid #ddd;
   	padding-top: 15px;
+}
+
+#user-filter-wrap {
+  margin-bottom: 20px;
 }
 
 #image-upload {
@@ -624,7 +636,7 @@ a.filter-button {
 
 .button-wrap {
 	float: left;
-	margin: 0 auto 40px auto;
+	margin: 0 auto 15px auto;
 	text-align: center;
 }
 
@@ -635,11 +647,20 @@ a.filter-button {
   text-align: center;
 }
 
-#filter-settings {
+#filter-settings, #user-filter-settings {
 	text-align: center;
 	margin: 0 auto;
-	width: 400px;
 }
+
+#filter-settings {
+  width: 400px;
+}
+
+#user-filter-settings {
+  width: 290px;
+}
+
+
 
 #ads {
   border: 0;
@@ -664,6 +685,28 @@ a.filter-button {
   float: right;
 }
 
+#friend-list {
+  width: 100%;
+  float: left;
+  margin: 0;
+  padding: 0;
+
+  img {
+    margin: 2px;
+  }
+  
+  h2 {
+    font-size: 1.25em;
+    margin-top: 10px;
+  	text-align: center;
+  }
+}
+
+#images {
+  margin: 0 auto;
+}
+
+
 #friend-avatars {
   margin-bottom: 20px;
 }
@@ -673,3 +716,23 @@ a.filter-button {
   margin-right: 50px;
 }
 
+#user-feed {
+  margin-left: 100px;
+}
+
+#user-sidebar h1, #category-sidebar h1 {
+  font-size: 1.3em;
+	letter-spacing: 0;
+	margin-bottom: 3px;
+}
+
+.headline {
+display: inline;
+  position: relative;
+  top: -35px;
+  left: 5px;
+}
+
+#category-sidebar h1 {
+  text-align: left;
+}

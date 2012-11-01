@@ -80,7 +80,7 @@ class StaticPagesController < ApplicationController
       end
     
       if session[:category_filter] == "all"
-        @dropdown_parents = current_user.categories.roots.order('id ASC')
+        @dropdown_parents = current_user.categories.roots
         @dropdown_children = current_user.category_ids
       else
         category = Category.find(session[:selected_category])
@@ -88,8 +88,14 @@ class StaticPagesController < ApplicationController
           @dropdown_parents = [category] #Needs to be passed as an array so grouped_collection_select can use map on it
           @dropdown_children = current_user.categories.where("ancestry = ?", category.id.to_s).ids
         else
-          @dropdown_parents = [category.parent]
-          @dropdown_children = [category.id]
+          if
+            current_user.categories.ids.include?(category.id)
+            @dropdown_parents = [category.parent]
+            @dropdown_children = [category.id]
+          else
+            @dropdown_parents = []
+            @dropdown_children = []
+          end
         end
       end
     end

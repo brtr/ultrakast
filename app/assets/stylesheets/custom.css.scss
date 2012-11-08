@@ -293,6 +293,10 @@ input, textarea, select, .uneditable-input {
 	margin-bottom: 20px;
 }
 
+.content a {
+	word-break: break-all;
+}
+
 .category {
 	font-weight: bold;
 }

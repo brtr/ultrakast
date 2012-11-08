@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   #TODO: SET S3 BUCKET INFO FOR PRODUCTION
   has_attached_file :avatar,
-    :styles => { :square => "50x50^", :small => "50x50^", :normal => "100x100^", :large => "200x200^" }, 
+    :styles => { :square => "50x50", :small => "50x50", :normal => "100x100", :large => "200x200" }, 
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",

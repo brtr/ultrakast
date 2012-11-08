@@ -38,13 +38,13 @@ class User < ActiveRecord::Base
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",
-	  :bucket => "ultrakast_images"
+	  :bucket => "ultrakast_images",
 	  :convert_options => {
         :square => "-background white -compose Copy -gravity center -extent 50x50",
         :small => "-background white -compose Copy -gravity center -extent 50x50",
         :normal => "-background white -compose Copy -gravity center -extent 100x100",
         :large => "-background white -compose Copy -gravity center -extent 200x200"
-      }
+    }
   
   def self.search(search, type)
     if search

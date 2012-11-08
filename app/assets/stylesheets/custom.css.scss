@@ -280,6 +280,8 @@ input, textarea, select, .uneditable-input {
 .embed {
 	display: block;
 	margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px #ccc solid;
 	
 }
 
@@ -291,6 +293,16 @@ input, textarea, select, .uneditable-input {
   display: block;
 	margin-left: 10px;
 	margin-bottom: 20px;
+}
+
+.content {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.embed {
+  word-wrap: normal;
+  word-break: normal;
 }
 
 .category {
@@ -714,8 +726,10 @@ a.filter-button {
 }
 
 #feed {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin: 0 30px -10000px 30px;
+  padding: 0 20px 10000px 20px;
+  border-left: 1px #ccc solid;
+  border-right: 1px #ccc solid;
 }
 
 #user-feed {

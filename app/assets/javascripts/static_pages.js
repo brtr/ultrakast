@@ -7,13 +7,14 @@ $(document).ready(function() {
 
   //Set links in posts to open in new window  
   $('.content a').attr('target', '_blank');
-  $('.content a').addClass('original-link');
+  
   
   //Translate links in post text to embedded content using Embed.ly
   $('.content').embedly({
     method: "after", //Place embedded content after post
     maxWidth: 500,
     chars: 150,
+    className: "embed cf",
     key: '6c398a44d6034de4b75ea047c32e83fe', //TODO: CHANGE THIS TO CLIENT'S API KEY
     //Override default success callback to insert target into anchors
     success: function(oembed, dict){

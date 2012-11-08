@@ -1,5 +1,12 @@
 module SessionsHelper
 
+  #TODO: REFACTOR THIS SOMEWHERE ELSE AND REMOVE THIS ENTIRE FILE
+  def current_user?(user)
+    user == current_user
+  end
+  
+  #All the below code was rendered obsolete by Devise
+  
   # def sign_in(user, update_login=false)   
   #     if update_login
   #       session[:prior_login] = user.last_login
@@ -21,10 +28,7 @@ module SessionsHelper
   #   def current_user
   #     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   #   end
-  #   
-  def current_user?(user)
-    user == current_user
-  end
+  #
   #   
   #   def signed_in_user
   #     unless signed_in?

@@ -11,12 +11,12 @@ class PostAction < ActiveRecord::Base
   #Increment and decrement STI type count (ex: likes_count) and post_actions_count (used to order for popularity sort)
   
     def increment_counts
-	  Post.increment_counter "#{type.pluralize.underscore}_count", post_id
-	  Post.increment_counter "post_actions_count", post_id
-	end    
+	    Post.increment_counter "#{type.pluralize.underscore}_count", post_id
+	    Post.increment_counter "post_actions_count", post_id
+	  end    
 	
-	def decrement_counts
-	  Post.decrement_counter "#{type.pluralize.underscore}_count", post_id
-	  Post.decrement_counter "post_actions_count", post_id
-	end 
+	  def decrement_counts
+	    Post.decrement_counter "#{type.pluralize.underscore}_count", post_id
+	    Post.decrement_counter "post_actions_count", post_id
+	  end 
 end

@@ -1,8 +1,10 @@
 html_id = '#comment-list-' + <%= @feed_item.id %>;
 $(html_id).html("<%= escape_javascript(render :partial => 'shared/comment', collection: @comments, :locals => { :feed_item => @feed_item }) %>");
+
 $('#new_comment #comment_content').val("");
+
 <% if @feed_item.comments_count == 0 %>
-  $('#comment-link-' + <%= @feed_item.id %>).data("link-text", "Comment");
+  $('#comments-link-' + <%= @feed_item.id %>).data("link-text", "Comment");
 <% else %>
-  $('#comment-link-' + <%= @feed_item.id %>).data("link-text", "<%= pluralize(@feed_item.comments_count, 'comment') %>");
+  $('#comments-link-' + <%= @feed_item.id %>).data("link-text", "<%= pluralize(@feed_item.comments_count, 'comment') %>");
 <% end %>

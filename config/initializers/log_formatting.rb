@@ -21,7 +21,6 @@ class Formatter
 
     "\033[0;37m#{formatted_time}\033[0m [\033[#{color}m#{formatted_severity}\033[0m] #{msg.strip} (pid:#{$$})\n"
   end
-
 end
 
 Rails.logger.formatter = Formatter.new

@@ -2,40 +2,43 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  #devise :database_authenticatable, :registerable,
-  #       :recoverable, :rememberable, :trackable, :validatable
   
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  
+  #, :confirmable
+  
+  #The below is not in use anymore (along with the corresponding code at the bottom of config/initializers/devise.rb) - leaving it in for reference
   #Pass options to devise call - this was moved to config/initializers/devise.rb to prevent conflict with acts-as-readable extension of User class
-  @devise_options = [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable]
+  #@devise_options = [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :category_ids, :uid, :provider, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at
   
-  has_and_belongs_to_many :categories
-  has_many :posts, dependent: :destroy
-  has_many :friendships, dependent: :destroy
   has_many :friends, :through => :friendships, dependent: :destroy, :conditions => ['status = ?', "approved"]
-
-  has_many   :post_actions, dependent: :destroy
-  has_many   :likes, dependent: :destroy
-  has_many   :favorites, dependent: :destroy
-  has_many   :comments, dependent: :destroy
-  has_many   :alerts, dependent: :destroy
+  has_and_belongs_to_many :categories
+  has_many :posts,        dependent: :destroy
+  has_many :friendships,  dependent: :destroy
+  has_many :post_actions, dependent: :destroy
+  has_many :likes,        dependent: :destroy
+  has_many :favorites,    dependent: :destroy
+  has_many :comments,     dependent: :destroy
+  has_many :alerts,       dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :name,  presence: true
+  validates :first_name,  presence: true
+  validates :last_name,  presence: true
   
-  default_scope :order => 'name ASC'
+  default_scope :order => 'last_name ASC'
 
+  #TODO: SET S3 BUCKET INFO FOR PRODUCTION
   has_attached_file :avatar,
-    :styles => { :square => "50x50^", :small => "50", :normal => "100", :large => "200" }, 
-	:convert_options => { :square => "-gravity center -extent 50x50" },
-	:storage => :s3,
-	:s3_credentials => "#{Rails.root}/config/s3.yml",
-	:path => ":attachment/:id/:style.:extension",
-	:bucket => "ultrakast_images"
+    :styles => { :square => "50x50#", :small => "50x50#", :normal => "100x100#", :large => "200x200#" }, 
+	  :storage => :s3,
+	  :s3_credentials => "#{Rails.root}/config/s3.yml",
+	  :path => ":attachment/:id/:style.:extension",
+	  :bucket => "ultrakast_images"
   
   def self.search(search, type)
     if search
@@ -45,7 +48,6 @@ class User < ActiveRecord::Base
     end
   end
   
-
   def feed(status, categories, sort)
     if status == "public"
 	    posts = Post.shared(id)
@@ -54,6 +56,10 @@ class User < ActiveRecord::Base
 	    posts = Post.by_users(users)
 	  elsif status == "favorites"
 	    posts = Post.favorites(id)
+    elsif status == "user"
+      posts = Post.by_users(self)
+    elsif status == "tagged"
+      posts = Post.with_tagged_user(self.name)
 	  end
     
     unless categories == "all"
@@ -68,34 +74,23 @@ class User < ActiveRecord::Base
 
 	  posts.includes(:user, {:comments => :user}, :category)
 	end
-
-#    if status == "public"
-#	  if categories == "all"
-#	    Post.where("shared = ? OR user_id = ?", true, id).includes(:user, {:comments => :user}, :category)
-#      else
-#	    Post.where("category_id in (?) AND (shared = ? OR user_id = ?)", categories, true, id).includes(:user, {:comments => :user}, :category)
-#	  end
-#	elsif status == "private"
-#	  if categories == "all"
-#	    Post.where("user_id = ? OR user_id IN (?)", id, friends).includes(:user, {:comments => :user}, :category)
-#	  else
-#		Post.where("(user_id = ? OR user_id IN (?)) AND category_id in (?)", id, friends, categories).includes(:user, {:comments => :user}, :category)
-#	  end
-#	end
-# end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
     unless user
-      user = User.create(name:auth.extra.raw_info.name,
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
-                           )
+      user = User.create(first_name: auth.extra.raw_info.first_name,
+                         last_name: auth.extra.raw_info.last_name, 
+                         provider: auth.provider,
+                         uid: auth.uid,
+                         email: auth.info.email,
+                         password: Devise.friendly_token[0,20])
     end
     user
+  end
+  
+  def name
+    "#{self.first_name} #{self.last_name}"
   end
   
   def update_with_password(params={}) 
@@ -105,5 +100,4 @@ class User < ActiveRecord::Base
     end 
     update_attributes(params) 
   end
-
 end

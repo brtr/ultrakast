@@ -6,7 +6,7 @@ $(document).ready(function() {
   $('#image-upload').hide();
 
   //Set links in posts to open in new window  
-  $('.content a').attr('target', '_blank');
+  $('.content a').attr('target', '_blank').attr('class', 'original-link');
   
   //Translate links in post text to embedded content using Embed.ly
   $('.content').embedly({

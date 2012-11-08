@@ -30,8 +30,12 @@ class PostsController < ApplicationController
         alert.save
       end
       rekasted_users = @post.content.scan(/<a class="rekast-author" href="users\/(\d*)/).flatten
-      rekasted_users.each do |user|
-        NotificationMailer.rekast_notification(@post, User.find(user)).deliver
+      rekasted_users.each do |u|
+        user = User.find(u)
+        NotificationMailer.rekast_notification(@post, user).deliver
+        alert = user.alerts.build
+        alert.content = "<a href=\"/users/#{current_user.id}\">#{current_user.name}</a> <a href=\"/posts/#{@post.id}\">has rekasted</a> one of your posts!"
+        alert.save
       end
       @reload = params[:reload]
     else

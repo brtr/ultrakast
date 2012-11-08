@@ -58,7 +58,11 @@ class Post < ActiveRecord::Base
 	  end
 	
 	  unless unread == 0
-      "(" + unread.to_s + " new)"
+      if unread < 21
+        "(" + unread.to_s + ")"
+      else
+        "(20+)"
+      end
 	  end
   end
 end

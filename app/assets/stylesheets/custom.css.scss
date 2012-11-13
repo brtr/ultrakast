@@ -3,10 +3,11 @@ $gridColumnWidth: 75px;
 $gridGutterWidth: 20px; 
 $gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)); 
 
-
 @import "bootstrap";
 
+/* User variables here */
 $grayMediumLight: #eaeaea;
+
 
 @mixin box_sizing {
 	-moz-box-sizing: border-box;
@@ -50,6 +51,8 @@ a:focus {
 	outline: none;
 }
 
+
+/* Clearfix */
 .cf:before,
 .cf:after 
 {
@@ -74,9 +77,6 @@ a.selected-category {
 	font-weight: bold;
 	color: #fcb514;
 }
-
-
-
 
 
 /* typography */
@@ -514,8 +514,8 @@ header {
 	
 	img {
 		padding: 10px;
-		width: 341px;
-		height: 70px;
+		width: 285px;
+		height: 58px;
 	}
 }
 
@@ -764,4 +764,13 @@ display: inline;
 
 #category-sidebar h1 {
   text-align: left;
+}
+
+
+.navbar, .navbar-fixed-top, .container {
+	height: 75px;
+}
+
+nav {
+	margin-top: 32px;
 }

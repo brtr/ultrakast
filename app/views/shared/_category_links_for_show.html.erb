@@ -1,6 +1,6 @@
 ﻿<ul>
 	<li class="home-link-li">
-    <%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => "", :selected_category => "all"), :remote => true, :class => "selected-category home-link" %>		
+    	<%= link_to "Home", root_path, :class => "selected-category home-link" %>
 	</li>
 	<% @user.categories.roots.each do |category| %>
 		<li>

@@ -3,9 +3,17 @@
         
     
         <%= link_to((image_tag 'ultrakast-logo.png'), root_path) %>
-		
-        
-        
+		             
+        <% if user_signed_in? %>
+          <div id="header-search">
+            <%= form_tag users_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search] %>
+              <%= select_tag :search_type, "<option>Name</option><option>Email</option>".html_safe %>
+              <%= submit_tag "Search", :name => nil, :id => "search-submit" %>
+            <% end %>
+          </div>
+        <% end %>
+
         <nav>
             <ul class="nav pull-right">
                 <% if user_signed_in? %>
@@ -24,7 +32,7 @@
                 <% end %>
                 <li><%= link_to "Home", root_path %></li>
 				<% if user_signed_in? %>
-                    <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "Users", users_path %></li>
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 						<ul class="dropdown-menu">

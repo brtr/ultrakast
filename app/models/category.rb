@@ -5,7 +5,6 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name, :parent_id
   
-  default_scope order: 'id ASC'
  
   def child_categories_for(user_id)
     user = User.find(user_id)

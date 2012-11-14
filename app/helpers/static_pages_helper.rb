@@ -4,6 +4,8 @@ module StaticPagesHelper
     unless base_title.nil?
       if base_title == ""
         "Home"
+      elsif base_title == "show_page"
+        ""
       else
         base_title
       end

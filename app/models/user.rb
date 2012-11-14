@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
   
   def self.search(search, type)
     if search
-      where("UPPER(#{type}) LIKE UPPER(?)", "%#{search}%")
+      if type == "Email"
+        where("UPPER(#{type}) LIKE UPPER(?)", "%#{search}%")
+      else
+        where("(UPPER(first_name) LIKE UPPER(?)) OR (UPPER(last_name) LIKE UPPER(?))", "%#{search}%", "%#{search}%")
+      end
     else
       all
     end

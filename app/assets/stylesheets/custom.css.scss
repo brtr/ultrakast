@@ -791,3 +791,33 @@ display: inline;
 nav {
 	margin-top: 32px;
 }
+
+#header-search form {
+  width: 350px;
+  float: left;
+  display: inline;
+}
+
+#header-search {
+  display: inline-block;
+  left: 270px;
+  top: 17px;
+  position: relative;
+}
+
+#header-search form input, #header-search form select {
+  display: inline;
+  float: left;
+  width: 95px;
+  margin-left: 5px;
+  height: 20px;
+  padding: 0;
+}
+
+#header-search form #search_type {
+  width: 63px;
+}
+
+#header-search form #search-submit {
+  width: 50px;
+}

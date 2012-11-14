@@ -29,7 +29,7 @@ html {
 }
 
 body {
-	padding-top: 140px;
+	padding-top: 100px;
 }
 
 section {
@@ -410,19 +410,35 @@ a.expand-link:hover, a.contract-link:hover {
 }
 
 #category_links .expand-link, #category_links .contract-link {
-	font-size: 2.0em;
+	font-size: 1.5em;
 }
 
 #category_links .expand-link {
   position: relative;
-  top: 2px; 
+  top: -1px; 
+}
+
+#category_links li.home-link-li {
+	border: none;
 }
 
 #category_links .contract-link {
   position: relative;
-  top: 1px;
-  left: 2px;
-  padding-right: 6px;
+  top: -1px;
+  left: 1px;
+  padding-right: 4px;
+}
+
+#category_links li {
+	margin-top: 10px;
+	border: 1px #000 solid;
+	padding: 10px 0 10px 10px;
+}
+
+#category_links ul.children-list li {
+	border: none;
+	padding: 0;
+	margin-top: 5px;
 }
 
 #category_links ul.children-list {
@@ -658,8 +674,9 @@ a.filter-button {
 }
 
 #filter-title {
-	margin-bottom: 15px;
-  font-size: 2.0em;
+	padding-top: 10px;
+  margin-bottom: 50px;
+  font-size: 2.5em;
   font-weight: bold;
   text-align: center;
 }

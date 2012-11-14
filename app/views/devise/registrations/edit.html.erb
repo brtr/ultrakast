@@ -31,6 +31,7 @@
 	    			<%= image_tag(current_user.avatar(:normal), alt: current_user.name, class: "avatar-edit") %> <em>(your current picture)</em><br /><br />
 				<% end %>
 			<% end %>
+      <label>Please select all of your interests</label>
 			<%= render 'shared/category_checkboxes' %>
 	  		<%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 		<% end %>

@@ -23,7 +23,8 @@
 	  
 	  		<%= f.label :avatar, "Add a profile picture" %>
 	  		<%= f.file_field :avatar %>
-	  
+        
+        <label>Please select all of your interests</label>
 	  		<%= render 'shared/category_checkboxes' %>
 	  		<%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 		<% end %>

@@ -2,8 +2,8 @@
 	<li class="home-link-li">
     	<%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => "show_page", :selected_category => "all"), :remote => true, :class => "selected-category home-link" %>
 	</li>
-	<% @user.categories.roots.each do |category| %>
-		<li>
+	<% @user.categories.roots.order('id ASC').each do |category| %>
+		<li class="li-<%= category.id %>">
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
 		</li>

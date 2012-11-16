@@ -259,7 +259,6 @@ input, textarea, select, .uneditable-input {
 
 .post-container {
 	padding: 10px;
-	border: 2px solid #314d78;
 }
 
 .post-header {
@@ -828,28 +827,50 @@ nav {
 
 /* Colors */
 
-.li-1 {
+li.li-1 {
   background-color: #e8f8ff;
 }
 
-.li-8 {
+li.li-8 {
   background-color: #b4dced;
 }
 
-.li-16 {
+li.li-16 {
    background-color: #c4d7ed;
 }
 
-.li-28 {
+li.li-28 {
   background-color: #91c9e8;
 }
 
-.li-37 {
+li.li-37 {
   background-color: #67b8de;
 }
 
-.li-50 {
+li.li-50 {
   background-color: #3399cc;
 }
 
+div.div-1 {
+  border: 7px solid #e8f8ff;
+}
 
+div.div-8 {
+  border: 7px solid #b4dced;
+}
+
+div.div-16 {
+  border: 7px solid #c4d7ed;
+}
+
+div.div-28 {
+  border: 7px solid #91c9e8;
+}
+
+div.div-37 {
+  border: 7px solid #67b8de;
+}
+
+div.div-50 {
+  border: 7px solid #3399cc;
+}

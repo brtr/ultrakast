@@ -1,5 +1,5 @@
-<li id="post-<%= feed_item.id %>" class="li-<%= feed_item.category.parent.id %>">
-	<div class="post-container">
+<li id="post-<%= feed_item.id %>">
+	<div class="post-container div-<%= feed_item.category.parent.id %>">
 		<div class="post-header">
 			<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
 			<div class="headline">

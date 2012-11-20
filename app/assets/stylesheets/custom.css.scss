@@ -430,7 +430,7 @@ a.expand-link:hover, a.contract-link:hover {
 
 #category_links li {
 	margin-top: 10px;
-	border: 1px #000 solid;
+	border: 2px #152133 solid;
 	padding: 10px 0 10px 10px;
 }
 
@@ -828,55 +828,64 @@ nav {
 /* Colors */
 
 li.li-1 {
-  background-color: #ff0000;
+  background-color: #fff;
   
 }
 
 li.li-8 {
-  background-color: #ffa500;
+  background-color: #fff;
   
 }
 
 li.li-16 {
-   background-color: #ffff00;
+   background-color: #fff;
   
 }
 
 li.li-28 {
-  background-color: #33ff00;
+  background-color: #fff;
   
 }
 
 li.li-37 {
-  background-color: #33ffff;
+  background-color: #fff;
   
 }
 
 li.li-50 {
-  background-color: #cc66ff;
+  background-color: #fff;
   
 }
 
 div.div-1 {
-  border: 7px solid #ff0000;
+  border: 7px solid #152133;
 }
 
 div.div-8 {
-  border: 7px solid #ffa500;
+  border: 7px solid #152133;
 }
 
 div.div-16 {
-  border: 7px solid #ffff00;
+  border: 7px solid #152133;
 }
 
 div.div-28 {
-  border: 7px solid #33ff00;
+  border: 7px solid #152133;
 }
 
 div.div-37 {
-  border: 7px solid #33ffff;
+  border: 7px solid #152133;
 }
 
 div.div-50 {
-  border: 7px solid #cc66ff;
+  border: 7px solid #152133;
+}
+
+#left-sidebar, #right-sidebar {
+  background: #69a3ff;
+  padding: 10px;
+}
+
+aside#right-sidebar {
+  margin-left: -10px;
 }

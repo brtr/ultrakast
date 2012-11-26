@@ -75,7 +75,10 @@ a:focus {
 
 a.selected-category {
 	font-weight: bold;
-	color: #fcb514;
+}
+
+#category_links li.selected {
+	background-color: #ccc;
 }
 
 
@@ -421,6 +424,7 @@ a.expand-link:hover, a.contract-link:hover {
 	border: none;
 }
 
+
 #category_links .contract-link {
   position: relative;
   top: -1px;
@@ -450,8 +454,12 @@ a.expand-link:hover, a.contract-link:hover {
   margin-left: 25px;
 }
 
-.home-link {
+.home-link, .show-home-link {
 	font-size: 1.4em;
+}
+
+.show-home-link {
+	color: #000;
 }
 
 .parent-link {
@@ -639,21 +647,34 @@ nav ul.nav li a.alert-badge {
 }
 
 .filter-button {
-	border: 2px solid #000;
-	padding: 2px 10px;
-	text-align: center;
+	padding: 0;
 	margin: 0;
-
 }
 
 a.filter-button {
 	text-decoration: none;
 }
 
-.filter-button:hover, .selected {
-	border: 2px solid #0000ff;
-	background: #eef;
+#private-button img {
+	margin-right: -1px;
 }
+
+#public-button img {
+	margin-right: -2px;
+}
+
+#recent-button img {
+	margin-right: -1px;
+}
+
+#user-posts-button img {
+	margin-right: -3px;
+}
+
+#tagged-button img {
+	margin-right: -3px;
+}
+
 
 
 #feed-items {
@@ -685,7 +706,7 @@ a.filter-button {
 }
 
 #filter-settings {
-  width: 400px;
+  width: 535px;
 }
 
 

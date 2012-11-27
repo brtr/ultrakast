@@ -46,7 +46,8 @@ $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) 
 	 	$('li.li-<%= cat.id %>').addClass('selected');
 	<% end %>
 <% else %>
-	$('.root-li').removeClass('selected');	
+	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#08C');
 <% end %>
 
 $('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();

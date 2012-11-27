@@ -599,8 +599,8 @@ nav {
 #post-submit {
 	margin: 20px 0 10px 60px;
 	background-color: #151233;
-	background-image: -moz-linear-gradient(center top , #152133, #000000);
-	background-image: -webkit-linear-gradient(center top , #152133, #000000);
+	background: -moz-linear-gradient(center top , #152133, #000000);
+	background: -webkit-gradient(linear, center top, center bottom, from(#152133), to(#000000));
 	border-color: #000;
 	background-repeat: repeat-x;
 }

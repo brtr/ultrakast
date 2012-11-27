@@ -913,3 +913,17 @@ div.div-50 {
 aside#right-sidebar {
   margin-left: -10px;
 }
+
+.unread {
+	display: inline;
+    background-color: #91d6e6;
+    border: 2px solid white;
+    color: #152133;
+    font: bold 15px/13px Helvetica, Verdana, Tahoma;
+    height: 16px; 
+    padding: 4px 3px 2px 3px;
+    text-align: center;
+    min-width: 14px;
+	font-style: normal;
+	
+}

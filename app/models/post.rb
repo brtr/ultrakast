@@ -59,10 +59,12 @@ class Post < ActiveRecord::Base
 	
 	  unless unread == 0
       if unread < 21
-        "(" + unread.to_s + ")"
+        unread.to_s
       else
-        "(20+)"
+        "20+"
       end
+	  else
+	    0
 	  end
   end
 end

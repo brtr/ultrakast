@@ -454,13 +454,10 @@ a.expand-link:hover, a.contract-link:hover {
   margin-left: 25px;
 }
 
-.home-link, .show-home-link {
+.home-link {
 	font-size: 1.4em;
 }
 
-.show-home-link {
-	color: #000;
-}
 
 .parent-link {
   font-size: 1.4em;
@@ -601,6 +598,10 @@ nav {
 
 #post-submit {
 	margin: 20px 0 10px 60px;
+	background-color: #151233;
+	background-image: -moz-linear-gradient(center top , #152133, #000000);
+	border-color: #000;
+	background-repeat: repeat-x;
 }
 
 #filter-wrap, #user-filter-wrap {
@@ -656,7 +657,7 @@ a.filter-button {
 }
 
 #private-button img {
-	margin-right: -1px;
+	margin-right: -2px;
 }
 
 #public-button img {
@@ -664,17 +665,20 @@ a.filter-button {
 }
 
 #recent-button img {
-	margin-right: -1px;
+	margin-right: -2px;
 }
 
 #user-posts-button img {
-	margin-right: -3px;
+	margin-right: -2px;
 }
 
 #tagged-button img {
-	margin-right: -3px;
+	margin-right: -1px;
 }
 
+#favorites-button img {
+	margin-left: -1px;
+}
 
 
 #feed-items {

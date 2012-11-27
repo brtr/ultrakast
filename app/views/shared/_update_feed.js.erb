@@ -37,6 +37,7 @@ $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) 
 	<% cat = Category.find(session[:selected_category]) %>
 	
 	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#000');
 	<% unless cat.ancestry.nil? %>
     	$('#<%= cat.id %>-unread').html('<em><%= Post.unread_count(current_user, cat) %></em>');	
     	$('#<%= cat.root.id %>-unread').html('<em><%= Post.unread_count(current_user, cat.root) %></em>');

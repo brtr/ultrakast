@@ -43,9 +43,10 @@ $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) 
     	$('#<%= cat.root.id %>-unread').html('<em><%= Post.unread_count(current_user, cat.root) %></em>');
 		$('li.li-<%= cat.root.id %>').addClass('selected');
   	<% else %>
-		$('li.li-<%= cat.id %>').addClass('selected');
+	 	$('li.li-<%= cat.id %>').addClass('selected');
 	<% end %>
-		
+<% else %>
+	$('.root-li').removeClass('selected');	
 <% end %>
 
 $('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();

@@ -599,10 +599,10 @@ nav {
 #post-submit {
 	margin: 20px 0 10px 60px;
 	background-color: #151233;
-	background: -moz-linear-gradient(center top , #152133, #000000);
+/*	background: -moz-linear-gradient(center top , #152133, #000000);
 	background: -webkit-gradient(linear, center top, center bottom, from(#152133), to(#000000));
 	border-color: #000;
-	background-repeat: repeat-x;
+	background-repeat: repeat-x; */
 }
 
 #filter-wrap, #user-filter-wrap {
@@ -915,7 +915,9 @@ aside#right-sidebar {
 }
 
 .unread {
+	float: right;
 	display: inline;
+	margin-right: 5px;
     background-color: #91d6e6;
     border: 2px solid white;
     color: #152133;
@@ -924,6 +926,18 @@ aside#right-sidebar {
     padding: 4px 3px 2px 3px;
     text-align: center;
     min-width: 14px;
-	font-style: normal;
-	
+	font-style: normal;	
+}
+
+.child-unread {
+	display: inline;
+    background-color: #91d6e6;
+    border: 2px solid white;
+    color: #152133;
+    font: bold 13px/11px Helvetica, Verdana, Tahoma;
+    height: 13px; 
+    padding: 1px 3px;
+    text-align: center;
+    min-width: 10px;
+	font-style: normal;	
 }

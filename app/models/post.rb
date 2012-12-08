@@ -36,10 +36,9 @@ class Post < ActiveRecord::Base
   def self.unread_count(user, category)
 	  #Collect user's friends. No friends? No count. Exit
 	  if user.friends.count == 0
-	    return
+	    0
 	  else
-	    #friends = user.friends
-	    return
+	    friends = user.friends
 	  end
 
 	  if category.ancestry.nil?

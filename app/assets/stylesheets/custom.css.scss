@@ -388,7 +388,8 @@ input, textarea, select, .uneditable-input {
 
 #category_links ul {
 	list-style: none;
-  margin: 0;
+	width: 190px;
+  	margin: 0;
 }
 
 a.expand-link:hover, a.contract-link:hover {
@@ -908,6 +909,10 @@ div.div-50 {
 
 #left-sidebar, #right-sidebar {
   padding: 10px;
+}
+
+#left-sidebar {
+	width: 190px;
 }
 
 aside#right-sidebar {

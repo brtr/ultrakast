@@ -38,7 +38,8 @@ class Post < ActiveRecord::Base
 	  if user.friends.count == 0
 	    return
 	  else
-	    friends = user.friends
+	    #friends = user.friends
+	    return
 	  end
 
 	  if category.ancestry.nil?

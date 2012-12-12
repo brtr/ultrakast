@@ -154,16 +154,19 @@ p {
 /* footer */
 
 footer {
+  background: #152133;
 	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid $grayMediumLight;
+  width: 100%;
+	padding-top: 15px;
+  padding-left: 15px;
+  height: 100px;
 	color: $grayLight;
 	
 	a {
-		color: $gray;
+		color: $white;
 	
 		&:hover {
-			color: $grayDarker;
+			color: $gray;
 		}
 	}
 	
@@ -187,6 +190,7 @@ footer {
 aside {
 	section {
 		padding: 10px 0;
+    overflow: hidden;
 		border-top: 1px solid $grayLighter;
 		&:first-child {
 			border: 0;
@@ -448,6 +452,7 @@ a.expand-link:hover, a.contract-link:hover {
 #category_links ul.children-list {
 	display: none;
   margin-left: 25px;
+  margin-right: -25px;
 }
 
 #category-checklist ul.children-list {
@@ -764,7 +769,7 @@ a.filter-button {
 }
 
 #feed {
-  margin: 0 30px -10000px 30px;
+  margin: 0 15px -10000px 15px;
   padding: 0 20px 10000px 20px;
   border-left: 1px #ccc solid;
   border-right: 1px #ccc solid;
@@ -794,7 +799,7 @@ a.filter-button {
 }
 
 .headline {
-display: inline;
+  display: inline;
   position: relative;
   top: -35px;
   left: 5px;
@@ -805,7 +810,7 @@ display: inline;
 }
 
 
-.navbar, .navbar-fixed-top, .container {
+.navbar, .navbar-fixed-top {
 	height: 75px;
 }
 
@@ -860,7 +865,7 @@ li.li-8 {
 }
 
 li.li-16 {
-   background-color: #fff;
+  background-color: #fff;
   
 }
 
@@ -908,7 +913,7 @@ div.div-50 {
 }
 
 #left-sidebar, #category-sidebar {
-	width: 190px;
+	width: 205px;
 }
 
 #right-sidebar {
@@ -927,14 +932,14 @@ aside#right-sidebar {
 	float: right;
 	display: inline;
 	margin-right: 5px;
-    background-color: #91d6e6;
-    border: 2px solid white;
-    color: #152133;
-    font: bold 15px/13px Helvetica, Verdana, Tahoma;
-    height: 16px; 
-    padding: 4px 3px 2px 3px;
-    text-align: center;
-    min-width: 14px;
+  background-color: #91d6e6;
+  border: 2px solid white;
+  color: #152133;
+  font: bold 15px/13px Helvetica, Verdana, Tahoma;
+  height: 16px; 
+  padding: 4px 3px 2px 3px;
+  text-align: center;
+  min-width: 14px;
 	font-style: normal;
 	position: relative;
 	top: -3px;	
@@ -942,13 +947,13 @@ aside#right-sidebar {
 
 .child-unread {
 	display: inline;
-    background-color: #91d6e6;
-    border: 2px solid white;
-    color: #152133;
-    font: bold 13px/11px Helvetica, Verdana, Tahoma;
-    height: 13px; 
-    padding: 1px 3px;
-    text-align: center;
-    min-width: 10px;
+  background-color: #91d6e6;
+  border: 2px solid white;
+  color: #152133;
+  font: bold 13px/11px Helvetica, Verdana, Tahoma;
+  height: 13px; 
+  padding: 1px 3px;
+  text-align: center;
+  min-width: 10px;
 	font-style: normal;	
 }

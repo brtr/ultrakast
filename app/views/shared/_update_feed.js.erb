@@ -1,33 +1,33 @@
 <% if session[:feed_status] == "public" %>
-	  $('#public-button').addClass('selected');
-  	$('#private-button').removeClass('selected');
-  	$('#favorites-button').removeClass('selected');
+	$('#public-button img').attr('src', '/assets/everyone-on.png');
+  	$('#private-button img').attr('src', '/assets/friends-off.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-off.png');
 <% elsif session[:feed_status] == "favorites" %>
-  	$('#public-button').removeClass('selected');
-    $('#user-posts-button').removeClass('selected');
-    $('#tagged-button').removeClass('selected');
-  	$('#private-button').removeClass('selected');
-  	$('#favorites-button').addClass('selected');
+  	$('#public-button img').attr('src', '/assets/everyone-off.png');
+    $('#user-posts-button img').attr('src', '/assets/posts-off.png');
+    $('#tagged-button img').attr('src', '/assets/at-off.png');
+  	$('#private-button img').attr('src', '/assets/friends-off.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-on.png');
 <% elsif session[:feed_status] == "private" %>
-  	$('#public-button').removeClass('selected');
-  	$('#private-button').addClass('selected');
-  	$('#favorites-button').removeClass('selected');
+  	$('#public-button img').attr('src', '/assets/everyone-off.png');
+  	$('#private-button img').attr('src', '/assets/friends-on.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-off.png');
 <% elsif session[:feed_status] == "tagged" %>
-    $('#user-posts-button').removeClass('selected');
-    $('#favorites-button').removeClass('selected');
-  	$('#tagged-button').addClass('selected');
+    $('#user-posts-button img').attr('src', '/assets/posts-off.png');
+    $('#favorites-button img').attr('src', '/assets/favorites-off.png');
+  	$('#tagged-button img').attr('src', '/assets/at-on.png');
 <% elsif session[:feed_status] == "user" %>
-    $('#user-posts-button').addClass('selected');
-    $('#favorites-button').removeClass('selected');
-  	$('#tagged-button').removeClass('selected');
+    $('#user-posts-button img').attr('src', '/assets/posts-on.png');
+    $('#favorites-button img').attr('src', '/assets/favorites-off.png');
+  	$('#tagged-button img').attr('src', '/assets/at-off.png');
 <% end %>
 
 <% if session[:sort_order] == "recent" %>
-  	$('#recent-button').addClass('selected');
-  	$('#popular-button').removeClass('selected');
+  	$('#recent-button img').attr('src', '/assets/recent-on.png');
+  	$('#popular-button img').attr('src', '/assets/popular-off.png');
 <% else %>
-  	$('#recent-button').removeClass('selected');
-  	$('#popular-button').addClass('selected');
+  	$('#recent-button img').attr('src', '/assets/recent-off.png');
+  	$('#popular-button img').attr('src', '/assets/popular-on.png');
 <% end %>
   
 $('#filter-title').html('<%= escape_javascript(filter_title(session[:filter_title])) %>');
@@ -35,10 +35,19 @@ $('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) 
 
 <% unless session[:category_filter] == "all" %>
 	<% cat = Category.find(session[:selected_category]) %>
+	
+	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#000');
 	<% unless cat.ancestry.nil? %>
     	$('#<%= cat.id %>-unread').html('<em><%= Post.unread_count(current_user, cat) %></em>');	
     	$('#<%= cat.root.id %>-unread').html('<em><%= Post.unread_count(current_user, cat.root) %></em>');
-  	<% end %>
+		$('li.li-<%= cat.root.id %>').addClass('selected');
+  	<% else %>
+	 	$('li.li-<%= cat.id %>').addClass('selected');
+	<% end %>
+<% else %>
+	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#08C');
 <% end %>
 
 $('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();

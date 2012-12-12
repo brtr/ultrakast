@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
       if type == "Email"
         where("UPPER(#{type}) LIKE UPPER(?)", "%#{search}%")
       else
-        where("(UPPER(first_name) LIKE UPPER(?)) OR (UPPER(last_name) LIKE UPPER(?))", "%#{search}%", "%#{search}%")
+        where("UPPER(first_name || ' ' || last_name) LIKE UPPER(?)", "%#{search}%")
       end
     else
       all

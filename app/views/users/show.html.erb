@@ -42,9 +42,10 @@
     			<div id="user-filter-wrap" class="cf">
 				<div id="user-filter-settings" class="cf">
 					<div class="user-button-wrap">
-						<%= link_to "#{@user.first_name}'s posts",   switchfeed_path(:feed_status => "user"), :remote => true, :class => "filter-button selected", :id => "user-posts-button" %>
-						<%= link_to "@#{@user.first_name}",  switchfeed_path(:feed_status => "tagged"),    :remote => true, :class => "filter-button", :id => "tagged-button" %>
-						<%= link_to "#{@user.first_name}'s favorites", switchfeed_path(:feed_status => "favorites"), :remote => true, :class => "filter-button", :id => "favorites-button" %>
+						
+						<a id="user-posts-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=user"><%= image_tag 'posts-on.png'%></a>
+						<a id="tagged-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=tagged"><%= image_tag 'at-off.png' %></a>
+						<a id="favorites-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=favorites"><%= image_tag 'favorites-off.png' %></a>
 					</div>
 				</div>
 			</div>

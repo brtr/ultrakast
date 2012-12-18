@@ -45,6 +45,7 @@
 	</div><!-- .row -->
 	
 <% else %>	
+<<<<<<< Updated upstream
 	<div id="welcome" class="center hero-unit">
   		<h1>Welcome to Ultrakast!</h1>
   		<h2>We are currently in beta testing. If you find any issues or problems, please report them to <a href="mailto:support@ultrakast.com">support@ultrakast.com</a>. Thank you!</h2>
@@ -52,6 +53,22 @@
   		<%= link_to "Sign in now!", new_user_session_path, class: "btn btn-large btn-primary" %>
 		<%= link_to "New user? Sign up!", new_user_registration_path, class: "btn btn-large btn-primary" %>
 		<br /><br /><em>version 1.2b - 14 November 2012 </em>
+=======
+	<div id="welcome" class="center hero-unit cf">
+		<div id="home-button-wrapper">
+			
+			<%= link_to "Sign in now!", new_user_session_path, class: "home-btn btn btn-large btn-primary" %><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook),class: "home-btn btn btn-large btn-primary" %><br />
+	  		
+			<%= link_to "New user? Sign up!", new_user_registration_path, class: "home-btn btn btn-large btn-primary" %><br />
+			<br /><br /><em>version 1.3b - 12 December 2012 </em>
+		</div>
+
+		<div id="satellite-wrapper">
+			<p>Ultrakast is the best way to stay up to date within the worlds of your interests.</p>
+  			<%= image_tag 'large-satellite.png', class: "large-satellite" %>
+			<p>All of us have our own passions. Some love sports while others love music. That's what Ultrakast is all about, everything that you love. </p>
+		</div>
+>>>>>>> Stashed changes
 	</div>
 <% end %>
 

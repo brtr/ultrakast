@@ -18,6 +18,8 @@ Ultrakast::Application.routes.draw do
   match '/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'
   match '/friendships/process', to: 'friendships#process_friendship', :as => 'process_friendship'
   match '/alerts/delete_all', to: 'alerts#delete_all'
+  match '/about',             to: 'static_pages#about'
+  
   
   root to: 'static_pages#home'
   

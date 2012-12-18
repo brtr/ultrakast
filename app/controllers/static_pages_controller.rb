@@ -15,6 +15,9 @@ class StaticPagesController < ApplicationController
     end
   end
   
+  def about
+  end
+  
   def switch_feed
     #Set user
     unless params[:user].nil?

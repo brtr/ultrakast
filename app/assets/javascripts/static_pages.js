@@ -15,7 +15,7 @@ $(document).ready(function() {
     maxWidth: 500,
     chars: 150,
     className: "embed cf",
-    key: '6c398a44d6034de4b75ea047c32e83fe', //TODO: CHANGE THIS TO CLIENT'S API KEY
+    key: '479e5eb9ef364bf7a31fcb6984b7fb7a', 
     //Override default success callback to insert target into anchors
     success: function(oembed, dict){
       var _a, elem = $(dict.node);

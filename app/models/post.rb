@@ -11,13 +11,12 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :category_id, presence: true
   
-  #TODO: CHANGE S3 BUCKET INFO FOR PRODUCTION
   has_attached_file :image,
     :styles => { :normal => "250", :large => "450" }, 
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",
-	  :bucket => "ultrakast_images"
+	  :bucket => "ultrakast"
   
   scope :shared, lambda { |user| where("shared = ? OR user_id = ?", true, user) unless user.nil? }
   scope :by_users, lambda { |users| where("user_id IN (?)", users) unless users.nil? }

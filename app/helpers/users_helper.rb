@@ -6,8 +6,8 @@ module UsersHelper
         width = 50
         height = 50
       when "normal"
-        width = 100
-        height = 100
+        width = 160
+        height = 160
       when "small"
         width = 50
         height = 50

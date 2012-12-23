@@ -3,7 +3,7 @@
 	<li id="<%= feed_item.id %>">
 		<div class="post-container">
 			<div class="post-header">
-				<%= link_to avatar_for(feed_item.user, size: "small"), feed_item.user %>
+				<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
 				<span class="user">
 					<%= link_to feed_item.user.name, feed_item.user %>
 				</span>

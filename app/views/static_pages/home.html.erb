@@ -16,14 +16,14 @@
 			</section>
 			<div id="filter-wrap" class="cf">
 				<div id="filter-settings" class="cf">
-					<div class="button-wrap pad-right">
+					<div id="filter-buttons-right" class="button-wrap pad-right">
 						<a href="/static_pages/switchfeed?feed_status=private" class="filter-button" data-remote="true" id="private-button"><%= image_tag 'friends-on.png' %></a>
 						
 						<a href="/static_pages/switchfeed?feed_status=public" class="filter-button" data-remote="true" id="public-button"><%= image_tag 'everyone-off.png' %></a>
 						
 						<a href="/static_pages/switchfeed?feed_status=favorites" class="filter-button" data-remote="true" id="favorites-button"><%= image_tag 'favorites-off.png' %></a>
 					</div>
-					<div class="button-wrap">
+					<div id="filter-buttons-left" class="button-wrap">
 						<a id="recent-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?sort_order=recent"><%= image_tag 'recent-on.png' %></a>
 						<a id="popular-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?sort_order=popular"><%= image_tag 'popular-off.png' %></a>
 					</div>

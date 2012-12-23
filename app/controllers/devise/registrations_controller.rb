@@ -11,6 +11,7 @@ class Devise::RegistrationsController < DeviseController
 
   # POST /resource
   def create
+    @categories ||= []
     build_resource
     if resource.save
       if resource.active_for_authentication?

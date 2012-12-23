@@ -279,7 +279,8 @@ input, textarea, select, .uneditable-input {
 }
 
 .thumb {
-	float: left;
+	display: block;
+	margin-bottom: 10px;
 	padding: 0 10px 10px 0;
 }
 

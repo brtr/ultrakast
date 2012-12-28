@@ -16,7 +16,11 @@ module StaticPagesHelper
     if current_user.friends.count == 0
 	    return
 	  end
-    category = Category.includes(:users).find(session[:selected_category])
-    @friends = category.users.where("users.id IN (?)", current_user.friends)
+	  if session[:selected_category] == "all"
+	    @friends = current_user.friends
+	  else
+      category = Category.includes(:users).find(session[:selected_category])
+      @friends = category.users.where("users.id IN (?)", current_user.friends)
+    end
   end
 end

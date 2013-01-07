@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       @post = current_user.posts.build
       #Set default filter behavior
       session[:category_filter] = "all"
-      session[:feed_status] = "private"
+      session[:feed_status] = "public"
       session[:filter_title] = ""
       session[:selected_category] = "all"
       session[:sort_order] = "recent"
@@ -48,13 +48,19 @@ class StaticPagesController < ApplicationController
     
     update_dropdown
     
-    @filter_title = filter_title(session[:filter_title])  
-    @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
+    @filter_title = filter_title(session[:filter_title])
     
     if session[:category_filter] != "all"
       cat = Category.find(session[:selected_category])
       status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
+      session[:feed_status] = "private"
+    else
+      session[:feed_status] = "public"
     end
+    
+    @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
+    
+    
   
     if status.nil?
       status = ReadStatus.create(:user_id => current_user, :category_id => cat, :last_read_time => Time.now)

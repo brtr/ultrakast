@@ -24,7 +24,7 @@ class Devise::OmniauthCallbacksController < DeviseController
         sign_in_and_redirect @user, :event => :authentication
       end
       
-      session['fb_access_token'] = session[:omniauth]['credentials']['token']
+      session['fb_access_token'] = request.env["omniauth.auth"].credentials.token
       
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]

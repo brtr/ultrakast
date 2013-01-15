@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
    
     client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
     token = OAuth2::AccessToken.new(client, session['fb_access_token'])
-    token.post('/me/feed', :message => "Testing", :name => "Testing")
+    token.post('/me/feed')
   end
   
   def switch_feed

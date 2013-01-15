@@ -19,8 +19,8 @@ class StaticPagesController < ApplicationController
   end
   
   def test_fb
-    api_key = "177112275755584"
-    api_secret = "5176eff6eb23b8b26942cc5943ea33d6"
+    api_key = "332836790164128"
+    api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
     
     client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
     token = OAuth2::AccessToken.new(client, session['fb_access_token'])

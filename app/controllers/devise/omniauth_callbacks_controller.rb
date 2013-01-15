@@ -23,6 +23,9 @@ class Devise::OmniauthCallbacksController < DeviseController
       else
         sign_in_and_redirect @user, :event => :authentication
       end
+      
+      session['fb_access_token'] = omniauth['credentials']['token']
+      
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url

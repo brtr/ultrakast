@@ -18,6 +18,15 @@ class StaticPagesController < ApplicationController
   def about
   end
   
+  def test_fb
+    api_key = "177112275755584"
+    api_secret = "5176eff6eb23b8b26942cc5943ea33d6"
+    
+    client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
+    token = OAuth2::AccessToken.new(client, session['fb_access_token'])
+    token.post('/me/feed', :message => 'testing')
+  end
+  
   def switch_feed
     #Set user
     unless params[:user].nil?

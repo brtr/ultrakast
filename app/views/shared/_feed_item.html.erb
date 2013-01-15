@@ -18,6 +18,7 @@
                         <% if current_user?(feed_item.user) %>
                             - <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
                         <% end %>
+                        <%= link_to "TEST", testfb_path %>
                     </span><!-- .category -->
                 </span><!-- .timestamp -->
             </div><!-- .headline -->

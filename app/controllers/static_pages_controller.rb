@@ -21,11 +21,12 @@ class StaticPagesController < ApplicationController
   def test_fb
     api_key = "332836790164128"
     api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
-    mess = "this is a TEST message why won't this work??"
+    message = params[:message]
    
     client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
     token = OAuth2::AccessToken.new(client, session['fb_access_token'])
-    token.post('/me/feed', {body: {:message => "test3 for Mike"}})
+    token.post('/me/feed', {body: {:message => message}})
+    
   end
   
   def switch_feed

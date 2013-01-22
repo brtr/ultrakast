@@ -18,7 +18,6 @@
                         <% if current_user?(feed_item.user) %>
                             - <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
                         <% end %>
-                        <%= link_to "Share on FB", testfb_path(:message => feed_item.content) %>
                     </span><!-- .category -->
                 </span><!-- .timestamp -->
             </div><!-- .headline -->
@@ -61,6 +60,8 @@
               <a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
         		</span><!-- .rekast-header -->
 			<% end %>
+			
+			<%= link_to "Share on FB", testfb_path(:content => feed_item.content, :image => feed_item.image_url) %>
 		</div><!-- .status-bar -->
 		
     	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">

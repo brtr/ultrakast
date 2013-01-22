@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",
-	  :bucket => "ultrakast"
+	  :bucket => "ultrakast-dev"
   
   scope :shared, lambda { |user| where("shared = ? OR user_id = ?", true, user) unless user.nil? }
   scope :by_users, lambda { |users| where("user_id IN (?)", users) unless users.nil? }

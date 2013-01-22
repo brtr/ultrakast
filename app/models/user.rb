@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 	  :storage => :s3,
 	  :s3_credentials => "#{Rails.root}/config/s3.yml",
 	  :path => ":attachment/:id/:style.:extension",
-	  :bucket => "ultrakast"
+	  :bucket => "ultrakast-dev"
   
   def self.search(search, type)
     if search

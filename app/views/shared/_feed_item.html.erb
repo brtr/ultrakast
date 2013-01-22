@@ -61,7 +61,7 @@
         		</span><!-- .rekast-header -->
 			<% end %>
 			
-			<%= link_to "Share on FB", testfb_path(:content => feed_item.content, :image => feed_item.image_url) %>
+			<%= link_to "Share on FB", testfb_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id) %>
 		</div><!-- .status-bar -->
 		
     	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">

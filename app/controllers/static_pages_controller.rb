@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-  
   def home
     if user_signed_in?
       #Setup new post form
@@ -18,6 +17,7 @@ class StaticPagesController < ApplicationController
   def about
   end
   
+  #TODO: CHANGE METHOD NAME
   def test_fb
     api_key = "332836790164128"
     api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
@@ -25,14 +25,20 @@ class StaticPagesController < ApplicationController
     unless params[:message].nil?
       message = params[:message]
     end
-    unless params[:image].nil?
-      picture = params[:image]
+    unless params[:picture].nil? || params[:picture] = "/images/original/missing.png"
+      picture = params[:picture]
     end
-   
+    
+
+    unless params[:post_id].nil?
+      #TODO: CHANGE THIS URL FOR PRODUCTION
+      link = "http://10.211.55.3:3000/posts/" + params[:post_id].to_s
+    end
+    
     client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
     token = OAuth2::AccessToken.new(client, session['fb_access_token'])
-    token.post('/me/feed', {body: {:message => message, :picture => picture}})
-    
+    token.post('/me/feed', {body: {:message => message, :picture => picture, :link => link, :name => "Ultrakast", :icon => "http://www.41northstudios.com/fb-icon.png"}})
+    redirect_to root_path
   end
   
   def switch_feed

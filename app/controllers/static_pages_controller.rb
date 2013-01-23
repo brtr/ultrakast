@@ -18,6 +18,7 @@ class StaticPagesController < ApplicationController
   end
   
   #TODO: CHANGE METHOD NAME
+  #TODO: FILTER OUT LINK FOR NON-FB USERS
   def test_fb
     api_key = "332836790164128"
     api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
@@ -32,7 +33,7 @@ class StaticPagesController < ApplicationController
 
     unless params[:post_id].nil?
       #TODO: CHANGE THIS URL FOR PRODUCTION
-      link = "http://10.211.55.3:3000/posts/" + params[:post_id].to_s
+      link = "http://polar-ocean-9301.herokuapp.com/posts/" + params[:post_id].to_s
     end
     
     client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')

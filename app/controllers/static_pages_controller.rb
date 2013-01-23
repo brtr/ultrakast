@@ -26,7 +26,7 @@ class StaticPagesController < ApplicationController
     unless params[:message].nil?
       message = params[:message]
     end
-    unless params[:picture].nil? || params[:picture] = "/images/original/missing.png"
+    unless params[:picture].nil? || params[:picture] == "/images/original/missing.png"
       picture = params[:picture]
     end
     

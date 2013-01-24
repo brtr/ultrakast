@@ -21,7 +21,7 @@ Ultrakast::Application.routes.draw do
   match '/alerts/delete_all', to: 'alerts#delete_all'
   match '/about',             to: 'static_pages#about'
   
-  match '/static_pages/testfb', to: 'static_pages#test_fb', :as => 'testfb'
+  match '/static_pages/facebook', to: 'static_pages#share_to_facebook', :as => 'facebook'
   
   root to: 'static_pages#home'
   

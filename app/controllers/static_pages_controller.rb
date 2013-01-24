@@ -46,8 +46,8 @@ class StaticPagesController < ApplicationController
       client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
       token = OAuth2::AccessToken.new(client, session['fb_access_token'])
       token.post('/me/feed', {body: {:message => message, :picture => picture, :link => link, :name => "Ultrakast"}})
+      redirect_to root_path   
     end
-    redirect_to root_path
   end
   
   def switch_feed

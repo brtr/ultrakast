@@ -13,6 +13,7 @@ class FriendshipsController < ApplicationController
         alert.friend_id = current_user.id
         alert.content = "You have received a friend request from <a href=\"/users/#{current_user.id}\">#{current_user.name}</a>. <a href=\"/friendships/process?decision=approve&user=#{friend.id}&friend=#{current_user.id}\">Accept</a> or <a href=\"/friendships/process?decision=reject&user=#{friend.id}&friend=#{current_user.id}\">Reject</a>"
         alert.save
+        #NotificationMailer.delay.friend_notification(friend, current_user)
         NotificationMailer.friend_notification(friend, current_user).deliver
         redirect_to users_path
       else

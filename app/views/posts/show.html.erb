@@ -3,7 +3,7 @@
 	<li id="<%= feed_item.id %>">
 		<div class="post-container">
 			<div class="post-header">
-				<%= link_to avatar_for(feed_item.user, size: "small"), feed_item.user %>
+				<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
 				<span class="user">
 					<%= link_to feed_item.user.name, feed_item.user %>
 				</span>
@@ -33,7 +33,7 @@
       		<span id="likes-header-<%= feed_item.id %>" class="likes-header">
 				<%= like_link(feed_item) %>
         		<% if feed_item.likes_count? %>
-          			- <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
+          			+ <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
         		<% end %>
       </span><!-- #likes-header-ID -->
 			
@@ -60,6 +60,55 @@
         		</span><!-- .rekast-header -->
 			<% end %>
 		</div><!-- .status-bar -->
+			<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">
+				<%= form_for(@post, :remote => true) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+
+					<% if !feed_item.rekast %>
+						<%= f.hidden_field :content, :value => feed_item.content %>
+						<%= f.hidden_field :category_id, :value => feed_item.category_id %>
+						<%= f.hidden_field :original_post, :value => feed_item.id %>
+						<%= hidden_field_tag 'original_author', feed_item.user_id %>
+					<% else %>
+						<% orig_post = Post.find(feed_item.original_post) %>
+						<%= f.hidden_field :content, :value => orig_post.content %>
+						<%= f.hidden_field :category_id, :value => orig_post.category_id %>
+						<%= f.hidden_field :original_post, :value => orig_post.id %>
+						<%= hidden_field_tag 'original_author', feed_item.user_id %>
+					<% end %>
+					<% if @reload %>
+						<%= hidden_field_tag 'reload', true %>
+					<% end %>
+					<%= text_field_tag 'rekast_content', nil, :placeholder => "Enter a comment for this rekast" %>
+
+					<strong>Privacy option:</strong><br /><br />
+					<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+
+					<%= f.submit "Rekast", class: "btn btn-large btn-primary post-submit-button" %>
+				<% end %>
+			</div><!-- #rekast-for-ID -->
+
+			<div id="likes-for-<%= feed_item.id %>" class="likes">
+				<% if feed_item.likes_count? %>
+					<strong>This post is liked by:</strong><br />
+					<ul id="likes-list-<%= feed_item.id %>">
+						<%= render :partial => 'shared/like', collection: feed_item.likes %>
+					</ul><!-- #likes-list-ID -->
+				<% end %>
+			</div><!-- #likes-for-ID -->
+
+	    	<div id="comments-for-<%= feed_item.id %>" class="comments">
+	      		<ul id="comment-list-<%= feed_item.id %>">
+	        		<% if feed_item.comments_count? %>
+	          			<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
+					<% end %>
+				</ul><!-- #comments-list-ID -->
+				<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>
+					<%= f.text_field :content %>
+					<%= f.submit %>
+				<% end %>
+			</div><!-- #comments-for-ID -->
+		
 		</li>
 	<% end %>
 </ol>

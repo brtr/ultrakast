@@ -12,7 +12,7 @@ $(document).ready(function() {
   //Translate links in post text to embedded content using Embed.ly
   $('.content').embedly({
     method: "after", //Place embedded content after post
-    maxWidth: 500,
+    maxWidth: 590,
     chars: 150,
     className: "embed cf",
     key: '479e5eb9ef364bf7a31fcb6984b7fb7a', 

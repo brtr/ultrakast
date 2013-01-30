@@ -1,12 +1,11 @@
 class StaticPagesController < ApplicationController
-  
   def home
     if user_signed_in?
       #Setup new post form
       @post = current_user.posts.build
       #Set default filter behavior
       session[:category_filter] = "all"
-      session[:feed_status] = "private"
+      session[:feed_status] = "public"
       session[:filter_title] = ""
       session[:selected_category] = "all"
       session[:sort_order] = "recent"
@@ -16,6 +15,39 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+  end
+  
+
+ 
+  def share_to_facebook
+    #TODO: CHANGE API KEYS
+    api_key = "332836790164128"
+    api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
+    
+    fb_file = open(URI.encode("https://graph.facebook.com/me/permissions?access_token=" + session['fb_access_token']))
+    fb_data = JSON.parse(fb_file.read)
+    if fb_data["data"][0]["publish_stream"].present?
+      unless params[:message].nil?
+        message = params[:message]
+      end
+      if params[:picture].nil? || params[:picture] == "/images/original/missing.png"
+        #TODO: CHANGE URL FOR PRODUCTION
+        picture = "http://polar-ocean-9301.herokuapp.com/assets/large-satellite.png"
+      else
+        picture = params[:picture]
+      end
+    
+
+      unless params[:post_id].nil?
+        #TODO: CHANGE URL FOR PRODUCTION
+        link = "http://polar-ocean-9301.herokuapp.com/posts/" + params[:post_id].to_s
+      end
+    
+      client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
+      token = OAuth2::AccessToken.new(client, session['fb_access_token'])
+      token.post('/me/feed', {body: {:message => message, :picture => picture, :link => link, :name => "Ultrakast"}})
+      redirect_to root_path   
+    end
   end
   
   def switch_feed
@@ -48,13 +80,19 @@ class StaticPagesController < ApplicationController
     
     update_dropdown
     
-    @filter_title = filter_title(session[:filter_title])  
-    @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
+    @filter_title = filter_title(session[:filter_title])
     
     if session[:category_filter] != "all"
       cat = Category.find(session[:selected_category])
       status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
+      session[:feed_status] = "private"
+    else
+      session[:feed_status] = "public"
     end
+    
+    @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)
+    
+    
   
     if status.nil?
       status = ReadStatus.create(:user_id => current_user, :category_id => cat, :last_read_time => Time.now)

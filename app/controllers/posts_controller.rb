@@ -21,9 +21,8 @@ class PostsController < ApplicationController
       tagged_users = @post.content.scan(/<a href="users\/(\d*)/).flatten
       tagged_users.each do |u|
         user = User.find(u)
-        #Delayed_job version of the mailer below - commenting out so heroku does not use BG process
-        #TODO: Set below line back when they switch to paid Heroku
-        #NotificationMailer.delay.tag_notification(@post, User.find(user))
+        #Delayed_job version of the mailer below - comment out to force heroku to not use BG processes
+        #NotificationMailer.delay.tag_notification(@post, user)        
         NotificationMailer.tag_notification(@post, user).deliver
         alert = user.alerts.build
         alert.content = "<a href=\"/users/#{current_user.id}\">#{current_user.name}</a> has tagged you in <a href=\"/posts/#{@post.id}\">a post</a>"
@@ -32,6 +31,7 @@ class PostsController < ApplicationController
       rekasted_users = @post.content.scan(/<a class="rekast-author" href="users\/(\d*)/).flatten
       rekasted_users.each do |u|
         user = User.find(u)
+        #NotificationMailer.delay.rekast_notification(@post, user)
         NotificationMailer.rekast_notification(@post, user).deliver
         alert = user.alerts.build
         alert.content = "<a href=\"/users/#{current_user.id}\">#{current_user.name}</a> <a href=\"/posts/#{@post.id}\">has rekasted</a> one of your posts!"

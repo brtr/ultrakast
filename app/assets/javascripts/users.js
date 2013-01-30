@@ -1,6 +1,9 @@
 //Handles category link and checkbox behavior on user's new and edit profile pages
 $(document).ready(function() {
-  
+  $('.users img').css({
+	    height: 100,
+	    width: 100
+	});
   //Checkbox behavior
   $('input[type="checkbox"]').change(function() {
     if ($(this).is(':checked')) {

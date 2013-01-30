@@ -11,6 +11,7 @@ class Devise::RegistrationsController < DeviseController
 
   # POST /resource
   def create
+    @categories ||= []
     build_resource
     if resource.save
       if resource.active_for_authentication?
@@ -61,6 +62,10 @@ class Devise::RegistrationsController < DeviseController
   
   # DELETE /resource
   def destroy
+    alerts = Alert.where("friend_id = ? OR content LIKE ?", resource.id, "<a href=\"/users/#{resource.id}%")
+    alerts.each do |alert|
+      alert.destroy
+    end
     resource.destroy
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :destroyed if is_navigational_format?

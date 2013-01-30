@@ -279,7 +279,8 @@ input, textarea, select, .uneditable-input {
 }
 
 .thumb {
-	float: left;
+	display: block;
+	margin-bottom: 10px;
 	padding: 0 10px 10px 0;
 }
 
@@ -604,7 +605,7 @@ nav {
 
 #post-submit {
 	margin: 20px 0 10px 60px;
-	background-color: #151233;
+
 }
 
 #filter-wrap, #user-filter-wrap {
@@ -692,6 +693,14 @@ a.filter-button {
 	float: left;
 	margin: 0 auto 15px auto;
 	text-align: center;
+}
+
+#filter-buttons-right {
+	width: 306px;
+}
+
+#filter-buttons-left {
+	width: 204px;
 }
 
 .user-button-wrap {
@@ -945,6 +954,10 @@ aside#right-sidebar {
 	top: -3px;	
 }
 
+.unread p {
+	margin-top: -7px;
+}
+
 .child-unread {
 	display: inline;
   background-color: #91d6e6;
@@ -1000,3 +1013,17 @@ aside#right-sidebar {
 #about-images {
   margin-top: 40px;
 }
+
+#welcome h2 {
+  color: #000;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.fb-share {
+	left: 580px;
+	top: -24px;
+	position: relative;
+	margin-bottom: -45px;
+}
+

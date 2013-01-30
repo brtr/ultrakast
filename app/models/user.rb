@@ -53,14 +53,14 @@ class User < ActiveRecord::Base
   
   def feed(status, categories, sort)
     if status == "public"
-	    posts = Post.shared(self.id)
+	    posts = Post.shared(id)
 	  elsif status == "private"
-	    ((users = []) << self.id << friend_ids).flatten!
+	    ((users = []) << id << friend_ids).flatten!
 	    posts = Post.by_users(users)
 	  elsif status == "favorites"
-	    posts = Post.favorites(self.id)
+	    posts = Post.favorites(id)
     elsif status == "user"
-      posts = Post.by_users(self.id)
+      posts = Post.by_users(self)
     elsif status == "tagged"
       posts = Post.with_tagged_user(self.name)
 	  end

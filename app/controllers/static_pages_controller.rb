@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
       @post = current_user.posts.build
       #Set default filter behavior
       session[:category_filter] = "all"
-      session[:feed_status] = "public"
+      session[:feed_status] = "private"
       session[:filter_title] = ""
       session[:selected_category] = "all"
       session[:sort_order] = "recent"

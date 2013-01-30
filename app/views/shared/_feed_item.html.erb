@@ -63,7 +63,7 @@
 			
 			<div class="fb-share">
 				<% if current_user.provider == "facebook" %>
-					<%= link_to((image_tag 'facebook.png', :height => "2.5%", :width => "2.5%"), facebook_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id)) %>
+					<%= link_to((image_tag 'facebook.png', :height => "10%", :width => "10%"), facebook_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id)) %>
       			<% end %>
 			</div>
 		</div><!-- .status-bar -->

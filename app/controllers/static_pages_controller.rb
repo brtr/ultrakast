@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-  
   def home
     if user_signed_in?
       #Setup new post form
@@ -16,6 +15,39 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+  end
+  
+
+ 
+  def share_to_facebook
+    #TODO: CHANGE API KEYS
+    api_key = "332836790164128"
+    api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
+    
+    fb_file = open(URI.encode("https://graph.facebook.com/me/permissions?access_token=" + session['fb_access_token']))
+    fb_data = JSON.parse(fb_file.read)
+    if fb_data["data"][0]["publish_stream"].present?
+      unless params[:message].nil?
+        message = params[:message]
+      end
+      if params[:picture].nil? || params[:picture] == "/images/original/missing.png"
+        #TODO: CHANGE URL FOR PRODUCTION
+        picture = "http://polar-ocean-9301.herokuapp.com/assets/large-satellite.png"
+      else
+        picture = params[:picture]
+      end
+    
+
+      unless params[:post_id].nil?
+        #TODO: CHANGE URL FOR PRODUCTION
+        link = "http://polar-ocean-9301.herokuapp.com/posts/" + params[:post_id].to_s
+      end
+    
+      client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')
+      token = OAuth2::AccessToken.new(client, session['fb_access_token'])
+      token.post('/me/feed', {body: {:message => message, :picture => picture, :link => link, :name => "Ultrakast"}})
+      redirect_to root_path   
+    end
   end
   
   def switch_feed

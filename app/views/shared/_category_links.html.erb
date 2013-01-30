@@ -9,7 +9,7 @@
 				
 				<% unless Post.unread_count(current_user, category) == 0 %>
 				
-					<span id="<%= category.id %>-unread" class="unread"><%= Post.unread_count(current_user, category) %></span>
+					<span id="<%= category.id %>-unread" class="unread"><p><%= Post.unread_count(current_user, category) %></p></span>
 				<% end %>
 		</li>
 		<ul id="children-<%= category.id %>" class="children-list">

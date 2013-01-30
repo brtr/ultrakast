@@ -954,6 +954,10 @@ aside#right-sidebar {
 	top: -3px;	
 }
 
+.unread p {
+	margin-top: -7px;
+}
+
 .child-unread {
 	display: inline;
   background-color: #91d6e6;
@@ -1014,5 +1018,12 @@ aside#right-sidebar {
   color: #000;
   margin-top: 40px;
   margin-bottom: 15px;
+}
+
+.fb-share {
+	left: 580px;
+	top: -24px;
+	position: relative;
+	margin-bottom: -45px;
 }
 

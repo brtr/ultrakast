@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.1.3'
 gem 'ancestry'
 gem 'rails_autolink'
 gem 'thin'

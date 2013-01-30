@@ -97,7 +97,7 @@ class StaticPagesController < ApplicationController
     
   
     if status.nil?
-      status = ReadStatus.create(:user_id => current_user, :category_id => cat, :last_read_time => Time.now)
+      status = ReadStatus.create(:user_id => current_user.id, :category_id => cat, :last_read_time => Time.now)
     else
       status.last_read_time = Time.now
       status.save

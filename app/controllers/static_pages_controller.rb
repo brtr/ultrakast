@@ -21,8 +21,10 @@ class StaticPagesController < ApplicationController
  
   def share_to_facebook
     #TODO: CHANGE API KEYS
-    api_key = "332836790164128"
-    api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
+    #api_key = "332836790164128"
+    api_key = "177112275755584"
+    #api_secret = "b462ebed7ba0c8c8d27e226324773e7f"
+    api_secret = "5176eff6eb23b8b26942cc5943ea33d6"
     
     fb_file = open(URI.encode("https://graph.facebook.com/me/permissions?access_token=" + session['fb_access_token']))
     fb_data = JSON.parse(fb_file.read)
@@ -32,7 +34,8 @@ class StaticPagesController < ApplicationController
       end
       if params[:picture].nil? || params[:picture] == "/images/original/missing.png"
         #TODO: CHANGE URL FOR PRODUCTION
-        picture = "http://polar-ocean-9301.herokuapp.com/assets/large-satellite.png"
+        #picture = "http://polar-ocean-9301.herokuapp.com/assets/large-satellite.png"
+        picture = "http://www.ultrakast.com/assets/large-satellite.png"
       else
         picture = params[:picture]
       end
@@ -40,7 +43,8 @@ class StaticPagesController < ApplicationController
 
       unless params[:post_id].nil?
         #TODO: CHANGE URL FOR PRODUCTION
-        link = "http://polar-ocean-9301.herokuapp.com/posts/" + params[:post_id].to_s
+        #link = "http://polar-ocean-9301.herokuapp.com/posts/" + params[:post_id].to_s
+        link = "http://www.ultrakast.com/posts/" + params[:post_id].to_s
       end
     
       client = OAuth2::Client.new(api_key, api_secret, :site => 'https://graph.facebook.com')

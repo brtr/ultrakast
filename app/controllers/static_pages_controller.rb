@@ -89,7 +89,6 @@ class StaticPagesController < ApplicationController
     if session[:category_filter] != "all"
       cat = Category.find(session[:selected_category])
       status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
-      session[:feed_status] = "private"
     end
     
     @feed_items = User.find(session[:user]).feed(session[:feed_status], session[:category_filter], session[:sort_order]).paginate(page: session[:page], per_page: 10)

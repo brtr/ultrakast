@@ -31,6 +31,7 @@ class StaticPagesController < ApplicationController
     if fb_data["data"][0]["publish_stream"].present?
       unless params[:message].nil?
         message = params[:message]
+        message = ActionView::Base.full_sanitizer.sanitize(message)
       end
       if params[:picture].nil? || params[:picture] == "/images/original/missing.png"
         #TODO: CHANGE URL FOR PRODUCTION

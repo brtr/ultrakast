@@ -168,13 +168,29 @@ $(document).ready(function() {
     e.preventDefault();
     //Format text to be placed into post box
     result = '@' + $(this).text();
-    //Add the tagged user to the arrays
-    taggedNames.push(result);
-    taggedIds.push($(this).attr('id'));
-    //Replace the text in the post box with the selected user's full name
-    replaceResult(result);
-    //Reset the results box
-    $("#user-search-results").html("");
+    
+    //Check to make sure this user hasn't already been tagged
+    var found = false;
+    for (i = 0; i <= taggedIds.length; i++) {
+      if (taggedIds[i] == $(this).attr('id'))
+      {
+        found = true;
+      }
+    }
+    if (found == false)
+    {
+      //Add the tagged user to the arrays
+      taggedNames.push(result);
+      taggedIds.push($(this).attr('id'));
+      //Replace the text in the post box with the selected user's full name
+      replaceResult(result);
+      //Reset the results box
+      $("#user-search-results").html("");
+    } else {
+      //Reset the results box
+      $("#user-search-results").html("<strong>Sorry, that user has already been tagged.</strong>");
+    }
+    
     //Reset the live search for the next tag
     $('#post-box').unbind();
     myLiveSearch();
@@ -184,7 +200,10 @@ $(document).ready(function() {
   $('.post-submit-button').on("click", function() {
     value = $('#post-box').val();
     for (i = 0; i <= taggedNames.length - 1; i++) {
-      value = value.replace(taggedNames[i], '<a href="users/' + taggedIds[i] + '">' + taggedNames[i] + '</a>');
+      if (taggedNames[i].substring(0,7) != "<a href") {
+        value = value.replace(taggedNames[i], '<a href="users/' + taggedIds[i] + '">' + taggedNames[i] + '</a>');
+        taggedNames[i] = value;
+      }
     }
     $('#post-box').val(value);
   });

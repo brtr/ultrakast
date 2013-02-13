@@ -60,11 +60,13 @@
 					<%= link_to "Subscribe", edit_user_registration_path(@user) %>
 				<% end %>
         	</span><!-- .rekast-header -->			
-			<div class="fb-share">
-				<% if current_user.provider == "facebook" %>
+			
+			<% if current_user.provider == "facebook" %>
+				<div class="fb-share">
 					<%= link_to((image_tag 'facebook.png', :height => "4%", :width => "4%"), facebook_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id)) %>
-      			<% end %>
-			</div>
+				</div>
+      		<% end %>
+
 		</div><!-- .status-bar -->
 		
     	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">

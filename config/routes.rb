@@ -14,6 +14,7 @@ Ultrakast::Application.routes.draw do
   resources :friendships, only: [:create, :destroy]
   resources :likes,       only: [:create, :destroy], :controller => "post_actions", :type => "Like"
   resources :favorites,   only: [:create, :destroy], :controller => "post_actions", :type => "Favorite"
+  resources :alerts,      only: [:destroy]
   
   match '/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'
   match '/users/static_pages/switchfeed', to: 'static_pages#switch_feed', :as => 'switchfeed'

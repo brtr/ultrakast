@@ -53,14 +53,13 @@
 					<% end %>
 				</a>
 			</span><!-- .comments-header -->
-      
-			<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
-        		
-        		<span class="rekast-header">
-              <a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
-        		</span><!-- .rekast-header -->
-			<% end %>
-			
+      		<span class="rekast-header">
+				<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
+        			<a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
+				<% else %>
+					<%= link_to "Subscribe", edit_user_registration_path(@user) %>
+				<% end %>
+        	</span><!-- .rekast-header -->			
 			<div class="fb-share">
 				<% if current_user.provider == "facebook" %>
 					<%= link_to((image_tag 'facebook.png', :height => "4%", :width => "4%"), facebook_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id)) %>

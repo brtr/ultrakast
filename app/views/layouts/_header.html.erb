@@ -22,7 +22,11 @@
                         <div id="alerts">
                             <ul>
                                 <% current_user.alerts.each do |a| %>
-                                    <li><%= a.content.html_safe %> - <%= link_to "clear", a, method: :delete %></span></li>
+                                    <li><%= a.content.html_safe %> 
+										<% if a.friend_id.nil? %>
+											- <%= link_to "clear", a, method: :delete %>
+										<% end %>
+									</li>
                                 <% end %>
                             </ul>
                             <%= link_to "clear all alerts", :controller => "/alerts", :action => "delete_all" %>

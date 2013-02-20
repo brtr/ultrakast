@@ -15,6 +15,6 @@ class NotificationMailer < ActionMailer::Base
   def friend_notification(friend, user)
     @friend = friend
     @user = user
-    mail(:to => user.email, :subject => user.name + ' has sent you a friend request.', :from => "system@ultrakast.com", :content_type => "text/html")
+    mail(:to => friend.email, :subject => user.name + ' has sent you a friend request.', :from => "system@ultrakast.com", :content_type => "text/html")
   end
 end

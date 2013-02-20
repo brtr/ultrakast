@@ -6,7 +6,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
 
   #TODO: CHANGE TO GOOD EMAIL ADDRESS
-  config.mailer_sender = "jim@41northstudios.com"
+  config.mailer_sender = "system@ultrakast.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

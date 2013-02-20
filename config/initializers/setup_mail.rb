@@ -1,6 +1,6 @@
 ActionMailer::Base.smtp_settings = {
 #TODO: CONFIGURE THESE TO A PRODUCTION MAILSERVER
-  :address				      => "smtp.secureserver.net",
+  :address				      => "smtpout.secureserver.net",
   :port					        => 25,
   :domain				        => "ultrakast.com",
   :user_name			      => "system@4ultrakast.com",

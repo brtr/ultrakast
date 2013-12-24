@@ -1,7 +1,0 @@
-To-do:
-
-1. Admin functionality
-
-2. Confirm new users via email
-
-3. Delete alerts from USER when USER cancels a/c

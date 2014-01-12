@@ -30,7 +30,11 @@ module UsersHelper
   	# Otherwise, use the user's uploaded image *or the default if they have not uploaded an image)
     else
       if user.avatar_file_name.nil?
-        image_url = "default_avatar_#{options[:size]}.gif"
+        if options[:size] == 'medium'
+          image_url = "default_avatar_normal.gif"
+        else
+          image_url = "default_avatar_#{options[:size]}.gif"
+        end
       else
         image_url = user.avatar(options[:size])
       end    

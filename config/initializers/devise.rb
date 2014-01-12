@@ -212,7 +212,9 @@ Devise.setup do |config|
   
   #TODO: CHANGE THIS TO VALID FACEBOOK DEVELOPER CREDENTIALS
   #config.omniauth :facebook, "332836790164128", "b462ebed7ba0c8c8d27e226324773e7f", :scope => 'publish_stream,email,offline_access'
-  config.omniauth :facebook, "619590914743469", "8d19291fc404e99a9e2cda549d315e72", :scope => 'publish_stream,email,offline_access,manage_pages'
+  #config.omniauth :facebook, "619590914743469", "8d19291fc404e99a9e2cda549d315e72", :scope => 'publish_stream,email,offline_access,manage_pages'
+  config.omniauth :facebook, "510492979067102", "3b2d98b05805d79ac1ea8c2a18d76a74", :scope => 'publish_stream,email,offline_access'
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

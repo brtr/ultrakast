@@ -1,5 +1,8 @@
+<% whitelist = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+
 <div id="category-checklist">
-	<% Category.roots.order('id ASC').each do |category| %>
+	<% Category.roots.order('id ASC').each do |category| 
+	   next if !whitelist.include? category.name.downcase %>
 		<ul>
 			<li class="parent <%= category.name %>">
 				<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
@@ -15,5 +18,5 @@
 				<% end %>
 			</ul>
 		</ul>
-	<% end %>		
+	<% end %>	
 </div>

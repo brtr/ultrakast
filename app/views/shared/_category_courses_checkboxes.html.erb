@@ -6,7 +6,7 @@
 		<ul>
 			<li class="parent <%= category.name %>">
 				<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
-				<%= check_box_tag "user[category_ids][]", category.id, @user.categories.include?(category), :readonly => true %>
+				<%= check_box_tag "user[category_ids][]", category.id, @user.categories.include?(category) %>
 				<a href="#" class="category-select-link" data-category-id="<%= category.id %>"><%= category.name %></a>
 			</li>
 			<ul id="children-<%= category.id %>" class="children-list">

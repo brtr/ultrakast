@@ -18,6 +18,10 @@
             <a href="<%= user_path(@user) %>">
               <%= avatar_for(@user, :class => "show-avatar", :size => "normal") %>
             </a>
+            
+            <% if @user.uid and !@user.uid.empty? %>
+               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank">Facebook Profile</a> 
+            <% end %>
             <p>
               <% if @user == current_user %>
                 <%= link_to "Edit profile", edit_user_registration_path(@user) %>

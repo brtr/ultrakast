@@ -4,7 +4,7 @@
 			<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
 			<div class="headline">
                 <span class="user">
-                    <%= link_to feed_item.user.name, feed_item.user %>
+                    <b><%= link_to feed_item.user.name, feed_item.user %></b>
                 </span><!-- .user -->
                 <span class="timestamp">
                     <% if feed_item.rekast %>
@@ -24,7 +24,7 @@
 		</div><!-- .post-header -->
 	
 		<span class="content cf">
-			<%= auto_link(feed_item.content) %><br /><br /><br />
+			<%= auto_link(feed_item.content) %><br />
       		<% unless feed_item.image_file_name.nil? %>
         		<%= image_tag feed_item.image.url %>
       		<% end %>

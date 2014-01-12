@@ -1,7 +1,7 @@
 <%= form_for(@post, :remote => true) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
     <div class="field">
-        <%= f.text_area :content, :placeholder => "What do you want to broadkast?", :id => "post-box", :rows => 1 %>
+        <%= f.text_area :content, :placeholder => "What do you want to broadkast?", :id => "post-box", :rows => 2 %>
         <div id="user-search-results"></div>
         <div id="category-dropdown">
         	<%= grouped_collection_select(:post, :category_id, current_user.categories.roots.order('id ASC'), :"child_categories_for(#{current_user.id})", :name, :id, :name, { :prompt => "Please choose a category..." }) %>

@@ -9,7 +9,7 @@ $(document).ready(function() {
     if ($(this).is(':checked')) {
       if ($(this).parent().hasClass('parent'))
       {
-        $(this).parent().siblings('ul').children().children('input:checkbox').attr('checked', true);
+        // $(this).parent().siblings('ul').children().children('input:checkbox').attr('checked', true);
         $('.contract-link').attr('class', 'expand-link').text('+');
         $('.children-list').hide();
         category_id = "ul#children-" + $(this).siblings('a.category-select-link').data('category-id');

@@ -24,8 +24,19 @@
 	  		<%= f.label :avatar, "Add a profile picture" %>
 	  		<%= f.file_field :avatar %>
         
+            <div class="row">
+              <div class="span3">	
+			       <label>Select all classes for this semester</label>
+                   <%= render 'shared/category_courses_checkboxes' %>
+			  </div>
+			  <div class="span3">	
+			       <label>Select all of your interests</label>
+                   <%= render 'shared/category_checkboxes' %>
+			  </div>
+			</div>
+			<!-- 
         <label>Please select all of your interests</label>
-	  		<%= render 'shared/category_checkboxes' %>
+	  		<%= render 'shared/category_checkboxes' %>  -->
 	  		<%= f.submit yield(:submit_title), class: "btn btn-large btn-primary" %>
 		<% end %>
 		<%= render "devise/shared/links" %>

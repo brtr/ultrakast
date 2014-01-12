@@ -16,6 +16,7 @@ gem 'aws-sdk'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem "remotipart"
+gem 'roo'
 
 #Windows development only
 #gem 'eventmachine', '1.0.0.beta.4.1'

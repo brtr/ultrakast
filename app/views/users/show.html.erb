@@ -20,7 +20,7 @@
             </a>
             
             <% if @user.uid and !@user.uid.empty? %>
-               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank" class="btn btn-primary"><%= image_tag 'facebook.png' %>Facebook Profile</a> 
+               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank"><%= image_tag 'facebook_profile.jpg' %></a> 
             <% end %>
             <p>
               <% if @user == current_user %>

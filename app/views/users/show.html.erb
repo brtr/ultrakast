@@ -20,7 +20,7 @@
             </a>
             
             <% if @user.uid and !@user.uid.empty? %>
-               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank"><%= image_tag 'facebook_profile.jpg' %></a> 
+               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank"><%= image_tag 'facebook_profile.jpg', :size => '200x100' %></a> 
             <% end %>
             <p>
               <% if @user == current_user %>

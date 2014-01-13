@@ -18,7 +18,7 @@
 			<% end %>
 		</ul>
 	<% end %>
-	
+	<li class="divider"></li>
 	<% @user.categories.roots.order('id ASC').each do |category| 
 	   next unless interests.include? category.name.downcase %>
 		<li class="li-<%= category.id %> root-li">

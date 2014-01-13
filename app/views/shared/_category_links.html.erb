@@ -1,8 +1,35 @@
+<% interests = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+
 <ul>
 	<li class="home-link-li">
 		<%= link_to "Home", root_path, :class => "selected-category home-link" %>
 	</li>
-	<% current_user.categories.roots.order('id ASC').each do |category| %>
+	<% current_user.categories.roots.order('id ASC').each do |category| 
+	   next if interests.include? category.name.downcase %>
+		<li class="li-<%= category.id %> root-li">
+			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
+			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :feed_status => "public"), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+				
+				<% unless Post.unread_count(current_user, category) == 0 %>
+				
+					<span id="<%= category.id %>-unread" class="unread"><p><%= Post.unread_count(current_user, category) %></p></span>
+				<% end %>
+		</li>
+		<ul id="children-<%= category.id %>" class="children-list">
+			<% category.child_categories_for(current_user).each do |child| %>
+				<li>
+					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :feed_status => "public"), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+						
+						<% unless Post.unread_count(current_user, child) == 0 %>
+							<span id="<%= child.id %>-unread" class="child-unread"><%= Post.unread_count(current_user, child) %></span>
+						<% end %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	
+	<% current_user.categories.roots.order('id ASC').each do |category| 
+	   next unless interests.include? category.name.downcase %>
 		<li class="li-<%= category.id %> root-li">
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :feed_status => "public"), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>

@@ -1,8 +1,26 @@
-﻿<ul>
+﻿<% interests = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+
+<ul>
 	<li class="home-link-li">
     	<%= link_to "Home", switchfeed_path(:category_filter => "all", :filter_title => "show_page", :selected_category => "all"), :remote => true, :class => "selected-category home-link" %>
 	</li>
-	<% @user.categories.roots.order('id DESC').each do |category| %>
+	<% @user.categories.roots.order('id DESC').each do |category| 
+	   next if interests.include? category.name.downcase %>
+		<li class="li-<%= category.id %> root-li">
+			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
+			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+		</li>
+		<ul id="children-<%= category.id %>" class="children-list">
+			<% category.child_categories_for(@user).each do |child| %>
+				<li>
+					<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	
+	<% @user.categories.roots.order('id DESC').each do |category| 
+	   next unless interests.include? category.name.downcase %>
 		<li class="li-<%= category.id %> root-li">
 			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
 			<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>

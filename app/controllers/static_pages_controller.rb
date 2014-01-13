@@ -74,6 +74,11 @@ class StaticPagesController < ApplicationController
       session[:selected_category] = params[:selected_category]
     end
   
+    #Set parent category
+    unless params[:parent_category].nil?
+      session[:parent_category] = params[:parent_category]
+    end
+      
     #Set page
     if params[:page].nil?
       session[:page] = 1

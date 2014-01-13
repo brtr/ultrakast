@@ -1,3 +1,5 @@
+<% whitelist = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+
 <% if session[:feed_status] == 'public' %>
   <% get_everyone %>
 <% elsif session[:feed_status] == 'private' %>
@@ -6,6 +8,12 @@
   <% get_friends %>  
 <% end %>
 
+<% interest = false 
+   if session[:parent_category] and whitelist.include? session[:parent_category]
+   	  interest = true 
+   end   
+%>
+
 <div id="friend-avatars" class="cf">
 	<% unless @friends.nil? %>
 		<% unless session[:category_filter] == "all" %>
@@ -13,6 +21,29 @@
 		<% else %>
 			<strong>Your friends:</strong><br /><br />
 		<% end %>
+		
+		<% if session[:feed_status] == 'public' %>
+           <% if interest %>
+             <strong>Everyone at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+           <% else %>
+             <% if session[:selected_category] == session[:parent_category] %>
+                <strong>All students at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
+             <% else %>
+                <strong>All students at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
+             <% end %>   
+           <% end %>
+        <% else %>
+           <% if interest %>
+             <strong>Your friends at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+           <% else %>
+             <% if session[:selected_category] == session[:parent_category] %>
+                <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
+             <% else %>
+                <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
+             <% end %>   
+           <% end %>                       
+        <% end %>
+
 		<% @friends.each do |f| %>
 			<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
 		<% end %>

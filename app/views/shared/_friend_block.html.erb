@@ -44,11 +44,12 @@
              <% end %>   
            <% end %>                       
         <% end %>
+      <% else %>
+	    <strong>Your friends:</strong><br /><br />  
       <% end %> 
-		<% @friends.each do |f| %>
-			<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
-		<% end %>
-	<% else %>
-	    <strong>Your friends:</strong><br /><br />
+	  <% @friends.each do |f| %>
+		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
+	  <% end %>
+
 	<% end %>
 </div>

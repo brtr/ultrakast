@@ -51,10 +51,16 @@
 		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
 	  <% end %>
     <% else %>
-        <% if session[:selected_category_name] == session[:parent_category] %>
+      
+      <% if interest %>
+          <strong>Your friends at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+      <% else %>    
+          <% if session[:selected_category_name] == session[:parent_category] %>
               <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
-        <% else %>
+          <% else %>
               <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
-        <% end %> 
+          <% end %>
+      <% end %>
+         
 	<% end %>
 </div>

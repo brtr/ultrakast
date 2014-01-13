@@ -9,7 +9,7 @@
 <% end %>
 
 <% interest = false 
-   if session[:parent_category] and whitelist.include? session[:parent_category]
+   if session[:parent_category] and whitelist.include? session[:parent_category].downcase
    	  interest = true 
    end   
 %>

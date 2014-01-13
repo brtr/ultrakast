@@ -84,11 +84,18 @@ class User < ActiveRecord::Base
     unless user
       puts "First time user #{auth.info.email}"
       p auth
+      email = auth.info.email
+      
+      if !email or email.empty?
+        puts "Email returning empty -- facebook bug for 5% of users without a valid primary email..."
+        email = ""
+      end
+      
       user = User.create(first_name: auth.extra.raw_info.first_name,
                          last_name: auth.extra.raw_info.last_name, 
                          provider: auth.provider,
                          uid: auth.uid,
-                         email: auth.info.email,
+                         email: email,
                          password: Devise.friendly_token[0,20])
     end
     p user

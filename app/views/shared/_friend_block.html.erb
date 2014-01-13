@@ -22,6 +22,7 @@
 			<strong>Your friends:</strong><br /><br />
 		<% end %>
 		
+     <% unless session[:category_filter] == "all" %>
 		<% if session[:feed_status] == 'public' %>
            <% if interest %>
              <strong>Everyone at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
@@ -43,7 +44,7 @@
              <% end %>   
            <% end %>                       
         <% end %>
-
+      <% end %> 
 		<% @friends.each do |f| %>
 			<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
 		<% end %>

@@ -92,6 +92,7 @@ class StaticPagesController < ApplicationController
     
     if session[:category_filter] != "all"
       cat = Category.find(session[:selected_category])
+      session[:selected_category_name] = cat.name
       status = ReadStatus.where("user_id = ? AND category_id = ?", current_user.id, cat.id).first
     end
     

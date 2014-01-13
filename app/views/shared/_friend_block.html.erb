@@ -27,7 +27,7 @@
            <% if interest %>
              <strong>Everyone at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
            <% else %>
-             <% if session[:selected_category] == session[:parent_category] %>
+             <% if session[:selected_category_name] == session[:parent_category] %>
                 <strong>All students at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
              <% else %>
                 <strong>All students at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
@@ -37,7 +37,7 @@
            <% if interest %>
              <strong>Your friends at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
            <% else %>
-             <% if session[:selected_category] == session[:parent_category] %>
+             <% if session[:selected_category_name] == session[:parent_category] %>
                 <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
              <% else %>
                 <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />

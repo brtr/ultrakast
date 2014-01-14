@@ -1,13 +1,16 @@
 <% provide(:title, "Update your profile") %>
 <% provide(:submit_title, "Save changes") %>
+
+<% if flash[:error] %>
+   <div class="alert alert-error">
+      <%= flash[:error] %>
+   </div>
+<% end %>
+		
 <h1>Update your profile</h1>
 <div class="row">
 	<div class="span6 offset3">
-		<% if flash[:error] %>
-		   <div class="alert alert-error">
-              <%= flash[:error] %>
-           </div>
-		<% end %>
+
 		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 			<%= devise_error_messages! %>
 	  		

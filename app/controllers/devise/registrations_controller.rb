@@ -42,8 +42,11 @@ class Devise::RegistrationsController < DeviseController
     #Added to allow deletion of all categories from user settings page
     params[:user][:category_ids] ||= []
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-
-    if resource.update_with_password(resource_params)
+      
+    if params[:user][:category_ids] == []
+      set_flash_message :notice, :"Need to select atleast one from below interests/courses to continue!!"
+      redirect_to root_path   
+    elsif resource.update_with_password(resource_params)
       if is_navigational_format?
         if resource.respond_to?(:pending_reconfirmation?) && resource.pending_reconfirmation?
           flash_key = :update_needs_confirmation

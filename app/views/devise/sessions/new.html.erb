@@ -3,8 +3,9 @@
 
 <div class="row">	 
 	<div class="span6 offset3">
-		<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-		
+		<!-- <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> -->
+	    <a href="<%= user_omniauth_authorize_path(:facebook) %>"><%= image_tag 'facebook-login-button.png', :size => '200x60' %></a>
+<!-- 
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<div>
 				<%= f.label :email %><br />
@@ -31,6 +32,7 @@
 		<p>New user? <%= link_to "Sign up now!", new_user_registration_path %></p>
 
 		<%= render "devise/shared/links" %>
+	-->
 	</div>
 </div>
 

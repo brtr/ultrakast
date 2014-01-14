@@ -21,7 +21,7 @@
     <% end %>
 <% else %>
     <% if session[:feed_status] == 'public' %>
-      <% get_all %>
+      <% get_everyone %>
     <% else %>
       <% get_friends %>
     <% end %>

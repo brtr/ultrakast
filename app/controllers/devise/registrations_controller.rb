@@ -45,7 +45,7 @@ class Devise::RegistrationsController < DeviseController
       
     if params[:user][:category_ids] == []
       set_flash_message :notice, :"Need to select atleast one from below interests/courses to continue!!"
-      redirect_to root_path   
+      redirect_to edit_user_registration_path(@user)
     elsif resource.update_with_password(resource_params)
       if is_navigational_format?
         if resource.respond_to?(:pending_reconfirmation?) && resource.pending_reconfirmation?

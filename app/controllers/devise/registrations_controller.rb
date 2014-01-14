@@ -79,7 +79,9 @@ class Devise::RegistrationsController < DeviseController
   # removing all OAuth session data.
   def cancel
     expire_session_data_after_sign_in!
-    redirect_to new_registration_path(resource_name)
+    #redirect_to new_registration_path(resource_name)
+    set_flash_message :notice, :"Need facebook access to login!!"
+    redirect_to root_path
   end
 
   protected

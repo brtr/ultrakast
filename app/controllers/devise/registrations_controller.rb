@@ -44,7 +44,7 @@ class Devise::RegistrationsController < DeviseController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
       
     if params[:user][:category_ids] == []
-      flash[:error] = "Need to select atleast one from below interests/courses to continue!!"
+      flash[:error] = "ERROR: Need to select atleast one from below interests/courses to continue!!"
       ##redirect_to edit_user_registration_path(@user)
       @categories = @user.categories.all
       render :edit

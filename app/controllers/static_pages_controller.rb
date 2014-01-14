@@ -21,8 +21,8 @@ class StaticPagesController < ApplicationController
  
   def share_to_facebook
     #TODO: CHANGE API KEYS
-    api_key = "619590914743469"
-    api_secret = "8d19291fc404e99a9e2cda549d315e72"
+    api_key    = "510492979067102"
+    api_secret = "3b2d98b05805d79ac1ea8c2a18d76a74"
     
     fb_file = open(URI.encode("https://graph.facebook.com/me/permissions?access_token=" + session['fb_access_token']))
     fb_data = JSON.parse(fb_file.read)

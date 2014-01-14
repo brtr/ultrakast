@@ -1,12 +1,32 @@
 <% whitelist = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
 
-<% if session[:feed_status] == 'public' %>
-  <% get_everyone %>
-<% elsif session[:feed_status] == 'private' %>
-  <% get_friends %>
+<% if session[:feed_status] == 'public'%>
+   <% unless session[:category_filter] == "all" %>
+     <% get_everyone_in_category %>
+   <% else %>
+     <% get_everyone %>  
+   <% end %>
 <% else %>
-  <% get_friends %>  
+   <% get_friends %>
 <% end %>
+
+<!--  
+<% unless session[:category_filter] == "all" %>
+    <% if session[:feed_status] == 'public' %>
+      <% get_everyone_in_category %>
+    <% elsif session[:feed_status] == 'private' %>
+      <% get_friends %>
+    <% else %>
+      <% get_friends %>  
+    <% end %>
+<% else %>
+    <% if session[:feed_status] == 'public' %>
+      <% get_all %>
+    <% else %>
+      <% get_friends %>
+    <% end %>
+<% end %>
+-->
 
 <% interest = false 
    if session[:parent_category] and whitelist.include? session[:parent_category].downcase
@@ -45,7 +65,11 @@
            <% end %>                       
         <% end %>
       <% else %>
-	    <strong>Your friends:</strong><br /><br />  
+  		<% if session[:feed_status] == 'public' %>
+  		  <strong>Everyone at Michigan who's on Ultrakast:</strong><br /><br />
+        <% else %>
+          <strong>My Michigan friends who are on Ultrakast:</strong><br /><br />
+        <% end %>
       <% end %> 
 	  <% @friends.each do |f| %>
 		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>

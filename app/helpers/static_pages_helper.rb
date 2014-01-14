@@ -26,7 +26,7 @@ module StaticPagesHelper
     end
   end
   
-  def get_everyone
+  def get_everyone_in_category
     if !current_user
       return
     elsif session[:selected_category] == "all"
@@ -37,5 +37,10 @@ module StaticPagesHelper
     end
   end
   
+  def get_everyone
+    if current_user
+      @friends = User.where("users.id != (?)", current_user)
+    end  
+  end
   
 end

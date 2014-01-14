@@ -2,9 +2,13 @@
 <% provide(:submit_title, "Save changes") %>
 
 <% if flash[:error] %>
-   <div class="alert alert-error">
-      <%= flash[:error] %>
-   </div>
+  <div class="row">
+	<div class="span6 offset3">
+      <div class="alert alert-error">
+        <%= flash[:error] %>
+      </div>
+    </div>
+  </div>    
 <% end %>
 		
 <h1>Update your profile</h1>

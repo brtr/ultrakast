@@ -45,7 +45,9 @@ class Devise::RegistrationsController < DeviseController
       
     if params[:user][:category_ids] == []
       flash[:error] = "Need to select atleast one from below interests/courses to continue!!"
-      render :edit ###redirect_to edit_user_registration_path(@user)
+      ##redirect_to edit_user_registration_path(@user)
+      @categories = @user.categories.all
+      render :edit
     elsif resource.update_with_password(resource_params)
       if is_navigational_format?
         if resource.respond_to?(:pending_reconfirmation?) && resource.pending_reconfirmation?

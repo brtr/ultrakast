@@ -44,7 +44,7 @@ class Devise::RegistrationsController < DeviseController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
       
     if params[:user][:category_ids] == []
-      set_flash_message :notice, :"Need to select atleast one from below interests/courses to continue!!"
+      flash[:error] = "Need to select atleast one from below interests/courses to continue!!"
       redirect_to edit_user_registration_path(@user)
     elsif resource.update_with_password(resource_params)
       if is_navigational_format?

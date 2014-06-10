@@ -1,0 +1,15 @@
+<% provide(:title, "Add Friends") %>
+
+<h1>People You May Know</h1>
+
+
+
+<ul class="users">
+	<% @users.each do |user| %>
+    	<li>
+	  		<%= avatar_for(user) %>
+	  		<%= link_to user.name, user %><br />
+	  		<%= friendship_link(user) %>
+		</li>
+  	<% end %>
+</ul>

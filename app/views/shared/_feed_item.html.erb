@@ -1,0 +1,121 @@
+<li id="post-<%= feed_item.id %>">
+	<div class="post-container div-<%= feed_item.category.parent.id %>">
+		<div class="post-header">
+			<%= link_to avatar_for(feed_item.user, size: "square"), feed_item.user %>
+			<div class="headline">
+                <span class="user">
+                    <b><%= link_to feed_item.user.name, feed_item.user %></b>
+                </span><!-- .user -->
+                <span class="timestamp">
+                    <% if feed_item.rekast %>
+                        rekasted 
+                    <% else %>
+                        broadkasted 
+                    <% end %>
+                    <%= time_ago_in_words(feed_item.created_at) %> ago in 
+                    <span class="category">
+                        <%= link_to display_category(feed_item.category), switchfeed_path(:category_filter => feed_item.category.id, :filter_title => feed_item.category.name, :selected_category => feed_item.category.id), :remote => true, :class => "post-category-link", 'data-parent' => "#{feed_item.category.parent.id}", 'data-category' => "#{feed_item.category.id}" %>
+                        <% if current_user?(feed_item.user) %>
+                            - <span class="delete"><%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" } %></span>
+                        <% end %>
+                    </span><!-- .category -->
+                </span><!-- .timestamp -->
+            </div><!-- .headline -->
+		</div><!-- .post-header -->
+	
+		<span class="content cf">
+			<%= auto_link(feed_item.content) %><br />
+      		<% unless feed_item.image_file_name.nil? %>
+        		<%= image_tag feed_item.image.url %>
+      		<% end %>
+		</span><!-- .content -->
+	
+		<div class="status-bar">
+      		<span id="likes-header-<%= feed_item.id %>" class="likes-header">
+				<%= like_link(feed_item) %>
+        		<% if feed_item.likes_count? %>
+          			+ <a href="#" class="likes-link" data-post-id="<%= feed_item.id %>"><%= feed_item.likes_count %></a>
+        		<% end %>
+      </span><!-- #likes-header-ID -->
+			
+			
+			<span id="favorite-header-<%= feed_item.id %>" class="favorite-header">
+				<%= favorite_link(current_user, feed_item) %>
+      </span><!-- #favorite-ID -->
+			
+			
+			<span class="comments-header">
+				<a href="#" id="comments-link-<%= feed_item.id %>" class="comments-link" data-post-id="<%= feed_item.id %>">
+					<% if feed_item.comments_count? %>
+						<%= pluralize(feed_item.comments_count, "comment") %>
+					<% else %>
+						Comment
+					<% end %>
+				</a>
+			</span><!-- .comments-header -->
+      		<span class="rekast-header">
+				<% if (feed_item.user_id != current_user.id) && (current_user.categories.ids.include?(feed_item.category_id)) %>
+        			<a href="#" class="rekast-link" data-post-id="<%= feed_item.id %>">Rekast</a>
+				<% elsif (feed_item.user_id != current_user.id) %>
+					<%= link_to "Subscribe", edit_user_registration_path(@user) %>
+				<% end %>
+        	</span><!-- .rekast-header -->			
+			
+			<% if current_user.provider == "facebook" %>
+				<div class="fb-share">
+					<%= link_to((image_tag 'facebook.png', :height => "4%", :width => "4%"), facebook_path(:message => feed_item.content, :picture => feed_item.image.url, :post_id => feed_item.id)) %>
+				</div>
+      <% end %>
+
+		</div><!-- .status-bar -->
+		
+    	<div id="rekast-for-<%= feed_item.id %>" class="rekast-form">
+			<%= form_for(@post, :remote => true) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				
+				<% if !feed_item.rekast %>
+					<%= f.hidden_field :content, :value => feed_item.content %>
+					<%= f.hidden_field :category_id, :value => feed_item.category_id %>
+					<%= f.hidden_field :original_post, :value => feed_item.id %>
+					<%= hidden_field_tag 'original_author', feed_item.user_id %>
+				<% else %>
+					<% orig_post = Post.find(feed_item.original_post) %>
+					<%= f.hidden_field :content, :value => orig_post.content %>
+					<%= f.hidden_field :category_id, :value => orig_post.category_id %>
+					<%= f.hidden_field :original_post, :value => orig_post.id %>
+					<%= hidden_field_tag 'original_author', feed_item.user_id %>
+				<% end %>
+				<% if @reload %>
+					<%= hidden_field_tag 'reload', true %>
+				<% end %>
+				<%= text_field_tag 'rekast_content', nil, :placeholder => "Enter a comment for this rekast" %>
+				
+				<strong>Privacy option:</strong><br /><br />
+				<%= select(:post, :shared, options_for_select([["Public", true], ["Friends Only", false]])) %>
+				
+				<%= f.submit "Rekast", class: "btn btn-large btn-primary post-submit-button" %>
+			<% end %>
+		</div><!-- #rekast-for-ID -->
+    
+		<div id="likes-for-<%= feed_item.id %>" class="likes">
+			<% if feed_item.likes_count? %>
+				<strong>This post is liked by:</strong><br />
+				<ul id="likes-list-<%= feed_item.id %>">
+					<%= render :partial => 'shared/like', collection: feed_item.likes %>
+				</ul><!-- #likes-list-ID -->
+			<% end %>
+		</div><!-- #likes-for-ID -->
+		
+    	<div id="comments-for-<%= feed_item.id %>" class="comments">
+      		<ul id="comment-list-<%= feed_item.id %>">
+        		<% if feed_item.comments_count? %>
+          			<%= render :partial => 'shared/comment', collection: feed_item.comments, :locals => { :feed_item => feed_item } %>
+				<% end %>
+			</ul><!-- #comments-list-ID -->
+			<%= form_for [feed_item, feed_item.comments.build], :remote => true do |f| %>
+				<%= f.text_field :content %>
+				<%= f.submit %>
+			<% end %>
+		</div><!-- #comments-for-ID -->
+	</div><!-- .post-container -->
+</li><!-- #post-ID -->

@@ -1,0 +1,12 @@
+<br />
+<strong>To tag a friend, start to type their first and last name and then select them from the list below:</strong>
+<br /><br />
+<% if @users.any? %>
+	<% @users.each do |u| %>
+		<a href="#" id="<%= u.id %>" class="live-search-result"><%= u.name %></a><br />
+	<% end %>
+<% else %>
+	<p>No results found</p>
+<% end %>
+<br />
+<br />

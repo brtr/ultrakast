@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= full_title(yield(:title)) %></title>
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application", "http://scripts.embed.ly/jquery.embedly.min.js" %>
+  	<%= csrf_meta_tags %>
+  	<%= render 'layouts/shim' %>
+</head>
+<body>
+	<%= render 'layouts/header' %>
+  	<div class="container cf">
+
+		<%= yield %>
+		<%#<%= debug(params) if Rails.env.development? %>
+		<%#<%= query_review_output if Rails.env.development? %>
+  	</div><!-- END .container -->
+  <%= render 'layouts/footer' %>
+</body>
+</html>

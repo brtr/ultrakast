@@ -1,0 +1,27 @@
+<h1>Listing tutors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tutors.each do |tutor| %>
+  <tr>
+    <td><%= tutor.name %></td>
+    <td><%= tutor.email %></td>
+    <td><%= tutor.phone %></td>
+    <td><%= link_to 'Show', tutor %></td>
+    <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
+    <td><%= link_to 'Destroy', tutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tutor', new_tutor_path %>

@@ -1030,3 +1030,8 @@ aside#right-sidebar {
 /* Calendar */
 
 .calendar td { height: 100px; width: 14.28%; }
+
+input:focus, textarea:focus
+{
+background-color:#FFFF66;
+}

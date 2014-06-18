@@ -1,4 +1,5 @@
 Ultrakast::Application.routes.draw do
+<<<<<<< HEAD
   resources :events
 
 
@@ -9,6 +10,8 @@ Ultrakast::Application.routes.draw do
     end
   end
 
+=======
+>>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   devise_for :users, :controllers => { :omniauth_callbacks => "devise/omniauth_callbacks", :registrations => "devise/registrations" }
 
   resources :users do

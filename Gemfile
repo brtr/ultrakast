@@ -17,7 +17,10 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem "remotipart"
 gem 'roo'
+<<<<<<< HEAD
 gem 'simple_calendar'
+=======
+>>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
 
 #Windows development only
 #gem 'eventmachine', '1.0.0.beta.4.1'

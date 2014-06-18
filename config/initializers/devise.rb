@@ -4,6 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
+  config.secret_key = 'a3995b542cb5831fdefdbe2789a75e6a0a2cb3d2c63e2092e480454d8d42850b2e1880e2aefcf8e553304bbf38b8272074630d4c78a080a8bb22b92f0afb7f17'
 
   #TODO: CHANGE TO GOOD EMAIL ADDRESS
   config.mailer_sender = "system@ultrakast.com"

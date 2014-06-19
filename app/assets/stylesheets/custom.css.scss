@@ -1036,3 +1036,14 @@ input:focus, textarea:focus
 {
 background-color:#FFFF66;
 }
+
+.button {
+    /*border-radius*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color: #FFF;
+    font-weight: light;
+    border: 1px solid #CCC;
+    padding: 5px 15px;
+}

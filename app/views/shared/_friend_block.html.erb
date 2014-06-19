@@ -80,13 +80,13 @@
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next if interests.include? category.name.downcase %>
 				<% category.child_categories_for(f).each do |child| %>
-						<%= button_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+						<%= button_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "button", :id => "#{child.id}-link" %>
 				<% end %>
 		<% end %>
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next unless interests.include? category.name.downcase %>
 				<% category.child_categories_for(f).each do |child| %>
-						<%= button_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+						<%= button_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "button", :id => "#{child.id}-link" %>
 				<% end %>	
 		<% end %>
 		<br />

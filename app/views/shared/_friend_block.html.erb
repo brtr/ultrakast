@@ -79,20 +79,21 @@
         </h1
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next if interests.include? category.name.downcase %>
-			<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
-				<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+				<%= link_to category.name+":", switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
 				<% category.child_categories_for(f).each do |child| %>
 						<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
 				<% end %>
+			<br />	
 		<% end %>
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next unless interests.include? category.name.downcase %>
-				<a href="#" id="expand-<%= category.id %>" class="expand-link" data-category-id="<%= category.id %>">+</a>
-				<%= link_to category.name, switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+				<%= link_to category.name+":", switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
 				<% category.child_categories_for(f).each do |child| %>
 						<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
 				<% end %>
+			<br />	
 		<% end %>
+		<br />
 	  <% end %>
     <% else %>
       

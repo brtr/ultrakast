@@ -72,7 +72,10 @@
         <% end %>
       <% end %> 
 	  <% @friends.each do |f| %>
-		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %>
+		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %> <br/></br/>
+		<h1 class="user-title">
+            <%= link_to f.name, f %>
+        </h1>
 	  <% end %>
     <% else %>
       

@@ -77,6 +77,9 @@
 		<h1 class="user-title">
             <%= link_to f.name, f %>
         </h1>
+        <ul>
+        <div align='center'>
+        	<div align='left'>
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next if interests.include? category.name.downcase %>
 			<li class="li-<%= category.id %> root-li">
@@ -91,7 +94,8 @@
 				<% end %>
 			</ul>
 		<% end %>
-		<hr width="150">
+		</div>
+		<div align='right'>
 		<% f.categories.roots.order('id ASC').each do |category| 
 		   next unless interests.include? category.name.downcase %>
 			<li class="li-<%= category.id %> root-li">
@@ -106,6 +110,8 @@
 				<% end %>
 			</ul>
 		<% end %>
+		</div>
+		</ul>
 	  <% end %>
     <% else %>
       

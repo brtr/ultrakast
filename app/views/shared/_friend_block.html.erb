@@ -72,10 +72,13 @@
         <% end %>
       <% end %> 
 	  <% @friends.each do |f| %>
-		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %> <br/></br/>
+		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %> 
 		<h1 class="user-title">
             <%= link_to f.name, f %>
         </h1>
+        <section id="category_links">
+            <%= render 'shared/category_links_for_show' :locals => {:user => f}%>
+		</section>
 	  <% end %>
     <% else %>
       

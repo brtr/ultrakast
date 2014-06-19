@@ -1037,13 +1037,15 @@ input:focus, textarea:focus
 background-color:#FFFF66;
 }
 
-.button {
-    /*border-radius*/
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    color: #FFF;
-    font-weight: light;
-    border: 1px solid #CCC;
-    padding: 5px 15px;
+.category-link
+{
+color: #FFFFFF;
+margin: 20px;
+box-shadow: inset 0 100px 0 0 #0000FF;
+background: #000000;
 }
+.category-link:hover
+{
+box-shadow: inset 0 0 0 0 #0000FF;
+}
+

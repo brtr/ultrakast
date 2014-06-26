@@ -30,6 +30,7 @@ html {
 
 body {
 	padding-top: 100px;
+	background: url(pattern.gif) repeat;
 }
 
 section {
@@ -1032,3 +1033,7 @@ aside#right-sidebar {
 
 .calendar td { height: 100px; width: 14.28%; }
 
+input:focus, textarea:focus
+{
+background-color:#FFFF66;
+}

@@ -6,7 +6,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
 
   config.secret_key = 'a3995b542cb5831fdefdbe2789a75e6a0a2cb3d2c63e2092e480454d8d42850b2e1880e2aefcf8e553304bbf38b8272074630d4c78a080a8bb22b92f0afb7f17'
-=======
+
 
 
   #TODO: CHANGE TO GOOD EMAIL ADDRESS
@@ -208,7 +208,7 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
   ##config.secret_key = '4382d58855b41f9ef1caf1601ad2964e5ca37e2198b5a0b9121c2169920f73e0dbde91ad61292bc1d47f3ff13f624c83116ba1185e266a038921625ef56af6cf'
-=======
+
   config.secret_key = '4382d58855b41f9ef1caf1601ad2964e5ca37e2198b5a0b9121c2169920f73e0dbde91ad61292bc1d47f3ff13f624c83116ba1185e266a038921625ef56af6cf'
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -224,7 +224,7 @@ Devise.setup do |config|
   require 'openssl'
    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
    
-=======
+
   config.omniauth :facebook, "510492979067102", "3b2d98b05805d79ac1ea8c2a18d76a74", :scope => 'publish_stream,email,offline_access'
 
   # ==> Warden configuration

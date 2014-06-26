@@ -4,10 +4,10 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-<<<<<<< HEAD
+
   config.secret_key = 'a3995b542cb5831fdefdbe2789a75e6a0a2cb3d2c63e2092e480454d8d42850b2e1880e2aefcf8e553304bbf38b8272074630d4c78a080a8bb22b92f0afb7f17'
 =======
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
+
 
   #TODO: CHANGE TO GOOD EMAIL ADDRESS
   config.mailer_sender = "system@ultrakast.com"
@@ -207,11 +207,9 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
-<<<<<<< HEAD
   ##config.secret_key = '4382d58855b41f9ef1caf1601ad2964e5ca37e2198b5a0b9121c2169920f73e0dbde91ad61292bc1d47f3ff13f624c83116ba1185e266a038921625ef56af6cf'
 =======
   config.secret_key = '4382d58855b41f9ef1caf1601ad2964e5ca37e2198b5a0b9121c2169920f73e0dbde91ad61292bc1d47f3ff13f624c83116ba1185e266a038921625ef56af6cf'
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
@@ -221,7 +219,6 @@ Devise.setup do |config|
   #TODO: CHANGE THIS TO VALID FACEBOOK DEVELOPER CREDENTIALS
   #config.omniauth :facebook, "332836790164128", "b462ebed7ba0c8c8d27e226324773e7f", :scope => 'publish_stream,email,offline_access'
   #config.omniauth :facebook, "619590914743469", "8d19291fc404e99a9e2cda549d315e72", :scope => 'publish_stream,email,offline_access,manage_pages'
-<<<<<<< HEAD
   #config.omniauth :facebook, "510492979067102", "3b2d98b05805d79ac1ea8c2a18d76a74", :scope => 'publish_stream,email,offline_access'
   config.omniauth :facebook,  "432877783505232", "c75b38f7159b70472052fb163c1f37f9", :scope => 'publish_stream,email,offline_access'
   require 'openssl'
@@ -230,7 +227,6 @@ Devise.setup do |config|
 =======
   config.omniauth :facebook, "510492979067102", "3b2d98b05805d79ac1ea8c2a18d76a74", :scope => 'publish_stream,email,offline_access'
 
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -258,8 +254,7 @@ end
 #The below is not in use anymore (along with the corresponding code in app/models/user.rb) - leaving it in for reference
 #User.class_eval do
 #  devise *@devise_options #pass devise an array of options from the model
-<<<<<<< HEAD
 #end
-=======
+
 #end
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
+

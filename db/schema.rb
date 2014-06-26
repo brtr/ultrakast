@@ -11,11 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
+
 ActiveRecord::Schema.define(:version => 20140415055715) do
-=======
-ActiveRecord::Schema.define(:version => 20120918160414) do
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
+
 
   create_table "alerts", :force => true do |t|
     t.string   "content"
@@ -35,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
   add_index "categories", ["name"], :name => "index_categories_on_name"
 
-<<<<<<< HEAD
   create_table "categories_tutors", :force => true do |t|
     t.integer "tutor_id"
     t.integer "category_id"
@@ -43,8 +40,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
 
   add_index "categories_tutors", ["tutor_id", "category_id"], :name => "index_categories_tutors_on_tutor_id_and_category_id"
 
-=======
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   create_table "categories_users", :id => false, :force => true do |t|
     t.integer "category_id"
     t.integer "user_id"
@@ -69,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-<<<<<<< HEAD
   create_table "events", :force => true do |t|
     t.string   "title"
     t.datetime "start_time"
@@ -78,8 +72,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
     t.datetime "updated_at",  :null => false
   end
 
-=======
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -140,7 +132,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
   add_index "read_statuses", ["user_id", "category_id"], :name => "index_read_statuses_on_user_id_and_category_id"
   add_index "read_statuses", ["user_id"], :name => "index_read_statuses_on_user_id"
 
-<<<<<<< HEAD
   create_table "tutors", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -149,8 +140,6 @@ ActiveRecord::Schema.define(:version => 20120918160414) do
     t.datetime "updated_at", :null => false
   end
 
-=======
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"

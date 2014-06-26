@@ -6,7 +6,7 @@
 
 #TODO: CHANGE THESE CREDENTIALS
 development:
-<<<<<<< HEAD
+
   adapter: postgresql
   database: ultrakast
   host: localhost
@@ -15,7 +15,7 @@ development:
   #username: root
   username: postgres
   password: postgres
-=======
+
   #adapter: mysql
   adapter: postgresql
   database: ultrakast
@@ -49,4 +49,4 @@ development:
   #username: root
   username: rails
   password: w3bpa55
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
+

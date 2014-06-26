@@ -2,11 +2,9 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_and_belongs_to_many :users
   has_many :posts
-<<<<<<< HEAD
   has_and_belongs_to_many :tutors
   has_many :events
-=======
->>>>>>> 0a402916808b80e5eebd82882d838f99776a10a6
+
 
   attr_accessible :name, :parent_id
   

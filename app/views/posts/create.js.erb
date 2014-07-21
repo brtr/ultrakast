@@ -1,0 +1,9 @@
+<%= render 'shared/update_feed' %>
+$('#post-box').val("");
+$('#post_image').val("");
+taggedNames = [];
+taggedIds = [];
+myLiveSearch();
+<% if @reload %>
+	window.location = '/';
+<% end %>

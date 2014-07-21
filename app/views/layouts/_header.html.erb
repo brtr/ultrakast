@@ -1,0 +1,57 @@
+<header class="navbar navbar-fixed-top">
+    <div class="container">
+        
+    
+        <%= link_to((image_tag 'ultrakast-logo.png'), root_path) %>
+		             
+        <% if user_signed_in? %>
+          <div id="header-search">
+            <%= form_tag users_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Search for friends" %>
+              <%= select_tag :search_type, "<option>Name</option><option>Email</option>".html_safe %>
+              <%= submit_tag "Search", :name => nil, :id => "search-submit" %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <nav>
+            <ul class="nav pull-right">
+                <% if user_signed_in? %>
+                    <% unless current_user.alerts.empty? %>
+                        <li><a id="alerts-link" class="alert-badge" href="#"><%= current_user.alerts_count %></a></li>
+                        <div id="alerts">
+                            <ul>
+                                <% current_user.alerts.each do |a| %>
+                                    <li><%= a.content.html_safe %> 
+										<% if a.friend_id.nil? %>
+											- <%= link_to "clear", a, method: :delete %>
+										<% end %>
+									</li>
+                                <% end %>
+                            </ul>
+                            <%= link_to "clear all alerts", :controller => "/alerts", :action => "delete_all" %>
+                        </div>
+                    <% end %>
+                    <li><%= link_to current_user.name, current_user %></li>
+                <% end %>
+                <li><%= link_to "Home", root_path %></li>
+				<% if user_signed_in? %>
+          			<li><%= link_to "Add Friends", users_path %></li>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "About Ultrakast", about_path %></li>
+							<li class="divider"></li>
+							<li><%= link_to "Settings", edit_user_registration_path(current_user) %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
+						</ul>
+					</li>
+				<% else %>
+					<!-- <li><%= link_to "Sign in", new_user_session_path %></li> -->
+					<li><%= link_to "About", about_path %></li>
+				<% end %>
+		  	</ul>
+		</nav>
+	</div><!-- END .container -->
+</header>

@@ -1,0 +1,111 @@
+<% whitelist = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+﻿<% interests = ['art', 'fashion', 'music', 'news', 'sports', 'miscellaneous' ] %>
+
+<% if session[:feed_status] == 'public'%>
+   <% unless session[:category_filter] == "all" %>
+     <% get_everyone_in_category %>
+   <% else %>
+     <% get_everyone %>  
+   <% end %>
+<% else %>
+   <% get_friends %>
+<% end %>
+
+<!--  
+<% unless session[:category_filter] == "all" %>
+    <% if session[:feed_status] == 'public' %>
+      <% get_everyone_in_category %>
+    <% elsif session[:feed_status] == 'private' %>
+      <% get_friends %>
+    <% else %>
+      <% get_friends %>  
+    <% end %>
+<% else %>
+    <% if session[:feed_status] == 'public' %>
+      <% get_everyone %>
+    <% else %>
+      <% get_friends %>
+    <% end %>
+<% end %>
+-->
+
+<% interest = false 
+   if session[:parent_category] and whitelist.include? session[:parent_category].downcase
+   	  interest = true 
+   end   
+%>
+
+<div id="friend-avatars" class="cf">
+	<% unless @friends.nil? %>
+	<!--	<% unless session[:category_filter] == "all" %>
+			<strong>Your friends interested in <%= session[:filter_title] %>:</strong><br /><br />
+		<% else %>
+			<strong>Your friends:</strong><br /><br />
+		<% end %>
+    -->		
+     <% unless session[:category_filter] == "all" %>
+		<% if session[:feed_status] == 'public' %>
+           <% if interest %>
+             <strong>Everyone at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+           <% else %>
+             <% if session[:selected_category_name] == session[:parent_category] %>
+                <strong>All students at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
+             <% else %>
+                <strong>All students at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
+             <% end %>   
+           <% end %>
+        <% else %>
+           <% if interest %>
+             <strong>Your friends at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+           <% else %>
+             <% if session[:selected_category_name] == session[:parent_category] %>
+                <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
+             <% else %>
+                <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
+             <% end %>   
+           <% end %>                       
+        <% end %>
+      <% else %>
+  		<% if session[:feed_status] == 'public' %>
+  		  <strong><a href="#">Everyone at Michigan who's on Ultrakast:</a></strong><br /><br />
+        <% else %>
+          <strong>My Michigan friends who are on Ultrakast:</strong><br /><br />
+        <% end %>
+      <% end %> 
+	  <% @friends.each do |f| %>
+		<%= link_to avatar_for(f, size: "medium"), f, title: f.name %> 
+		<h1 class="user-title">
+            <%= link_to f.name, f %>
+        </h1
+		<% f.categories.roots.order('id ASC').each do |category| 
+		   next if interests.include? category.name.downcase %>
+				<%= link_to category.name+":", switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+				<% category.child_categories_for(f).each do |child| %>
+						<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+				<% end %>
+			<br />	
+		<% end %>
+		<% f.categories.roots.order('id ASC').each do |category| 
+		   next unless interests.include? category.name.downcase %>
+				<%= link_to category.name+":", switchfeed_path(:category_filter => category.children.collect{ |u| u.id }, :filter_title => category.name, :selected_category => category.id, :parent_category => category.name), :remote => true, :class => "parent-link category-link", :id => "#{category.id}-link" %>
+				<% category.child_categories_for(f).each do |child| %>
+						<%= link_to child.name, switchfeed_path(:category_filter => child.id, :filter_title => child.name, :selected_category => child.id, :parent_category => category.name), :remote => true, :class => "category-link", :id => "#{child.id}-link" %>
+				<% end %>
+			<br />	
+		<% end %>
+		<br />
+	  <% end %>
+    <% else %>
+      
+      <% if interest %>
+          <strong>Your friends at Michigan interested in <%= session[:filter_title] %>:</strong><br /><br />
+      <% else %>    
+          <% if session[:selected_category_name] == session[:parent_category] %>
+              <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> classes this semester</strong><br /><br />
+          <% else %>
+              <strong>All of your friends at Michigan who are also taking <%= session[:filter_title] %> this semester</strong><br /><br />
+          <% end %>
+      <% end %>
+         
+	<% end %>
+</div>

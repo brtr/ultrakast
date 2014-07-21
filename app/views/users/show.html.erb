@@ -1,0 +1,60 @@
+<%= provide(:title, @user.name) %>
+
+<div class="row">
+    <aside id="category-sidebar" class="span2">
+    <h1><%= @user.first_name %>'s Classes and Interests</h1>
+        <section id="category_links">
+            <%= render 'shared/category_links_for_show' %>
+		</section>
+	</aside>
+
+
+		
+	<aside id="user-sidebar" class="span2">
+        <h1 class="user-title">
+            <%= link_to @user.name, @user %>
+        </h1>
+        <section id="show-user-info">      
+            <a href="<%= user_path(@user) %>">
+              <%= avatar_for(@user, :class => "show-avatar", :size => "normal") %>
+            </a>
+            
+            <% if @user.uid and !@user.uid.empty? %>
+               <br ><a href="http://www.facebook.com/<%= @user.uid %>" target="_blank"><%= image_tag 'facebook_profile.jpg', :size => '100x50' %></a> 
+            <% end %>
+            <p>
+              <% if @user == current_user %>
+                <%= link_to "Edit profile", edit_user_registration_path(@user) %>
+              <% else %>
+                <%= friendship_link(@user) %>
+              <% end %>
+            </p>
+		</section>
+        <% unless @user.friends.count == 0 %>
+            <section id="friend-list">
+                <h2><%= pluralize(@user.friends.count, "friend") %></h2>
+                <div id="images">
+					<% @user.friends.each do |f| %>
+	                    <%= link_to avatar_for(f, size: "square"), f %>
+	                <% end %>
+				</div>
+            </section>
+        <% end %>
+	</aside>
+    
+    <div id="user-feed" class="span7">
+    			<div id="user-filter-wrap" class="cf">
+				<div id="user-filter-settings" class="cf">
+					<div class="user-button-wrap">
+						
+						<a id="user-posts-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=user"><%= image_tag 'posts-on.png'%></a>
+						<a id="tagged-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=tagged"><%= image_tag 'at-off.png' %></a>
+						<a id="favorites-button" data-remote="true" class="filter-button" href="/static_pages/switchfeed?feed_status=favorites"><%= image_tag 'favorites-off.png' %></a>
+					</div>
+				</div>
+			</div>
+        <div id="filter-title"></div>
+        <%= render 'shared/feed' %>
+	</div>
+    
+</div><!-- .row -->

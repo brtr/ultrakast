@@ -1,0 +1,5 @@
+Things to do before production:
+
+1. Jun needs Embed.ly account - change API key
+2. Jun needs to register on FB devs - change APP_ID and APP_SECRET in Devise settings
+ 

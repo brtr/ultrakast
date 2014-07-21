@@ -1,0 +1,5 @@
+<h2>Import Tutors</h2>
+<%= form_tag upload_tutors_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>

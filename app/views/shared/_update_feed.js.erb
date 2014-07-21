@@ -1,0 +1,85 @@
+<% if session[:feed_status] == "public" %>
+	$('#public-button img').attr('src', '/assets/everyone-on.png');
+  	$('#private-button img').attr('src', '/assets/friends-off.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-off.png');
+<% elsif session[:feed_status] == "favorites" %>
+  	$('#public-button img').attr('src', '/assets/everyone-off.png');
+    $('#user-posts-button img').attr('src', '/assets/posts-off.png');
+    $('#tagged-button img').attr('src', '/assets/at-off.png');
+  	$('#private-button img').attr('src', '/assets/friends-off.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-on.png');
+<% elsif session[:feed_status] == "private" %>
+  	$('#public-button img').attr('src', '/assets/everyone-off.png');
+  	$('#private-button img').attr('src', '/assets/friends-on.png');
+  	$('#favorites-button img').attr('src', '/assets/favorites-off.png');
+<% elsif session[:feed_status] == "tagged" %>
+    $('#user-posts-button img').attr('src', '/assets/posts-off.png');
+    $('#favorites-button img').attr('src', '/assets/favorites-off.png');
+  	$('#tagged-button img').attr('src', '/assets/at-on.png');
+<% elsif session[:feed_status] == "user" %>
+    $('#user-posts-button img').attr('src', '/assets/posts-on.png');
+    $('#favorites-button img').attr('src', '/assets/favorites-off.png');
+  	$('#tagged-button img').attr('src', '/assets/at-off.png');
+<% end %>
+
+<% if session[:sort_order] == "recent" %>
+  	$('#recent-button img').attr('src', '/assets/recent-on.png');
+  	$('#popular-button img').attr('src', '/assets/popular-off.png');
+<% else %>
+  	$('#recent-button img').attr('src', '/assets/recent-off.png');
+  	$('#popular-button img').attr('src', '/assets/popular-on.png');
+<% end %>
+  
+$('#filter-title').html('<%= escape_javascript(filter_title(session[:filter_title])) %>');
+$('#feed-items').html('<%= escape_javascript(render(:partial => "shared/feed")) %>');
+
+<% unless session[:category_filter] == "all" %>
+	<% cat = Category.find(session[:selected_category]) %>
+	
+	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#000');
+	<% unless cat.ancestry.nil? %>
+    <% unless Post.unread_count(current_user, cat) == 0 %>
+    	$('#<%= cat.id %>-unread').html('<%= Post.unread_count(current_user, cat) %>');	
+    <% else %>
+      $('#<%= cat.id %>-unread').hide();
+    <% end %>
+    
+    <% unless Post.unread_count(current_user, cat.root) == 0 %>
+    	$('#<%= cat.root.id %>-unread').html('<%= Post.unread_count(current_user, cat.root) %>');
+    <% else %>
+      $('#<%= cat.root.id %>-unread').hide();
+    <% end %>
+		$('li.li-<%= cat.root.id %>').addClass('selected');
+  	<% else %>
+	 	$('li.li-<%= cat.id %>').addClass('selected');
+	<% end %>
+<% else %>
+	$('.root-li').removeClass('selected');
+	$('a.home-link').css('color', '#08C');
+<% end %>
+
+$('#friend-block').html('<%= escape_javascript(render(:partial => "shared/friend_block")) %>').hide().show();
+
+//TODO: THIS IS REPEATED - DRY UP WITH METHOD CALL TO ONE PLACE?
+$('.content a').attr('target', '_blank');
+
+//Translate links in post text to embedded content
+$('.content').embedly({
+	//Place embedded content after post
+	method: "after",
+	maxWidth: 590,
+	chars: 150,
+  className: "embed cf",
+	key: '6c398a44d6034de4b75ea047c32e83fe', //TODO: CHANGE THIS TO CLIENT'S API KEY
+		
+	//Override default success callback to insert target into anchors
+	success: function(oembed, dict){
+		var _a, elem = $(dict.node);
+		if (! (oembed) ) { return null; }
+		oembed.code = oembed.code.replace('<a href', '<a target="_blank" href');
+		return elem.after(oembed.code);
+	}
+});
+		
+$('.pagination a').attr('data-remote', 'true');
